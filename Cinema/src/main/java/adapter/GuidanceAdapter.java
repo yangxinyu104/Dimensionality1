@@ -48,7 +48,7 @@ public class GuidanceAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        // super.destroyItem(container,position,object); 这一句要删除，否则报错
+        //super.destroyItem(container,position,object); 这一句要删除，否则报错
         container.removeView((View) object);
     }
 
