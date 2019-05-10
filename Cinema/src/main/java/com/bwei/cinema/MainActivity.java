@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.main_LinearLayout)
     LinearLayout mainLinearLayout;
     private List<ImageView> list;
-    //s
+    //sssss
     private SharedPreferences sp;
 
     @Override
