@@ -51,6 +51,4 @@ public class MyModel implements ContractInterFace.IModel {
         void Succeed(LoginBean loginBean);
     }
 
-
-
 }

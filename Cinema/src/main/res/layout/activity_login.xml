@@ -77,7 +77,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp_130"
         android:text="登录"
-        android:textColor="#ff5f71"
+        android:background="@drawable/button_yuanjiao"
+        android:textColor="#fff"
         android:textSize="@dimen/sp_18" />
 
     <LinearLayout
