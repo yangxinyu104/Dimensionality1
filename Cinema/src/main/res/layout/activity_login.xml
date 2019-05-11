@@ -41,6 +41,7 @@
         android:textColorHint="#fff" />
 
     <RelativeLayout
+        android:paddingTop="@dimen/dp_30"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -50,20 +51,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/dp_15"
-            android:padding="@dimen/dp_16"
             android:textSize="@dimen/sp_14"
             android:text="记住密码"
             android:textColor="#fff" />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/quickly_id"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/jzpwd_id"
+            android:layout_height="@dimen/dp_30"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/dp_20"
             android:clickable="true"
-            android:padding="@dimen/dp_20"
             android:text="快速注册"
             android:textColor="#fff"
             android:textSize="@dimen/sp_14" />
@@ -75,24 +73,23 @@
         android:layout_height="@dimen/dp_40"
         android:gravity="center"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dp_130"
+        android:layout_marginTop="@dimen/dp_200"
         android:text="登录"
         android:textColor="#ff5f71"
         android:textSize="@dimen/sp_18" />
 
     <LinearLayout
+
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_25"
-        android:layout_marginTop="@dimen/dp_35"
+        android:layout_marginTop= "@dimen/dp_35"
         android:orientation="horizontal">
 
         <View
-            android:layout_width="@dimen/dp_90"
+            android:layout_width="@dimen/dp_110"
             android:layout_height="@dimen/dp_2"
-            android:layout_marginLeft="@dimen/dp_40"
-            android:layout_marginRight="@dimen/dp_5"
             android:gravity="center_vertical"
-            android:layout_marginTop="@dimen/dp_7"
             android:background="#ffffff"
             />
 
@@ -104,11 +101,9 @@
             android:text="第三方账号快速登录"/>
 
         <View
-            android:layout_width="@dimen/dp_90"
+            android:layout_width="@dimen/dp_110"
             android:layout_height="@dimen/dp_2"
-            android:layout_marginLeft="@dimen/dp_5"
             android:gravity="center_vertical"
-            android:layout_marginTop="@dimen/dp_7"
             android:background="#ffffff"
             />
 

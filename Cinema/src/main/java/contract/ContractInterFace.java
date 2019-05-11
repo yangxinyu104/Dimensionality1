@@ -13,17 +13,17 @@ public interface ContractInterFace {
     //p层
     public interface  IPresenter{
         void login(String phone, String pwd);
-        void register();
+        void register(String nickName, int sex, String birthday, String phone, String emil, String pwd, String pwd2);
     }
     //p层
     public interface  IModel{
         void login(String phone, String pwd, final MyModel.SetLogin setLogin);
-        void register();
+        void register(String nickName, int sex, String birthday, String phone, String emil, String pwd, String pwd2, final MyModel.SetRegister setRegister);
     }
     public  interface  ILogin{
         void login(LoginBean loginBean);
     }
     public  interface  IRegister{
-        void register();
+        void register(String message);
     }
 }

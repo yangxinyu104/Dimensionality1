@@ -1,6 +1,9 @@
 package presenter;
 
+import android.util.Log;
+
 import bean.LoginBean;
+import bean.RegisterBean;
 import contract.ContractInterFace;
 import model.MyModel;
 
@@ -26,13 +29,20 @@ public class MyPresenter<T> implements ContractInterFace.IPresenter {
             @Override
             public void Succeed(LoginBean loginBean) {
                 ContractInterFace.ILogin iLogin = (ContractInterFace.ILogin) t;
+                Log.e("tag","MyPresenter");
                 iLogin.login(loginBean);
             }
         });
     }
 
     @Override
-    public void register() {
-
+    public void register(String nickName, int sex, String birthday, String phone, String emil, String pwd, String pwd2) {
+        iModel.register(nickName, sex, birthday, phone, emil, pwd, pwd2, new MyModel.SetRegister() {
+            @Override
+            public void Succeed(RegisterBean registerBean) {
+                ContractInterFace.IRegister iRegister = (ContractInterFace.IRegister) t;
+                iRegister.register(registerBean.getMessage());
+            }
+        });
     }
 }

@@ -5,6 +5,7 @@ import android.os.Environment;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 import api.Api;
 import okhttp3.Cache;
@@ -72,6 +73,11 @@ public class RetrofitUtil {
     public void doDelete(String url, int userId, String sessionId, HashMap<String,String> hashMap,HttpListener httpListener){
         Api api = retrofit.create(Api.class);
         Observable<ResponseBody> observable = api.delete(url, userId, sessionId, hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(GetObserver(httpListener));
+    }
+    public void doFiledPost(String url, int userId, String sessionId, HashMap<String,Object> hashMap, HttpListener httpListener){
+        Api api = retrofit.create(Api.class);
+        Observable<ResponseBody> observable = api.FilePost(url, hashMap);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(GetObserver(httpListener));
     }
     private Observer GetObserver(final HttpListener httpListener) {
