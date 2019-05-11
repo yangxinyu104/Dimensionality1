@@ -25,7 +25,7 @@ public class MyModel implements ContractInterFace.IModel {
         hashMap.put("phone",phone);
         hashMap.put("pwd",pwd);
         /*for (java.util.Map.Entry<String,String> kk : hashMap.entrySet()){
-            Log.e("tag",kk.getKey()+"     " +kk.getValue());
+            Log.e("tag",kk.getKey()+"     " +kk.getValue());dsadasdasdasd
         }*/
         RetrofitUtil.GetInstance().doPost(URl.URL_LOGIN, 0, null, hashMap, new RetrofitUtil.HttpListener() {
             @Override
