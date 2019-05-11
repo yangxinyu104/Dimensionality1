@@ -49,6 +49,7 @@ public class GuidanceAdapter extends PagerAdapter {
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         //super.destroyItem(container,position,object); 这一句要删除，否则报错
+        //医学影像实打实大萨达所大所大所安达市大所大所大所大所大萨达所大所多 阿迪达斯多
         container.removeView((View) object);
     }
 
