@@ -133,8 +133,9 @@
         android:layout_height="@dimen/dp_40"
         android:layout_gravity="center"
         android:layout_marginTop="65dp"
+        android:background="@drawable/button_yuanjiao"
         android:text="注册"
-        android:textColor="#ff5f71"
+        android:textColor="#fff"
         android:textSize="@dimen/sp_18" />
 
 </LinearLayout>

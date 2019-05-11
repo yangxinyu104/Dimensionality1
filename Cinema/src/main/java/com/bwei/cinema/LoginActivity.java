@@ -76,6 +76,8 @@ public class LoginActivity extends AppCompatActivity implements ContractInterFac
                 edit.putBoolean("flag", false);
                 edit.commit();
             }
+            Intent intent = new Intent(LoginActivity.this,MovieActivity.class) ;
+            startActivity(intent);
             finish();
         }else{
             Toast.makeText(this, loginBean.getMessage(), Toast.LENGTH_LONG).show();

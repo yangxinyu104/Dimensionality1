@@ -79,8 +79,10 @@ public class MyModel implements ContractInterFace.IModel {
         void Succeed(LoginBean loginBean);
     }
 
+
     public interface SetRegister{
         void Succeed(RegisterBean registerBean);
     }
+
 
 }
