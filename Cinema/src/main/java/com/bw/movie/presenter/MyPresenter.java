@@ -3,6 +3,7 @@ package com.bw.movie.presenter;
 import android.util.Log;
 
 import com.bw.movie.bean.LoginBean;
+import com.bw.movie.bean.PopularMovieBean;
 import com.bw.movie.bean.RegisterBean;
 import com.bw.movie.contract.ContractInterFace;
 import com.bw.movie.model.MyModel;
@@ -42,6 +43,17 @@ public class MyPresenter<T> implements ContractInterFace.IPresenter {
             public void Succeed(RegisterBean registerBean) {
                 ContractInterFace.IRegister iRegister = (ContractInterFace.IRegister) t;
                 iRegister.register(registerBean.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void popularMovie() {
+        iModel.popularMovie(new MyModel.SetPopularMovie() {
+            @Override
+            public void Succeed(PopularMovieBean popularMovieBean) {
+                ContractInterFace.IFilmHome iFilmHome = (ContractInterFace.IFilmHome) t;
+                iFilmHome.popularMovie(popularMovieBean);
             }
         });
     }

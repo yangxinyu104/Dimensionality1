@@ -27,11 +27,11 @@ public interface Api {
      * @param url  url路径或地址
      * @param userId  userId
      * @param sessionId  sessionId
-     * @param hashMap  参数
+     * @param
      * @return
      */
     @GET
-    public Observable<ResponseBody> get(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId, @QueryMap HashMap<String, String> hashMap);
+    public Observable<ResponseBody> get(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId,@QueryMap HashMap<String,Integer> hashMap);
 
     @POST
     public Observable<ResponseBody> post(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId, @QueryMap HashMap<String, String> hashMap);

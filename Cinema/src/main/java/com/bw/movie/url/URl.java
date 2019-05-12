@@ -16,6 +16,9 @@ public class URl {
     //注册
     public  static String URL_REGISTER = "user/v1/registerUser";
 
+    //热门电影http://172.17.8.100/movieApi/
+    public  static String URL_POPULARMOVIE = "movie/v1/findHotMovieList";
+
 
 
 

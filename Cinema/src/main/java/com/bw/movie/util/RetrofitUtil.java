@@ -1,6 +1,7 @@
 package com.bw.movie.util;
 
 import android.os.Environment;
+import android.util.Log;
 
 import com.bw.movie.api.Api;
 import com.bw.movie.url.URl;
@@ -53,9 +54,10 @@ public class RetrofitUtil {
             return retrofitUtil;
     }
 
-    public void doGet(String url, int userId, String sessionId, HashMap<String,String> hashMap,HttpListener httpListener){
+    public void doGet(String url, int userId, HashMap<String,Integer> hashMap,String sessionId,HttpListener httpListener){
         Api api = retrofit.create(Api.class);
-        Observable<ResponseBody> observable = api.get(url, userId, sessionId, hashMap);
+        Observable<ResponseBody> observable = api.get(url, userId, sessionId,hashMap);
+        Log.e("tag" ,"url : " +url +"sessionId : " +sessionId+" userId :  " +userId );
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(GetObserver(httpListener));
     }
     public  void  doPost(String url, int userId, String sessionId, HashMap<String,String> hashMap,HttpListener httpListener){
@@ -83,6 +85,7 @@ public class RetrofitUtil {
 
             @Override
             public void onError(Throwable e) {
+                Log.e("tag",e.getMessage());
                 httpListener.Error(e.getMessage());
             }
 

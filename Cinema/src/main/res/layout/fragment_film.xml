@@ -42,4 +42,11 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_186" />
 
+    <recycler.coverflow.RecyclerCoverFlow
+        android:layout_marginTop="@dimen/dp_85"
+        android:id="@+id/film_RecyclerCoverFlow"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+
+
 </RelativeLayout>
