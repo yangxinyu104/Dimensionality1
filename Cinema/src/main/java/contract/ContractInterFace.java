@@ -1,6 +1,7 @@
 package contract;
 
 import bean.LoginBean;
+import bean.PopularMovieBean;
 import model.MyModel;
 
 /**
@@ -14,16 +15,21 @@ public interface ContractInterFace {
     public interface  IPresenter{
         void login(String phone, String pwd);
         void register(String nickName, int sex, String birthday, String phone, String emil, String pwd, String pwd2);
+        void popularMovie();
     }
     //p层
     public interface  IModel{
         void login(String phone, String pwd, final MyModel.SetLogin setLogin);
         void register(String nickName, int sex, String birthday, String phone, String emil, String pwd, String pwd2, final MyModel.SetRegister setRegister);
+        void popularMovie(MyModel.SetPopularMovie setPopularMovie);
     }
     public  interface  ILogin{
         void login(LoginBean loginBean);
     }
     public  interface  IRegister{
         void register(String message);
+    }
+    public interface  IFilmHome{
+        void popularMovie(PopularMovieBean popularMovieBean);
     }
 }

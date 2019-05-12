@@ -7,7 +7,9 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 
+import app.MyApplication;
 import bean.LoginBean;
+import bean.PopularMovieBean;
 import bean.RegisterBean;
 import contract.ContractInterFace;
 import url.URl;
@@ -21,6 +23,7 @@ import util.RetrofitUtil;
 public class MyModel implements ContractInterFace.IModel {
     SetLogin setLogin;
     SetRegister setRegister;
+    SetPopularMovie setPopularMovie;
     @Override
     public void login(String phone, String pwd, final SetLogin setLogin) {
         this.setLogin = setLogin;
@@ -75,6 +78,28 @@ public class MyModel implements ContractInterFace.IModel {
         });
 
     }
+
+    @Override
+    public void popularMovie(final SetPopularMovie setPopularMovie) {
+        this.setPopularMovie =setPopularMovie;
+        HashMap<String,Integer> hashMap= new HashMap<>();
+        hashMap.put("page",1);
+        hashMap.put("count",10);
+        RetrofitUtil.GetInstance().doGet(URl.URL_POPULARMOVIE, MyApplication.UserId,hashMap ,MyApplication.SessionId, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                PopularMovieBean popularMovieBean = new Gson().fromJson(s, PopularMovieBean.class);
+                setPopularMovie.Succeed(popularMovieBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","popularMovie  : " + s);
+            }
+        });
+    }
+
+
     public interface SetLogin{
         void Succeed(LoginBean loginBean);
     }
@@ -83,6 +108,8 @@ public class MyModel implements ContractInterFace.IModel {
     public interface SetRegister{
         void Succeed(RegisterBean registerBean);
     }
-
+    public interface SetPopularMovie{
+        void Succeed(PopularMovieBean popularMovieBean);
+    }
 
 }
