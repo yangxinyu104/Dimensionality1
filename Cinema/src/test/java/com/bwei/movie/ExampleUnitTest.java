@@ -1,4 +1,4 @@
-package com.bwei.cinema;
+package com.bwei.movie;
 
 import org.junit.Test;
 

@@ -3,9 +3,39 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bitmap"
     android:orientation="vertical">
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/login_Nointernet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_marginTop="@dimen/dp_211"
+            android:layout_gravity="center"
+            android:src="@mipmap/internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
+        <TextView
+            android:textSize="@dimen/sp_14"
+            android:textColor="#8c8c8c"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp_60"
+            android:text="糟糕,网络不给力呀!"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/login_Internet"
+        android:background="@mipmap/bitmap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <EditText
         android:id="@+id/phone_id"
         android:layout_width="match_parent"
@@ -123,5 +153,5 @@
             android:id="@+id/wxLogin"
             android:src="@mipmap/weixin"/>
     </LinearLayout>
-
+    </LinearLayout>
 </LinearLayout>
