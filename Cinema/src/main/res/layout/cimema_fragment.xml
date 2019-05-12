@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/dp_20"
+    android:orientation="vertical">
+
+    <com.bw.movie.app.MyViews
+        android:id="@+id/view_crnema"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.bw.movie.app.MyViews>
+
+    <RadioGroup
+        android:id="@+id/movie_rg"
+        android:layout_width="@dimen/dp_198"
+        android:layout_height="@dimen/dp_25"
+        android:layout_below="@id/view_crnema"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/movie_recommended"
+            android:layout_width="@dimen/dp_83"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_xuan"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="推荐影院"
+            android:textSize="@dimen/sp_14" />
+
+        <RadioButton
+            android:id="@+id/movie_nearby"
+            android:layout_width="@dimen/dp_83"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/dp_32"
+            android:background="@drawable/shape_xuan"
+            android:button="@null"
+            android:gravity="center"
+            android:text="附近影院"
+            android:textSize="@dimen/sp_14" />
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/movie_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/movie_rg"
+        android:layout_marginTop="@dimen/dp_10" >
+
+    </FrameLayout>
+</LinearLayout>

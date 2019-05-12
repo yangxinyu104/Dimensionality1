@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_48"
+    android:layout_marginTop="@dimen/dp_10"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/dingwei"
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_48"
+            android:padding="@dimen/dp_15"
+            android:src="@mipmap/cinema_detail"/>
+
+        <TextView
+            android:id="@+id/locations"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_48"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:text="定位中…"
+            android:textSize="@dimen/sp_12"
+            android:paddingBottom="@dimen/dp_5"
+            android:layout_toRightOf="@id/dingwei"
+            android:layout_centerVertical="true"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_alignParentRight="true"
+        android:id="@+id/search_linear"
+        android:layout_width="35dp"
+        android:layout_height="@dimen/dp_24"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/cinema_search_shape">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/search_image"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:paddingLeft="6dp"
+                android:src="@mipmap/icon_search" />
+
+            <EditText
+                android:id="@+id/search_edname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+
+                android:layout_marginTop="0dp"
+                android:background="@null"
+                android:ems="8"
+                android:padding="5dp"
+                android:textColor="#f2f2f2"
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/search_textName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginLeft="@dimen/dp_55"
+                android:paddingTop="3dp"
+                android:text="搜索"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

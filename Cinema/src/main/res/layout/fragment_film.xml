@@ -10,11 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <ImageView
-            android:src="@mipmap/white"
-            android:layout_marginTop="@dimen/dp_30"
             android:layout_width="@dimen/dp_28"
-            android:layout_height="@dimen/dp_28" />
+            android:layout_height="@dimen/dp_28"
+            android:layout_marginTop="@dimen/dp_30"
+            android:src="@mipmap/white" />
 
         <RelativeLayout
             android:layout_marginTop="@dimen/dp_30"
