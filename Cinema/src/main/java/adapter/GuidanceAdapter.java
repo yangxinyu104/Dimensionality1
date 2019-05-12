@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bwei.cinema.R;
+import com.bwei.movie.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

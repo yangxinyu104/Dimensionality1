@@ -1,12 +1,10 @@
-package com.bwei.cinema;
+package com.bwei.movie;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -24,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.main_LinearLayout)
     LinearLayout mainLinearLayout;
     private List<ImageView> list;
-    //sssss
     private SharedPreferences sp;
 
     @Override

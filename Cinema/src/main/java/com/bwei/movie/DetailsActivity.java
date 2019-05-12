@@ -1,7 +1,9 @@
-package com.bwei.cinema;
+package com.bwei.movie;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.bwei.movie.R;
 
 public class DetailsActivity extends AppCompatActivity {
 

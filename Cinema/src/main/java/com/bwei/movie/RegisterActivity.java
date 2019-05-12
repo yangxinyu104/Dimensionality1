@@ -1,4 +1,4 @@
-package com.bwei.cinema;
+package com.bwei.movie;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
