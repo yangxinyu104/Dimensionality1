@@ -46,6 +46,7 @@ public class RetrofitUtil {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
+
     //单例模式
     public static synchronized RetrofitUtil GetInstance(){
         if (retrofitUtil == null){

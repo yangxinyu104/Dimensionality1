@@ -19,7 +19,8 @@ public class URl {
     //热门电影http://172.17.8.100/movieApi/
     public  static String URL_POPULARMOVIE = "movie/v1/findHotMovieList";
 
-
+    //推荐电影
+    public static String URL_CINEMATJ="http://172.17.8.100/movieApi/cinema/v1/findRecommendCinemas";
 
 
 }

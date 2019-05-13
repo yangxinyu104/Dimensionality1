@@ -1,5 +1,6 @@
 package com.bw.movie.contract;
 
+import com.bw.movie.bean.CinematjBean;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.PopularMovieBean;
 import com.bw.movie.model.MyModel;
@@ -32,4 +33,9 @@ public interface ContractInterFace {
     public interface  IFilmHome{
         void popularMovie(PopularMovieBean popularMovieBean);
     }
+
+    public interface IRecommendCinema{
+        void recommendCinema(CinematjBean cinematjBean);
+    }
+
 }
