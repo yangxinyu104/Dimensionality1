@@ -13,8 +13,6 @@ import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
-import rx.Observable;
-
 /**
  * @Author：Y
  * @E-mail： 2447892835@qq.com

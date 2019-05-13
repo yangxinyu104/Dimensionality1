@@ -15,7 +15,7 @@
         android:id="@+id/movie_rg"
         android:layout_width="@dimen/dp_198"
         android:layout_height="@dimen/dp_25"
-        android:layout_below="@id/view_crnema"
+        android:layout_below="@+id/view_crnema"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dp_10"

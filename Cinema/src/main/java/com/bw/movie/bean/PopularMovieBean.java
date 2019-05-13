@@ -61,6 +61,7 @@ public class PopularMovieBean {
         private String name;
         private int rank;
         private String summary;
+        public boolean flag;
 
         public int getFollowMovie() {
             return followMovie;

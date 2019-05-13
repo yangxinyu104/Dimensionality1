@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bw.movie.R;
+import com.bw.movie.bean.BeonBean;
 import com.bw.movie.bean.PopularMovieBean;
 import com.bw.movie.fragment.FilmFragment;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -23,10 +24,10 @@ import butterknife.ButterKnife;
  */
 public class FilmRecyclerAdapter extends RecyclerView.Adapter<FilmRecyclerAdapter.ViewHolder> implements View.OnClickListener {
     FilmFragment filmFragment;
-    List<PopularMovieBean.ResultBean> list;
+    List<BeonBean.ResultBean> list;
 
 
-    public FilmRecyclerAdapter(FilmFragment filmFragment, List<PopularMovieBean.ResultBean> list) {
+    public FilmRecyclerAdapter(FilmFragment filmFragment, List<BeonBean.ResultBean> list) {
         this.filmFragment = filmFragment;
         this.list = list;
     }

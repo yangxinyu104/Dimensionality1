@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bw.movie.activity.SearchActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+        <com.bw.movie.app.MyViews
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <RadioGroup
+            android:gravity="center"
+            android:id="@+id/search_RadioGroup"
+            android:layout_width="@dimen/dp_330"
+            android:layout_height="@dimen/dp_25"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_16"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/search_hot"
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_xuan"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="热门电影"
+                android:textSize="@dimen/sp_14" />
+
+            <RadioButton
+                android:id="@+id/search_showing"
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/dp_32"
+                android:background="@drawable/shape_xuan"
+                android:button="@null"
+                android:gravity="center"
+                android:text="正在上映"
+                android:textSize="@dimen/sp_14" />
+            <RadioButton
+                android:id="@+id/search_beon"
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/dp_32"
+                android:background="@drawable/shape_xuan"
+                android:button="@null"
+                android:gravity="center"
+                android:text="即将上映"
+                android:textSize="@dimen/sp_14" />
+
+        </RadioGroup>
+
+       <android.support.v7.widget.RecyclerView
+           android:layout_marginTop="@dimen/dp_24"
+           android:layout_gravity="center"
+           android:id="@+id/search_RecyclerView"
+           android:layout_width="@dimen/dp_310"
+           android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/search_finish"
+            android:src="@mipmap/returns"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:layout_alignParentBottom="true"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60" />
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

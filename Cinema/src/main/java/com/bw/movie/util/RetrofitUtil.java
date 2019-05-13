@@ -40,7 +40,7 @@ public class RetrofitUtil {
                 .build();
         retrofit = new Retrofit
                 .Builder()
-                .baseUrl(URl.URL_MAIN)
+                .baseUrl(URl.URL_OUTERNET)
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -54,7 +54,7 @@ public class RetrofitUtil {
             return retrofitUtil;
     }
 
-    public void doGet(String url, int userId, HashMap<String,Integer> hashMap,String sessionId,HttpListener httpListener){
+    public void doGet(String url, int userId, HashMap<String,Object> hashMap,String sessionId,HttpListener httpListener){
         Api api = retrofit.create(Api.class);
         Observable<ResponseBody> observable = api.get(url, userId, sessionId,hashMap);
         Log.e("tag" ,"url : " +url +"sessionId : " +sessionId+" userId :  " +userId );

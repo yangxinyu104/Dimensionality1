@@ -230,7 +230,7 @@ public final class  Base64 {
                 !isData( (d2 = base64Data[dataIndex++]) )||
                 !isData( (d3 = base64Data[dataIndex++]) )||
                 !isData( (d4 = base64Data[dataIndex++]) ))
-                return null;//if found "no data" just return null
+                return null;//if found "no data" just returns null
 
             b1 = base64Alphabet[d1];
             b2 = base64Alphabet[d2];
@@ -244,7 +244,7 @@ public final class  Base64 {
 
         if (!isData( (d1 = base64Data[dataIndex++]) ) ||
             !isData( (d2 = base64Data[dataIndex++]) )) {
-            return null;//if found "no data" just return null
+            return null;//if found "no data" just returns null
         }
 
         b1 = base64Alphabet[d1];

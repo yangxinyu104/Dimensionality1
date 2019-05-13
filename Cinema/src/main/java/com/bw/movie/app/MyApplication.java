@@ -6,6 +6,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
 
+import com.bw.movie.bean.BeonBean;
+import com.bw.movie.bean.PopularMovieBean;
+import com.bw.movie.bean.ShowingBean;
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
@@ -13,6 +16,8 @@ import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author：Y
@@ -24,7 +29,10 @@ public class MyApplication extends Application {
 
     public static int  UserId ;
     public static String  SessionId ;
-
+    public static List<PopularMovieBean.ResultBean> hotList  = new ArrayList<>();
+    public static List<BeonBean.ResultBean> BeonList  = new ArrayList<>();
+    public static List<ShowingBean.ResultBean> ShowingList  = new ArrayList<>();
+    public static boolean flag;
     @Override
     public void onCreate() {
         super.onCreate();

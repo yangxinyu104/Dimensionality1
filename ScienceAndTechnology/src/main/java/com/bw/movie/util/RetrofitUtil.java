@@ -2,11 +2,13 @@ package com.bw.movie.util;
 
 import android.os.Environment;
 
+import com.bw.movie.api.Api;
+import com.bw.movie.url.URl;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-import com.bw.movie.api.Api;
 import okhttp3.Cache;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -15,13 +17,7 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import com.bw.movie.url.URl;
 
 /**
  * @Author：Y

@@ -31,7 +31,7 @@ public interface Api {
      * @return
      */
     @GET
-    public Observable<ResponseBody> get(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId,@QueryMap HashMap<String,Integer> hashMap);
+    public Observable<ResponseBody> get(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId,@QueryMap HashMap<String,Object> hashMap);
 
     @POST
     public Observable<ResponseBody> post(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId, @QueryMap HashMap<String, String> hashMap);

@@ -19,6 +19,7 @@
             android:src="@mipmap/cinema_detail"/>
 
         <TextView
+            android:paddingTop="@dimen/dp_8"
             android:id="@+id/locations"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_48"
@@ -54,11 +55,11 @@
                 android:src="@mipmap/icon_search" />
 
             <EditText
+                android:focusable="false"
                 android:id="@+id/search_edname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-
                 android:layout_marginTop="0dp"
                 android:background="@null"
                 android:ems="8"

@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.R;
 
@@ -56,6 +57,7 @@ public class MyViews extends LinearLayout implements View.OnClickListener{
         search_image.setOnClickListener(this);
         search_textName.setOnClickListener(this);
         dingwei.setOnClickListener(this);
+
     }
 
     public MyViews(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -71,7 +73,9 @@ public class MyViews extends LinearLayout implements View.OnClickListener{
                 break;
             case R.id.search_textName:
                 //点击text收缩
+                Toast.makeText(context, search_edname.getText().toString(), Toast.LENGTH_SHORT).show();
                 initReduce();
+
                 break;
         }
 
@@ -83,6 +87,7 @@ public class MyViews extends LinearLayout implements View.OnClickListener{
         search_edname.requestFocus();
         search_edname.setHintTextColor(Color.WHITE);
         search_textName.setText("搜索");
+        search_textName.setPadding(0,8,0,0);
         search_textName.setVisibility(View.VISIBLE);
         search_edname.setVisibility(View.VISIBLE);
         LayoutParams LayoutParams = (LinearLayout.LayoutParams) searchLinear.getLayoutParams();
@@ -94,6 +99,7 @@ public class MyViews extends LinearLayout implements View.OnClickListener{
             public boolean onTouch(View v, MotionEvent event) {
                 search_edname.setFocusable(true);
                 search_edname.setFocusableInTouchMode(true);
+
                 return false;
             }
         });
@@ -119,6 +125,8 @@ public class MyViews extends LinearLayout implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 search_edname.setCursorVisible(true);
+
+
             }
         });
         //开始动画
