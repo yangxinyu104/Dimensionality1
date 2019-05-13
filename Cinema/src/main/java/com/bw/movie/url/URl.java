@@ -41,5 +41,9 @@ public class URl {
     //电影详情
     public static String URL_PARTICULARS = "movie/v1/findMoviesDetail";
 
+    //推荐电影
+    public static String URL_CINEMATJ="http://172.17.8.100/movieApi/cinema/v1/findRecommendCinemas";
+
+
 
 }

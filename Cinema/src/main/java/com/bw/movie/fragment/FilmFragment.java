@@ -206,4 +206,4 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
                 break;
         }
     }
-}
+    }

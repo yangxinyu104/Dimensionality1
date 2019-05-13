@@ -3,6 +3,9 @@ package com.bw.movie.contract;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
 import com.bw.movie.bean.DetailsBean;
+
+import com.bw.movie.bean.CinematjBean;
+
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.PopularMovieBean;
@@ -58,6 +61,11 @@ public interface ContractInterFace {
     public interface IDetailsFilm{
         void details(DetailsBean detailsBean);
         void particulars(ParticularsBean particularsBean);
+    }
+
+
+    public interface IRecommendCinema{
+        void recommendCinema(CinematjBean cinematjBean);
     }
 
 

@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bw.movie.R;
+
 /**
  * @Author：Y
  * @E-mail： 2447892835@qq.com
@@ -20,9 +22,8 @@ public class MyFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView textView = new TextView(getContext());
-        textView.setText("我的");
-        return textView;
+        View view = View.inflate(getContext(), R.layout.fragment_mine, null);
+        return view;
     }
 
     @Override
