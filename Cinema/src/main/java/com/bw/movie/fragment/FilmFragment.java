@@ -84,17 +84,13 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
         iPresenter.showing();
         iPresenter.beon();
         viewCrnema.bringToFront();
-        Image();
-        HotFilm();
-        ShowingFilm();
-        BeonFilm();
     }
 
-    private void BeonFilm() {
+    private void BeonFilm(List<BeonBean.ResultBean> result) {
         RecyclerView.LayoutManager BeonLayoutManager = new LinearLayoutManager(getContext());
         ((LinearLayoutManager) BeonLayoutManager).setOrientation(OrientationHelper.HORIZONTAL);
         filmBeonRecyclerView.setLayoutManager(BeonLayoutManager);
-        BeonRecyclerViewAdapter adapter = new BeonRecyclerViewAdapter(Beonlist, getContext());
+        BeonRecyclerViewAdapter adapter = new BeonRecyclerViewAdapter(result, getContext());
         filmBeonRecyclerView.setAdapter(adapter);
         adapter.setOnItemClick(new BeonRecyclerViewAdapter.OnItemClick() {
             @Override
@@ -104,11 +100,11 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
         });
     }
 
-    private void ShowingFilm() {
+    private void ShowingFilm(List<ShowingBean.ResultBean> result) {
         RecyclerView.LayoutManager ShowingLayoutManager = new LinearLayoutManager(getContext());
         ((LinearLayoutManager) ShowingLayoutManager).setOrientation(OrientationHelper.HORIZONTAL);
         filmShowingRecyclerView.setLayoutManager(ShowingLayoutManager);
-        ShowingRecyclerViewAdapter adapter = new ShowingRecyclerViewAdapter(Showinglist, getContext());
+        ShowingRecyclerViewAdapter adapter = new ShowingRecyclerViewAdapter(result, getContext());
         filmShowingRecyclerView.setAdapter(adapter);
         adapter.setOnItemClick(new ShowingRecyclerViewAdapter.OnItemClick() {
             @Override
@@ -118,11 +114,11 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
         });
     }
 
-    private void HotFilm() {
+    private void HotFilm(List<PopularMovieBean.ResultBean> result) {
         RecyclerView.LayoutManager HotLayoutManager = new LinearLayoutManager(getContext());
         ((LinearLayoutManager) HotLayoutManager).setOrientation(OrientationHelper.HORIZONTAL);
         filmHotRecyclerView.setLayoutManager(HotLayoutManager);
-        HotRecyclerViewAdapter adapter = new HotRecyclerViewAdapter(Hotlist, getContext());
+        HotRecyclerViewAdapter adapter = new HotRecyclerViewAdapter(result, getContext());
         filmHotRecyclerView.setAdapter(adapter);
         adapter.setOnItemClick(new HotRecyclerViewAdapter.OnItemClick() {
             @Override
@@ -132,8 +128,8 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
         });
     }
 
-    private void Image() {
-        FilmRecyclerAdapter adapter = new FilmRecyclerAdapter(this, Beonlist);
+    private void Image(List<BeonBean.ResultBean> result) {
+        FilmRecyclerAdapter adapter = new FilmRecyclerAdapter(this, result);
         filmRecyclerCoverFlow.setAdapter(adapter);
         //让轮播图显示中间的图片
         filmRecyclerCoverFlow.smoothScrollToPosition(2);
@@ -161,34 +157,26 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
     @Override
     public void popularMovie(PopularMovieBean popularMovieBean) {
         Hotlist.clear();
-        Log.e("tag", "popularMovieBean" + popularMovieBean.getResult().size() + "");
         List<PopularMovieBean.ResultBean> result = popularMovieBean.getResult();
-        MyApplication.hotList.clear();
-        MyApplication.hotList.addAll(result);
         Hotlist.addAll(result);
-
+        HotFilm(popularMovieBean.getResult());
     }
 
     @Override
     public void showing(ShowingBean showingBean) {
         Showinglist.clear();
-        Log.e("tag", "showingBean" + showingBean.getResult().size() + "");
         List<ShowingBean.ResultBean> result = showingBean.getResult();
-        MyApplication.ShowingList.clear();
-        MyApplication.ShowingList.addAll(result);
         Showinglist.addAll(result);
-
+        ShowingFilm(showingBean.getResult());
     }
 
     @Override
     public void beon(BeonBean beonBean) {
         Beonlist.clear();
-        Log.e("tag", "Beonlist" + beonBean.getResult().size() + "");
         List<BeonBean.ResultBean> result = beonBean.getResult();
-        MyApplication.BeonList.clear();
-        MyApplication.BeonList.addAll(result);
         Beonlist.addAll(result);
-
+        Image(beonBean.getResult());
+        BeonFilm(beonBean.getResult());
     }
 
     @OnClick({R.id.film_hot_RelativeLayout, R.id.film_showing_RelativeLayout, R.id.film_beon_RelativeLayout})

@@ -5,10 +5,14 @@ import android.util.Log;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
 import com.bw.movie.bean.DetailsBean;
+import com.bw.movie.bean.FilmCinemaBean;
+import com.bw.movie.bean.GreatBean;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.PopularMovieBean;
 import com.bw.movie.bean.RegisterBean;
+import com.bw.movie.bean.ReviewBean;
+import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.ShowingBean;
 import com.bw.movie.contract.ContractInterFace;
 import com.bw.movie.model.MyModel;
@@ -125,6 +129,83 @@ public class MyPresenter<T> implements ContractInterFace.IPresenter {
             public void Succeed(ParticularsBean particularsBean) {
                 ContractInterFace.IDetailsFilm iDetailsFilm = (ContractInterFace.IDetailsFilm) t;
                 iDetailsFilm.particulars(particularsBean);
+            }
+        });
+    }
+
+    @Override
+    public void review(int movieId, int count) {
+        iModel.review(movieId, count, new MyModel.SetReview() {
+            @Override
+            public void Succeed(ReviewBean reviewBean) {
+                ContractInterFace.IDetailsFilm iDetailsFilm = (ContractInterFace.IDetailsFilm) t;
+                iDetailsFilm.review(reviewBean);
+            }
+        });
+    }
+
+    @Override
+    public void great(int commentId) {
+        iModel.great(commentId, new MyModel.SetGreat() {
+            @Override
+            public void Succeed(GreatBean greatBean) {
+                ContractInterFace.IDetailsFilm iDetailsFilm = (ContractInterFace.IDetailsFilm) t;
+                iDetailsFilm.great(greatBean);
+            }
+        });
+    }
+
+    @Override
+    public void filmReview(int movieId, String commentContent) {
+        iModel.filmReview(movieId, commentContent, new MyModel.SetFilmReview() {
+            @Override
+            public void Succeed(GreatBean greatBean) {
+                ContractInterFace.IDetailsFilm iDetailsFilm = (ContractInterFace.IDetailsFilm) t;
+                iDetailsFilm.filmReview(greatBean);
+            }
+        });
+    }
+
+    @Override
+    public void filmcinema(int movieId) {
+        iModel.filmcinema(movieId, new MyModel.SetFilmCinema() {
+            @Override
+            public void Succeed(FilmCinemaBean filmCinemaBean) {
+                ContractInterFace.IFilmCinema iFilmCinema = (ContractInterFace.IFilmCinema) t;
+                iFilmCinema.filmcinema(filmCinemaBean);
+            }
+        });
+    }
+
+    @Override
+    public void followCinema(int cinemaId) {
+        iModel.followCinema(cinemaId, new MyModel.SetFollowCinema() {
+            @Override
+            public void Succeed(GreatBean greatBean) {
+                ContractInterFace.IFilmCinema iFilmCinema = (ContractInterFace.IFilmCinema) t;
+                iFilmCinema.followCinema(greatBean);
+            }
+        });
+    }
+
+    @Override
+    public void noFollowCinema(int cinemaId) {
+        iModel.noFollowCinema(cinemaId, new MyModel.SetNoFollowCinema() {
+            @Override
+            public void Succeed(GreatBean greatBean) {
+                ContractInterFace.IFilmCinema iFilmCinema = (ContractInterFace.IFilmCinema) t;
+                iFilmCinema.noFollowCinema(greatBean);
+            }
+        });
+    }
+
+    @Override
+    public void schedule(int cinemasId, int movieId) {
+        iModel.schedule(cinemasId, movieId, new MyModel.SetSchedule() {
+            @Override
+            public void Succeed(ScheduleBean scheduleBean) {
+                ContractInterFace.ITicket iTicket = (ContractInterFace.ITicket) t;
+                iTicket.schedule(scheduleBean);
             }
         });
     }

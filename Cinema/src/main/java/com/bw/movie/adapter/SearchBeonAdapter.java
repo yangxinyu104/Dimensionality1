@@ -48,7 +48,6 @@ public class SearchBeonAdapter extends RecyclerView.Adapter<SearchBeonAdapter.ho
         holder.searchBeonSimpleDraweeView.setImageURI(list.get(position).getImageUrl());
         holder.searchBeonName.setText(list.get(position).getName());
         holder.searchBeonXq.setText(list.get(position).getSummary());
-        holder.searchBeonXin.setChecked(MyApplication.BeonList.get(position).flag);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,15 +56,23 @@ public class SearchBeonAdapter extends RecyclerView.Adapter<SearchBeonAdapter.ho
                 }
             }
         });
+        if (list.get(position).getFollowMovie()==1){
+            holder.searchBeonXin.setImageResource(R.mipmap.collection_selected);
+        }else if(list.get(position).getFollowMovie()==2){
+            holder.searchBeonXin.setImageResource(R.mipmap.collection);
+        }
+
         holder.searchBeonXin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.searchBeonXin.isChecked()){
-                    searchActivity.iPresenter.attention(list.get(position).getId());
-                    MyApplication.BeonList.get(position).flag = true;
-                }else {
+                if (list.get(position).getFollowMovie()==1){
+                    holder.searchBeonXin.setImageResource(R.mipmap.collection);
                     searchActivity.iPresenter.noattention(list.get(position).getId());
-                    MyApplication.BeonList.get(position).flag = false;
+                    MyApplication.Zanflag = 3;
+                }else if(list.get(position).getFollowMovie()==2){
+                    holder.searchBeonXin.setImageResource(R.mipmap.collection_selected);
+                    searchActivity.iPresenter.attention(list.get(position).getId());
+                    MyApplication.Zanflag = 3;
                 }
             }
         });
@@ -92,7 +99,7 @@ public class SearchBeonAdapter extends RecyclerView.Adapter<SearchBeonAdapter.ho
         @BindView(R.id.search_beon_name)
         TextView searchBeonName;
         @BindView(R.id.search_beon_xin)
-        CheckBox searchBeonXin;
+        ImageView searchBeonXin;
         @BindView(R.id.search_beon_xq)
         TextView searchBeonXq;
 

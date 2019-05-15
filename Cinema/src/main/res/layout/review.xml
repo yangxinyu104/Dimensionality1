@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        fresco:actualImageScaleType="centerCrop"
+        fresco:placeholderImageScaleType="centerCrop"
+        fresco:roundAsCircle="true"
+        android:id="@+id/review_SimpleDraweeView"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp_10"
+        android:id="@+id/review_TextView_name"
+        android:textColor="#333333"
+        android:textSize="@dimen/sp_14"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/review_TextView_pl"
+        android:textColor="#333333"
+        android:textSize="@dimen/sp_12"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/review_TextView_data"
+            android:textColor="#999999"
+            android:textSize="@dimen/sp_12"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+        
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            
+            <CheckBox
+                android:background="@mipmap/praise"
+                android:button="@null"
+                android:id="@+id/review_TextView_zan"
+                android:layout_width="@dimen/dp_16"
+                android:layout_height="@dimen/dp_16" />
+            <TextView
+                android:id="@+id/review_TextView_zannum"
+                android:textSize="@dimen/sp_12"
+                android:textColor="#999999"
+                android:text="123"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/review_TextView_liao"
+                android:layout_marginLeft="@dimen/dp_18"
+                android:src="@mipmap/comment"
+                android:layout_width="@dimen/dp_16"
+                android:layout_height="@dimen/dp_16" />
+            <TextView
+                android:id="@+id/review_TextView_liaonum"
+                android:textSize="@dimen/sp_12"
+                android:textColor="#999999"
+                android:text="123"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

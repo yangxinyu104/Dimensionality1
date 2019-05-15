@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity"
+    android:fitsSystemWindows="true"
+    >
+
+
+    <LinearLayout
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:layout_marginRight="@dimen/dp_24"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:orientation="horizontal"
+        android:background="@drawable/popw_shape"
+        android:layout_marginTop="@dimen/dp_230"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/popw_edit_et"
+            android:textColor="#666666"
+            android:textSize="@dimen/sp_14"
+            android:hint="写评论"
+            android:layout_width="@dimen/dp_284"
+            android:layout_height="@dimen/dp_60"
+            android:background="@drawable/edit"
+            />
+        <Button
+            android:id="@+id/popw_edit_send"
+            android:textSize="@dimen/sp_16"
+            android:text="发送"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_60" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

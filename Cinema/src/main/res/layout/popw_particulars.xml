@@ -18,7 +18,7 @@
         android:id="@+id/Pop_name"
         android:layout_marginLeft="@dimen/dp_150"
         android:layout_marginTop="@dimen/dp_140"
-        android:textColor="@android:color/black"
+        android:textColor="#ffffff"
         android:textSize="@dimen/dp_20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -116,6 +116,7 @@
             </LinearLayout>
 
             <ImageView
+                android:src="@mipmap/down"
                 android:id="@+id/Pop_down"
                 android:layout_marginLeft="@dimen/dp_24"
                 android:layout_width="@dimen/dp_30"
@@ -125,7 +126,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_40"
             android:layout_gravity="center"
             android:layout_width="@dimen/dp_324"
             android:layout_height="wrap_content">
@@ -164,14 +165,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
+                <Button
+                    android:textColor="#ffffff"
+                    android:background="@drawable/shape_xq"
                     android:gravity="center"
                     android:textSize="@dimen/dp_15"
                     android:text="演员名字"
                     android:layout_width="@dimen/dp_100"
                     android:layout_height="@dimen/dp_40" />
 
-                <TextView
+                <Button
+                    android:textColor="#ffffff"
+                    android:background="@drawable/shape_xq2"
                     android:layout_marginLeft="@dimen/dp_124"
                     android:gravity="center"
                     android:textSize="@dimen/dp_15"
@@ -182,18 +187,20 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="@dimen/dp_12"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                <LinearLayout
+                   android:layout_marginLeft="@dimen/dp_30"
                    android:orientation="horizontal"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content">
 
                    <TextView
                        android:id="@+id/Yan_1"
-                       android:layout_width="@dimen/dp_200"
+                       android:layout_width="@dimen/dp_150"
                        android:layout_height="wrap_content" />
                    <TextView
                        android:layout_gravity="center"
@@ -208,6 +215,7 @@
                </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginLeft="@dimen/dp_30"
                     android:layout_marginTop="@dimen/dp_8"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -215,7 +223,7 @@
 
                     <TextView
                         android:id="@+id/Yan_2"
-                        android:layout_width="@dimen/dp_200"
+                        android:layout_width="@dimen/dp_150"
                         android:layout_height="wrap_content" />
                     <TextView
                         android:layout_gravity="center"
@@ -229,6 +237,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_marginLeft="@dimen/dp_30"
                     android:layout_marginTop="@dimen/dp_8"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -236,7 +245,7 @@
 
                     <TextView
                         android:id="@+id/Yan_3"
-                        android:layout_width="@dimen/dp_200"
+                        android:layout_width="@dimen/dp_150"
                         android:layout_height="wrap_content" />
                     <TextView
                         android:layout_gravity="center"
@@ -250,6 +259,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_marginLeft="@dimen/dp_30"
                     android:layout_marginTop="@dimen/dp_8"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -257,7 +267,7 @@
 
                     <TextView
                         android:id="@+id/Yan_4"
-                        android:layout_width="@dimen/dp_200"
+                        android:layout_width="@dimen/dp_150"
                         android:layout_height="wrap_content" />
                     <TextView
                         android:layout_gravity="center"

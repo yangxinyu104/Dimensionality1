@@ -44,6 +44,25 @@ public class URl {
     //推荐电影
     public static String URL_CINEMATJ="http://172.17.8.100/movieApi/cinema/v1/findRecommendCinemas";
 
+    //电影评论
+    public static String URL_REVIEW= "movie/v1/findAllMovieComment";
 
+    //点赞
+    public static String URL_GREAT="movie/v1/verify/movieCommentGreat";
+
+    //添加用户对影片的评论
+    public static String URL_FILEMREVIEW="movie/v1/verify/movieComment";
+
+    //根据电影ID查询当前排片该电影的影院列表
+    public static String URL_FILMCINEMA="movie/v1/findCinemasListByMovieId";
+
+    //关注影院
+    public static String URL_FOLLOWCINEMA="cinema/v1/verify/followCinema";
+
+    //取消关注影院
+    public static String URL_NOFOLLOWCINEMA="cinema/v1/verify/cancelFollowCinema";
+
+    //根据电影ID和影院ID查询电影排期列表
+    public static String URL_SCHEDULE="movie/v1/findMovieScheduleList";
 
 }

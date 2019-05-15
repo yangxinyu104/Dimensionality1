@@ -7,7 +7,9 @@ import android.net.NetworkInfo;
 import android.os.Environment;
 
 import com.bw.movie.bean.BeonBean;
+import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.PopularMovieBean;
+import com.bw.movie.bean.ReviewBean;
 import com.bw.movie.bean.ShowingBean;
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -26,13 +28,24 @@ import java.util.List;
  * @Description：YangXinYu
  */
 public class MyApplication extends Application {
-
+    //影院ID
+    public static  int cinemaId;
+    //影片ID
+    public static  int movieId;
+    //影片名字
+    public static String FilmName;
+    //UserId
     public static int  UserId ;
+    //SessionId
     public static String  SessionId ;
-    public static List<PopularMovieBean.ResultBean> hotList  = new ArrayList<>();
-    public static List<BeonBean.ResultBean> BeonList  = new ArrayList<>();
-    public static List<ShowingBean.ResultBean> ShowingList  = new ArrayList<>();
-    public static boolean flag;
+    //标识
+    public static int flag;
+    //关注标识
+    public static int Zanflag;
+    //点击的电影详情
+    public static ParticularsBean.ResultBean resultBean;
+    //电影评论
+    public static List<ReviewBean.ResultBean> reviewBean;
     @Override
     public void onCreate() {
         super.onCreate();

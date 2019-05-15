@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity"
+    android:fitsSystemWindows="true"
+    >
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/popw_shape"
+        android:layout_marginTop="@dimen/dp_175"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="@dimen/sp_16"
+                android:textColor="#333333"
+                android:text="预告片"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/popw_foreshow_finish"
+                android:layout_marginRight="@dimen/dp_24"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dp_18"
+                android:src="@mipmap/down"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24" />
+
+        </RelativeLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_20"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <VideoView
+                android:background="@mipmap/timgs"
+                android:id="@+id/popw_foreshow_video1"
+                android:layout_marginRight="@dimen/dp_24"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_width="@dimen/dp_321"
+                android:layout_height="@dimen/dp_153" />
+            <VideoView
+                android:background="@mipmap/timgs"
+                android:layout_marginTop="@dimen/dp_20"
+                android:id="@+id/popw_foreshow_video2"
+                android:layout_marginRight="@dimen/dp_24"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_width="@dimen/dp_321"
+                android:layout_height="@dimen/dp_153" />
+            <VideoView
+                android:background="@mipmap/timgs"
+                android:layout_marginTop="@dimen/dp_20"
+                android:id="@+id/popw_foreshow_video3"
+                android:layout_marginRight="@dimen/dp_24"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_width="@dimen/dp_321"
+                android:layout_height="@dimen/dp_153" />
+        </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

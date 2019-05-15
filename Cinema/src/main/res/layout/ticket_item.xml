@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/dp_330"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+
+
+   >
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/film_cinema_shape"
+        android:orientation="horizontal"
+        android:layout_width="@dimen/dp_330"
+        android:layout_height="@dimen/dp_100">
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_80">
+
+        <TextView
+            android:id="@+id/ticket_item_name"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#666666"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:paddingTop="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/ticket_item_startTime"
+                android:textSize="@dimen/sp_24"
+                android:textColor="#333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:paddingLeft="@dimen/dp_5"
+                android:text="------"
+                android:textSize="@dimen/sp_24"
+                android:textColor="#333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:paddingLeft="@dimen/dp_5"
+                android:id="@+id/ticket_item_endTime"
+                android:textSize="@dimen/sp_18"
+                android:textColor="#666666"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:paddingLeft="@dimen/dp_3"
+                android:text="end"
+                android:textSize="@dimen/sp_12"
+                android:textColor="#666666"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:paddingTop="@dimen/dp_5"
+                    android:textColor="#666666"
+                    android:textSize="@dimen/sp_18"
+                    android:text="￥"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:layout_marginBottom="@dimen/dp_13"
+                    android:textSize="@dimen/sp_36"
+                    android:textColor="#b11450"
+                    android:id="@+id/ticket_item_price"
+                    android:paddingLeft="@dimen/dp_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:paddingTop="@dimen/dp_8"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:src="@mipmap/next"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

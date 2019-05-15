@@ -49,7 +49,6 @@ public class SearchHotAdapter extends RecyclerView.Adapter<SearchHotAdapter.hold
         holder.searchHotSimpleDraweeView.setImageURI(list.get(position).getImageUrl());
         holder.searchHotName.setText(list.get(position).getName());
         holder.searchHotXq.setText(list.get(position).getSummary());
-        holder.searchHotXin.setChecked(MyApplication.hotList.get(position).flag);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,15 +57,23 @@ public class SearchHotAdapter extends RecyclerView.Adapter<SearchHotAdapter.hold
                 }
             }
         });
+        if (list.get(position).getFollowMovie()==1){
+            holder.searchHotXin.setImageResource(R.mipmap.collection_selected);
+        }else if(list.get(position).getFollowMovie()==2){
+            holder.searchHotXin.setImageResource(R.mipmap.collection);
+        }
+
         holder.searchHotXin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.searchHotXin.isChecked()){
-                    searchActivity.iPresenter.attention(list.get(position).getId());
-                    MyApplication.hotList.get(position).flag = true;
-                }else {
+                if (list.get(position).getFollowMovie()==1){
+                    holder.searchHotXin.setImageResource(R.mipmap.collection);
                     searchActivity.iPresenter.noattention(list.get(position).getId());
-                    MyApplication.hotList.get(position).flag = false;
+                    MyApplication.Zanflag = 1;
+                }else if(list.get(position).getFollowMovie()==2){
+                    holder.searchHotXin.setImageResource(R.mipmap.collection_selected);
+                    searchActivity.iPresenter.attention(list.get(position).getId());
+                    MyApplication.Zanflag =1;
                 }
             }
         });
@@ -97,7 +104,7 @@ public class SearchHotAdapter extends RecyclerView.Adapter<SearchHotAdapter.hold
         @BindView(R.id.search_hot_xq)
         TextView searchHotXq;
         @BindView(R.id.search_hot_xin)
-        CheckBox searchHotXin;
+        ImageView searchHotXin;
         public holder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

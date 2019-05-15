@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bw.movie.activity.TicketActivity">
+    <ImageView
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_24"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/navigation"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/ticket_name"
+            android:textColor="#666666"
+            android:textSize="@dimen/sp_14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/ticket_address"
+            android:paddingTop="@dimen/dp_10"
+            android:textColor="#666666"
+            android:textSize="@dimen/sp_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:background="@mipmap/movielevel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/ticket_SimpleDraweeView"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_marginTop="@dimen/dp_2"
+                android:layout_width="@dimen/dp_103"
+                android:layout_height="@dimen/dp_130" />
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:paddingLeft="@dimen/dp_30"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="@dimen/sp_20"
+                        android:textColor="#ffffff"
+                        android:id="@+id/ticket_filmName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:paddingTop="@dimen/dp_7"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textSize="@dimen/sp_12"
+                            android:textColor="#ffffff"
+                            android:text="类型:"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textSize="@dimen/sp_12"
+                            android:textColor="#ffffff"
+                            android:paddingLeft="@dimen/dp_10"
+                            android:id="@+id/ticket_lx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="@dimen/dp_7"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textSize="@dimen/sp_12"
+                            android:textColor="#ffffff"
+                            android:text="导演:"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textSize="@dimen/sp_12"
+                            android:textColor="#ffffff"
+                            android:paddingLeft="@dimen/dp_10"
+                            android:id="@+id/ticket_dy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="@dimen/dp_7"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textSize="@dimen/sp_12"
+                            android:textColor="#ffffff"
+                            android:text="时长:"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textSize="@dimen/sp_12"
+                            android:textColor="#ffffff"
+                            android:id="@+id/ticket_sc"
+                            android:paddingLeft="@dimen/dp_10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="@dimen/dp_7"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textSize="@dimen/sp_12"
+                            android:textColor="#ffffff"
+                            android:text="产地:"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textSize="@dimen/sp_12"
+                            android:textColor="#ffffff"
+                            android:id="@+id/ticket_cd"
+                            android:paddingLeft="@dimen/dp_10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ticket_RecyclerView"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/film_cinema_finish"
+        android:src="@mipmap/returns"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60" />
+
+</RelativeLayout>

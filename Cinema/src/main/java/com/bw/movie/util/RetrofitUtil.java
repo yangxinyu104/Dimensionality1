@@ -61,8 +61,9 @@ public class RetrofitUtil {
         Log.e("tag" ,"url : " +url +"sessionId : " +sessionId+" userId :  " +userId );
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(GetObserver(httpListener));
     }
-    public  void  doPost(String url, int userId, String sessionId, HashMap<String,String> hashMap,HttpListener httpListener){
+    public  void  doPost(String url, int userId, String sessionId, HashMap<String,Object> hashMap,HttpListener httpListener){
         Api api = retrofit.create(Api.class);
+        Log.e("tag" ,"url : " +url +"sessionId : " +sessionId+" userId :  " +userId );
         Observable<ResponseBody> observable = api.post(url, userId, sessionId, hashMap);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(GetObserver(httpListener));
     }

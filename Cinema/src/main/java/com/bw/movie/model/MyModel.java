@@ -6,10 +6,14 @@ import com.bw.movie.app.MyApplication;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
 import com.bw.movie.bean.DetailsBean;
+import com.bw.movie.bean.FilmCinemaBean;
+import com.bw.movie.bean.GreatBean;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.PopularMovieBean;
 import com.bw.movie.bean.RegisterBean;
+import com.bw.movie.bean.ReviewBean;
+import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.ShowingBean;
 import com.bw.movie.contract.ContractInterFace;
 import com.bw.movie.url.URl;
@@ -34,6 +38,13 @@ public class MyModel implements ContractInterFace.IModel {
     SetNoAttention setNoAttention;
     SetDetails setDetails;
     SetParticulars setParticulars;
+    SetReview setReview;
+    SetGreat setGreat;
+    SetFilmReview setFilmReview;
+    SetFilmCinema setFilmCinema;
+    SetNoFollowCinema  setNoFollowCinema;
+    SetFollowCinema setFollowCinema;
+    SetSchedule setSchedule;
     @Override
     public void login(String phone, String pwd, final SetLogin setLogin) {
         this.setLogin = setLogin;
@@ -226,6 +237,154 @@ public class MyModel implements ContractInterFace.IModel {
         });
     }
 
+    @Override
+    public void review(int movieId, int count, final SetReview setReview) {
+        this.setReview = setReview;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("movieId",movieId);
+        hashMap.put("page",1);
+        hashMap.put("count",count);
+        RetrofitUtil.GetInstance().doGet(URl.URL_REVIEW, MyApplication.UserId, hashMap, MyApplication.SessionId, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                ReviewBean reviewBean = new Gson().fromJson(s, ReviewBean.class);
+                setReview.Succeed(reviewBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","review  : " + s);
+            }
+        });
+
+    }
+
+    @Override
+    public void great(int commentId, final SetGreat setGreat) {
+        this.setGreat  =  setGreat;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("commentId",commentId);
+
+        RetrofitUtil.GetInstance().doPost(URl.URL_GREAT, MyApplication.UserId,  MyApplication.SessionId,hashMap, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                GreatBean greatBean = new Gson().fromJson(s, GreatBean.class);
+                setGreat.Succeed(greatBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","review  : " + s);
+            }
+        });
+
+    }
+
+    @Override
+    public void filmReview(int movieId, String commentContent, final SetFilmReview setFilmReview) {
+        this.setFilmReview  = setFilmReview;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("movieId",movieId);
+        hashMap.put("commentContent",commentContent);
+        RetrofitUtil.GetInstance().doPost(URl.URL_FILEMREVIEW, MyApplication.UserId,  MyApplication.SessionId,hashMap, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                GreatBean greatBean = new Gson().fromJson(s, GreatBean.class);
+                setFilmReview.Succeed(greatBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","filmReview  : " + s);
+            }
+        });
+    }
+
+    @Override
+    public void filmcinema(int movieId, final SetFilmCinema setFilmCinema) {
+        this.setFilmCinema = setFilmCinema;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("movieId",movieId);
+        RetrofitUtil.GetInstance().doGet(URl.URL_FILMCINEMA, MyApplication.UserId,hashMap,MyApplication.SessionId, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                FilmCinemaBean filmCinemaBean = new Gson().fromJson(s, FilmCinemaBean.class);
+                setFilmCinema.Succeed(filmCinemaBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","filmcinema  : " + s);
+            }
+        });
+
+
+    }
+
+    @Override
+    public void noFollowCinema(int cinemaId, final SetNoFollowCinema  setNoFollowCinema) {
+        this.setNoFollowCinema = setNoFollowCinema;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("cinemaId",cinemaId);
+        RetrofitUtil.GetInstance().doGet(URl.URL_NOFOLLOWCINEMA, MyApplication.UserId,hashMap,MyApplication.SessionId, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                GreatBean filmCinemaBean = new Gson().fromJson(s, GreatBean.class);
+                setNoFollowCinema.Succeed(filmCinemaBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","noFollowCinema  : " + s);
+            }
+        });
+
+
+    }
+
+    @Override
+    public void followCinema(int cinemaId, final SetFollowCinema setFollowCinema) {
+        this.setFollowCinema = setFollowCinema;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("cinemaId",cinemaId);
+        RetrofitUtil.GetInstance().doGet(URl.URL_FOLLOWCINEMA, MyApplication.UserId,hashMap,MyApplication.SessionId, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                GreatBean filmCinemaBean = new Gson().fromJson(s, GreatBean.class);
+                setFollowCinema.Succeed(filmCinemaBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","followCinema  : " + s);
+            }
+        });
+
+    }
+
+    @Override
+    public void schedule(int cinemasId, int movieId, final SetSchedule setSchedule) {
+        this.setSchedule = setSchedule;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("cinemasId",cinemasId);
+        hashMap.put("movieId",movieId);
+
+        RetrofitUtil.GetInstance().doGet(URl.URL_SCHEDULE, MyApplication.UserId,hashMap,MyApplication.SessionId, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                ScheduleBean scheduleBean = new Gson().fromJson(s, ScheduleBean.class);
+                setSchedule.Succeed(scheduleBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","schedule  : " + s);
+            }
+        });
+
+
+    }
+
 
     public interface SetLogin{
         void Succeed(LoginBean loginBean);
@@ -254,6 +413,25 @@ public class MyModel implements ContractInterFace.IModel {
     public interface SetParticulars{
         void Succeed(ParticularsBean particularsBean);
     }
-
-
+    public interface SetReview{
+        void Succeed(ReviewBean reviewBean);
+    }
+    public interface SetGreat{
+        void Succeed(GreatBean greatBean);
+    }
+    public interface SetFilmReview{
+        void Succeed(GreatBean greatBean);
+    }
+    public interface SetFilmCinema{
+        void Succeed(FilmCinemaBean filmCinemaBean);
+    }
+    public interface SetNoFollowCinema{
+        void Succeed(GreatBean greatBean);
+    }
+    public interface SetFollowCinema{
+        void Succeed(GreatBean greatBean);
+    }
+    public interface SetSchedule{
+        void Succeed(ScheduleBean scheduleBean);
+    }
 }

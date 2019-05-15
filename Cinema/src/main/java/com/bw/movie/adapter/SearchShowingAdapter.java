@@ -48,7 +48,6 @@ public class SearchShowingAdapter extends RecyclerView.Adapter<SearchShowingAdap
         holder.searchShowingSimpleDraweeView.setImageURI(list.get(position).getImageUrl());
         holder.searchShowingName.setText(list.get(position).getName());
         holder.searchShowingXq.setText(list.get(position).getSummary());
-        holder.searchShowingXin.setChecked(MyApplication.ShowingList.get(position).flag);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,15 +56,24 @@ public class SearchShowingAdapter extends RecyclerView.Adapter<SearchShowingAdap
                 }
             }
         });
+
+        if (list.get(position).getFollowMovie()==1){
+            holder.searchShowingXin.setImageResource(R.mipmap.collection_selected);
+        }else if(list.get(position).getFollowMovie()==2){
+            holder.searchShowingXin.setImageResource(R.mipmap.collection);
+        }
+
         holder.searchShowingXin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.searchShowingXin.isChecked()){
-                    searchActivity.iPresenter.attention(list.get(position).getId());
-                    MyApplication.ShowingList.get(position).flag = true;
-                }else {
+                if (list.get(position).getFollowMovie()==1){
+                    holder.searchShowingXin.setImageResource(R.mipmap.collection);
                     searchActivity.iPresenter.noattention(list.get(position).getId());
-                    MyApplication.ShowingList.get(position).flag = false;
+                    MyApplication.Zanflag = 2;
+                }else if(list.get(position).getFollowMovie()==2){
+                    holder.searchShowingXin.setImageResource(R.mipmap.collection_selected);
+                    searchActivity.iPresenter.attention(list.get(position).getId());
+                    MyApplication.Zanflag = 2;
                 }
             }
         });
@@ -92,7 +100,7 @@ public class SearchShowingAdapter extends RecyclerView.Adapter<SearchShowingAdap
         @BindView(R.id.search_showing_name)
         TextView searchShowingName;
         @BindView(R.id.search_showing_xin)
-        CheckBox searchShowingXin;
+        ImageView searchShowingXin;
         @BindView(R.id.search_showing_xq)
         TextView searchShowingXq;
 
