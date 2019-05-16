@@ -1,5 +1,10 @@
 package com.bw.movie.api;
 
+import com.bw.movie.bean.CinemaBannerBean;
+import com.bw.movie.bean.CinemafjBean;
+import com.bw.movie.bean.CinematjBean;
+import com.bw.movie.bean.CinemaxqBean;
+
 import java.util.HashMap;
 
 import io.reactivex.Observable;
@@ -11,6 +16,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
@@ -31,7 +37,7 @@ public interface Api {
      * @return
      */
     @GET
-    public Observable<ResponseBody> get(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId,@QueryMap HashMap<String,Object> hashMap);
+    public Observable<ResponseBody> get(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId, @QueryMap HashMap<String, Object> hashMap);
     @FormUrlEncoded
     @POST
     public Observable<ResponseBody> post(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId, @FieldMap HashMap<String, Object> hashMap);
@@ -45,4 +51,21 @@ public interface Api {
     @FormUrlEncoded
     @POST
     public Observable<ResponseBody> FilePost(@Url String url, @FieldMap HashMap<String, Object> hashMap);
+
+    //展示推荐影院
+    @GET("movieApi/cinema/v1/findRecommendCinemas")
+    Observable<CinematjBean> showtj(@Query("page") int page, @Query("count") int count);
+
+    //展示附近影院
+    @GET("movieApi/cinema/v1/findNearbyCinemas")
+    Observable<CinemafjBean> showfj(@Query("page") int page, @Query("count") int count);
+
+    //影院轮播
+    @GET("movieApi/movie/v1/findMovieListByCinemaId")
+    Observable<CinemaBannerBean> showbanner(@Query("cinemaId") String cinemaId);
+
+    //影院电影信息明细
+    @GET("movieApi/cinema/v1/findCinemaInfo")
+    Observable<CinemaxqBean> showxq(@Query("cinemaId") int cinemaId);
+
 }

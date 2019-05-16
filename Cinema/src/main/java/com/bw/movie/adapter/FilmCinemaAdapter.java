@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.activity.FilmCinemaActivity;
-import com.bw.movie.app.MyApplication;
 import com.bw.movie.bean.FilmCinemaBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 

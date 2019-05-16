@@ -18,17 +18,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
-import com.tencent.mm.opensdk.modelmsg.SendAuth;
-
 import com.bw.movie.app.MyApplication;
 import com.bw.movie.bean.LoginBean;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import com.bw.movie.contract.ContractInterFace;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.util.EncryptUtil;
 import com.bw.movie.util.WeiXinUtil;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity implements ContractInterFace.ILogin {
 

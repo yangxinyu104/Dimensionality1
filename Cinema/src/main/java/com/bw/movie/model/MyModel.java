@@ -5,6 +5,7 @@ import android.util.Log;
 import com.bw.movie.app.MyApplication;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
+import com.bw.movie.bean.CinemaxqBean;
 import com.bw.movie.bean.DetailsBean;
 import com.bw.movie.bean.FilmCinemaBean;
 import com.bw.movie.bean.GreatBean;
@@ -20,7 +21,6 @@ import com.bw.movie.url.URl;
 import com.bw.movie.util.RetrofitUtil;
 import com.google.gson.Gson;
 
-import java.net.URL;
 import java.util.HashMap;
 
 /**
@@ -45,6 +45,7 @@ public class MyModel implements ContractInterFace.IModel {
     SetNoFollowCinema  setNoFollowCinema;
     SetFollowCinema setFollowCinema;
     SetSchedule setSchedule;
+    SetMessage setMessage;
     @Override
     public void login(String phone, String pwd, final SetLogin setLogin) {
         this.setLogin = setLogin;
@@ -381,9 +382,28 @@ public class MyModel implements ContractInterFace.IModel {
                 Log.e("tag","schedule  : " + s);
             }
         });
+    }
 
+    @Override
+    public void message(int cinemaId, final SetMessage setMessage) {
+        this.setMessage = setMessage;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("cinemaId",cinemaId);
+        RetrofitUtil.GetInstance().doGet(URl.URL_MESSAGE, MyApplication.UserId,hashMap,MyApplication.SessionId, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                CinemaxqBean cinemaxqBean = new Gson().fromJson(s, CinemaxqBean.class);
+                setMessage.Succeed(cinemaxqBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","message  : " + s);
+            }
+        });
 
     }
+
 
 
     public interface SetLogin{
@@ -434,4 +454,8 @@ public class MyModel implements ContractInterFace.IModel {
     public interface SetSchedule{
         void Succeed(ScheduleBean scheduleBean);
     }
+    public interface SetMessage{
+        void Succeed(CinemaxqBean cinemaxqBean);
+    }
+
 }

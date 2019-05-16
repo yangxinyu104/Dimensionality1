@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.bw.movie.customview.MoveSeatView;
 import com.bw.movie.R;
+import com.bw.movie.customview.MoveSeatView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -89,9 +89,9 @@ public class SeatActivity extends AppCompatActivity {
 
         });
         int i = seatsTotal / 15;
-
         Log.e("tag","   %     " + seatsTotal % 15);
             moveSeatView.setData(i, 15);
+
     }
 }
 

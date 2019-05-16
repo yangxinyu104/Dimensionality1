@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
+import com.bw.movie.bean.CinemaxqBean;
 import com.bw.movie.bean.DetailsBean;
 import com.bw.movie.bean.FilmCinemaBean;
 import com.bw.movie.bean.GreatBean;
@@ -209,4 +210,17 @@ public class MyPresenter<T> implements ContractInterFace.IPresenter {
             }
         });
     }
+
+    @Override
+    public void message(int cinemaId) {
+        iModel.message(cinemaId, new MyModel.SetMessage() {
+            @Override
+            public void Succeed(CinemaxqBean cinemaxqBean) {
+                ContractInterFace.IMessage iMessage = (ContractInterFace.IMessage) t;
+                iMessage.message(cinemaxqBean);
+            }
+        });
+    }
+
+
 }

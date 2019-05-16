@@ -8,11 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bw.movie.R;
+import com.bw.movie.adapter.GuidanceAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bw.movie.R;
-import com.bw.movie.adapter.GuidanceAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

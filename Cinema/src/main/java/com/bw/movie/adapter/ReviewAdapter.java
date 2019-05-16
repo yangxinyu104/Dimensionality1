@@ -1,9 +1,7 @@
 package com.bw.movie.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -12,7 +10,6 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.activity.DetailsActivity;
-import com.bw.movie.app.MyApplication;
 import com.bw.movie.bean.ReviewBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 

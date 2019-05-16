@@ -7,13 +7,11 @@ import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.activity.TicketActivity;
 import com.bw.movie.bean.ScheduleBean;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
