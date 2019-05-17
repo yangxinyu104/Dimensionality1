@@ -90,14 +90,15 @@
             android:progressDrawable="@drawable/shadow"/>
 
     </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recy_hot_movie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/ssc_id"
         android:layout_marginLeft="@dimen/dp_24"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_marginRight="@dimen/dp_24"/>
+        android:layout_marginTop="19dp"
+        android:layout_marginRight="@dimen/dp_24" />
 
     <ImageView
         android:id="@+id/movieByCinema_finish"
@@ -107,4 +108,7 @@
         android:layout_marginLeft="@dimen/dp_24"
         android:layout_marginBottom="@dimen/dp_24"
         android:src="@mipmap/returns" />
+
+
+
 </RelativeLayout>

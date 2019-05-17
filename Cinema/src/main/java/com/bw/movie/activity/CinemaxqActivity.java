@@ -21,6 +21,7 @@ public class CinemaxqActivity extends AppCompatActivity implements ContractInter
         super.onCreate(savedInstanceState);
         ContractInterFace.IPresenter iPresenter = new MyPresenter<>(this);
         iPresenter.message(11);
+
     }
 
     @Override

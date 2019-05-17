@@ -58,7 +58,6 @@ public class FilmCinemaActivity extends AppCompatActivity implements ContractInt
             }
         });
 
-
     }
 
     @OnClick(R.id.film_cinema_finish)

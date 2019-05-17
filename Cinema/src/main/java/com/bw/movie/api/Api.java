@@ -36,6 +36,7 @@ public interface Api {
      * @param
      * @return
      */
+
     @GET
     public Observable<ResponseBody> get(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId, @QueryMap HashMap<String, Object> hashMap);
     @FormUrlEncoded
@@ -67,5 +68,7 @@ public interface Api {
     //影院电影信息明细
     @GET("movieApi/cinema/v1/findCinemaInfo")
     Observable<CinemaxqBean> showxq(@Query("cinemaId") int cinemaId);
+
+
 
 }
