@@ -29,17 +29,4 @@ public interface Api {
      * @param hashMap  参数
      * @return
      */
-    @GET
-    public Observable<RequestBody> get(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId, @QueryMap HashMap<String,String> hashMap);
-
-    @Multipart
-    @POST
-    public Observable<RequestBody> post(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId, @QueryMap HashMap<String,String> hashMap, @Part MultipartBody.Part part);
-
-    @DELETE
-    public Observable<RequestBody> delete(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId, @QueryMap HashMap<String,String> hashMap);
-
-
-    @PUT
-    public Observable<RequestBody> put(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId, @QueryMap HashMap<String,String> hashMap);
 }

@@ -4,6 +4,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.bw.movie.api.Api;
+import com.bw.movie.bean.WechatLoginBean;
 import com.bw.movie.url.URl;
 
 import java.io.File;
@@ -16,7 +17,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -54,7 +58,14 @@ public class RetrofitUtil {
         }
             return retrofitUtil;
     }
-
+    public void doPostUpdateHead(File file, String url, int userId, String sessionId, HttpListener httpListener){
+        Api api = retrofit.create(Api.class);
+        Log.e("dasdas",file.getAbsolutePath());
+        RequestBody requestFile = RequestBody.create(MediaType.parse("application/otcet-stream"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        Observable<ResponseBody> observable = api.PostUpdateHead(url,userId,sessionId,body);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(GetObserver(httpListener));
+    }
     public void doGet(String url, int userId, HashMap<String,Object> hashMap,String sessionId,HttpListener httpListener){
         Api api = retrofit.create(Api.class);
         Observable<ResponseBody> observable = api.get(url, userId, sessionId,hashMap);
@@ -80,6 +91,16 @@ public class RetrofitUtil {
     public void doFiledPost(String url, int userId, String sessionId, HashMap<String,Object> hashMap, HttpListener httpListener){
         Api api = retrofit.create(Api.class);
         Observable<ResponseBody> observable = api.FilePost(url, hashMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(GetObserver(httpListener));
+    }
+    public void doWechatLoginPost(String url,String code, HttpListener httpListener){
+        Api api = retrofit.create(Api.class);
+        Observable<ResponseBody> observable = api.toWechat(url, code);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(GetObserver(httpListener));
+    }
+    public void QianGet(String url,int userId, String sessionId, HttpListener httpListener){
+        Api api = retrofit.create(Api.class);
+        Observable<ResponseBody> observable = api.gets(url, userId,sessionId);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(GetObserver(httpListener));
     }
     private Observer GetObserver(final HttpListener httpListener) {

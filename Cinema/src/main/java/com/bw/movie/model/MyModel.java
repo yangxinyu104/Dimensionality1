@@ -3,25 +3,37 @@ package com.bw.movie.model;
 import android.util.Log;
 
 import com.bw.movie.app.MyApplication;
+import com.bw.movie.bean.AlipayBean;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
+import com.bw.movie.bean.BuyBean;
 import com.bw.movie.bean.DetailsBean;
 import com.bw.movie.bean.FilmCinemaBean;
 import com.bw.movie.bean.GreatBean;
+import com.bw.movie.bean.HeadBean;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.PopularMovieBean;
+import com.bw.movie.bean.PwdBean;
 import com.bw.movie.bean.RegisterBean;
 import com.bw.movie.bean.ReviewBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.ShowingBean;
+import com.bw.movie.bean.SignBean;
+import com.bw.movie.bean.UserBean;
+import com.bw.movie.bean.WechatBean;
+import com.bw.movie.bean.WechatLoginBean;
 import com.bw.movie.contract.ContractInterFace;
 import com.bw.movie.url.URl;
 import com.bw.movie.util.RetrofitUtil;
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Project name：WeiDuMovie
@@ -45,6 +57,14 @@ public class MyModel implements ContractInterFace.IModel {
     SetNoFollowCinema  setNoFollowCinema;
     SetFollowCinema setFollowCinema;
     SetSchedule setSchedule;
+    SetBuy setBuy;
+    SetWechat setWechat;
+    SetAlipay setAlipay;
+    SetWechatLogin setWechatLogin;
+    SetPwd setPwd;
+    SetHead setHead;
+    SetUser setUser;
+    SetSignin setSignin;
     @Override
     public void login(String phone, String pwd, final SetLogin setLogin) {
         this.setLogin = setLogin;
@@ -385,7 +405,196 @@ public class MyModel implements ContractInterFace.IModel {
 
     }
 
+    @Override
+    public void buy(int scheduleId, int amount, String sign, final SetBuy setBuy) {
+        this.setBuy = setBuy;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("scheduleId",scheduleId);
+        hashMap.put("amount",amount);
+        hashMap.put("sign",sign);
+        RetrofitUtil.GetInstance().doPost(URl.URL_BUY, MyApplication.UserId,MyApplication.SessionId,hashMap, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                BuyBean buyBean = new Gson().fromJson(s, BuyBean.class);
+                setBuy.Succeed(buyBean);
+            }
 
+            @Override
+            public void Error(String s) {
+                Log.e("tag","buy  : " + s);
+            }
+        });
+
+    }
+
+    @Override
+    public void wechat(int payType, String orderId, final SetWechat setWechat) {
+        this.setWechat = setWechat;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("payType",payType);
+        hashMap.put("orderId",orderId);
+        RetrofitUtil.GetInstance().doPost(URl.URL_WECHAT, MyApplication.UserId,MyApplication.SessionId,hashMap, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                Log.e("tag",s);
+                WechatBean wechatBean = new Gson().fromJson(s, WechatBean.class);
+                setWechat.Succeed(wechatBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","wechat  : " + s);
+            }
+        });
+
+    }
+
+    @Override
+    public void alipay(int payType, String orderId, final SetAlipay setAlipay) {
+        this.setAlipay = setAlipay;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("payType",payType);
+        hashMap.put("orderId",orderId);
+        RetrofitUtil.GetInstance().doPost(URl.URL_WECHAT, MyApplication.UserId,MyApplication.SessionId,hashMap, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                AlipayBean  alipayBean = new Gson().fromJson(s, AlipayBean.class);
+                setAlipay.Succeed(alipayBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","alipay  : " + s);
+            }
+        });
+
+
+    }
+
+    @Override
+    public void wechatlogin(String code, final SetWechatLogin setWechatLogin) {
+        this.setWechatLogin = setWechatLogin;
+        RetrofitUtil.GetInstance().doWechatLoginPost(URl.URL_WECHATLOGIN, code, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                Log.e("tag",s);
+                LoginBean wechatLoginBean = new Gson().fromJson(s, LoginBean.class);
+                setWechatLogin.Succeed(wechatLoginBean);
+            }
+
+            @Override
+            public void Error(String s) {
+
+                Log.e("tag","   " + s );
+            }
+        });
+    }
+
+    @Override
+    public void pwd(String oldPwd, String newPwd, String newPwd2, final SetPwd setPwd) {
+        this.setPwd = setPwd;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("oldPwd",oldPwd);
+        hashMap.put("newPwd",newPwd);
+        hashMap.put("newPwd2",newPwd2);
+        RetrofitUtil.GetInstance().doPost(URl.URL_PWD, MyApplication.UserId,MyApplication.SessionId,hashMap, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                Log.e("tag",s);
+                PwdBean pwdBean = new Gson().fromJson(s, PwdBean.class);
+                setPwd.Succeed(pwdBean);
+            }
+
+            @Override
+            public void Error(String s) {
+
+                Log.e("tag","  pwd   " + s );
+            }
+        });
+
+
+    }
+
+    @Override
+    public void head(File image, final SetHead setHead) {
+        this.setHead = setHead;
+        RetrofitUtil.GetInstance().doPostUpdateHead(image, URl.URL_HEAD, MyApplication.UserId, MyApplication.SessionId, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                HeadBean pwdBean = new Gson().fromJson(s, HeadBean.class);
+                setHead.Succeed(pwdBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","  head   " + s );
+            }
+        });
+
+    }
+
+    @Override
+    public void user(String nickName, int sex, String email, final SetUser setUser) {
+        this.setUser = setUser;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("nickName",nickName);
+        hashMap.put("sex",sex);
+        hashMap.put("email",email);
+
+        RetrofitUtil.GetInstance().doPost(URl.URL_USER, MyApplication.UserId, MyApplication.SessionId,hashMap, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                Log.e("tag",s);
+                UserBean userBean = new Gson().fromJson(s, UserBean.class);
+                setUser.Succeed(userBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","  head   " + s );
+            }
+        });
+
+
+    }
+
+    @Override
+    public void signin(final SetSignin setSignin) {
+        this.setSignin = setSignin;
+        RetrofitUtil.GetInstance().QianGet(URl.URL_SIGNIN, MyApplication.UserId, MyApplication.SessionId,new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                Log.e("tag",s);
+                SignBean signBean = new Gson().fromJson(s, SignBean.class);
+                setSignin.Succeed(signBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","  signin   " + s );
+            }
+        });
+
+    }
+    public interface SetSignin{
+        void Succeed(SignBean wechatLoginBean);
+    }
+
+    public interface SetUser{
+        void Succeed(UserBean wechatLoginBean);
+    }
+
+    public interface SetHead{
+        void Succeed(HeadBean wechatLoginBean);
+    }
+
+    public interface SetPwd{
+        void Succeed(PwdBean wechatLoginBean);
+    }
+
+    public interface SetWechatLogin{
+        void Succeed(LoginBean wechatLoginBean);
+    }
     public interface SetLogin{
         void Succeed(LoginBean loginBean);
     }
@@ -433,5 +642,14 @@ public class MyModel implements ContractInterFace.IModel {
     }
     public interface SetSchedule{
         void Succeed(ScheduleBean scheduleBean);
+    }
+    public interface SetBuy{
+        void Succeed(BuyBean buyBean);
+    }
+    public interface SetWechat{
+        void Succeed(WechatBean wechatBean);
+    }
+    public interface SetAlipay{
+        void Succeed(AlipayBean alipayBean);
     }
 }

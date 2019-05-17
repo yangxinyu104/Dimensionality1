@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -18,6 +17,7 @@ import com.bw.movie.adapter.SearchBeonAdapter;
 import com.bw.movie.adapter.SearchHotAdapter;
 import com.bw.movie.adapter.SearchShowingAdapter;
 import com.bw.movie.app.MyApplication;
+import com.bw.movie.app.MyViews;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
 import com.bw.movie.bean.PopularMovieBean;
@@ -32,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SearchActivity extends AppCompatActivity implements ContractInterFace.ISearchFilm,ContractInterFace.IFilmHome {
+public class SearchActivity extends AppCompatActivity implements ContractInterFace.ISearchFilm, ContractInterFace.IFilmHome {
     @BindView(R.id.search_hot)
     RadioButton searchHot;
     @BindView(R.id.search_showing)
@@ -49,6 +49,8 @@ public class SearchActivity extends AppCompatActivity implements ContractInterFa
     List<BeonBean.ResultBean> Beonlist = new ArrayList<>();
     List<ShowingBean.ResultBean> Showinglist = new ArrayList<>();
     List<PopularMovieBean.ResultBean> Hotlist = new ArrayList<>();
+    @BindView(R.id.search_MyViews)
+    MyViews searchMyViews;
     private SearchHotAdapter hotadapter;
     private SearchShowingAdapter showingadapter;
     private SearchBeonAdapter beonadapters;
@@ -62,17 +64,19 @@ public class SearchActivity extends AppCompatActivity implements ContractInterFa
         searchHot.setTextColor(Color.WHITE);
         iPresenter.popularMovie();
         HotList();
+        searchMyViews.locations.setText(MyApplication.City);
     }
+
     private void HotList() {
         searchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        hotadapter = new SearchHotAdapter(Hotlist,this);
+        hotadapter = new SearchHotAdapter(Hotlist, this);
         searchRecyclerView.setAdapter(hotadapter);
         hotadapter.setOnItemClick(new SearchHotAdapter.OnItemClick() {
             @Override
             public void onItemClick(int position) {
-                Intent intent=  new Intent(SearchActivity.this,DetailsActivity.class);
+                Intent intent = new Intent(SearchActivity.this, DetailsActivity.class);
                 MyApplication.flag = Hotlist.get(position).getFollowMovie();
-                intent.putExtra("aid",Hotlist.get(position).getId());
+                intent.putExtra("aid", Hotlist.get(position).getId());
                 startActivity(intent);
             }
         });
@@ -93,14 +97,14 @@ public class SearchActivity extends AppCompatActivity implements ContractInterFa
                 searchShowing.setTextColor(Color.WHITE);
                 searchBeon.setTextColor(Color.BLACK);
                 searchHot.setTextColor(Color.BLACK);
-                showingadapter = new SearchShowingAdapter(Showinglist,this);
+                showingadapter = new SearchShowingAdapter(Showinglist, this);
                 searchRecyclerView.setAdapter(showingadapter);
                 showingadapter.setOnItemClick(new SearchShowingAdapter.OnItemClick() {
                     @Override
                     public void onItemClick(int position) {
-                        Intent intent=  new Intent(SearchActivity.this,DetailsActivity.class);
+                        Intent intent = new Intent(SearchActivity.this, DetailsActivity.class);
                         MyApplication.flag = Showinglist.get(position).getFollowMovie();
-                        intent.putExtra("aid",Showinglist.get(position).getId());
+                        intent.putExtra("aid", Showinglist.get(position).getId());
                         startActivity(intent);
                     }
                 });
@@ -110,14 +114,14 @@ public class SearchActivity extends AppCompatActivity implements ContractInterFa
                 searchShowing.setTextColor(Color.BLACK);
                 searchHot.setTextColor(Color.BLACK);
                 searchBeon.setTextColor(Color.WHITE);
-                beonadapters = new SearchBeonAdapter(Beonlist,this);
+                beonadapters = new SearchBeonAdapter(Beonlist, this);
                 searchRecyclerView.setAdapter(beonadapters);
                 beonadapters.setOnItemClick(new SearchBeonAdapter.OnItemClick() {
                     @Override
                     public void onItemClick(int position) {
-                        Intent intent=  new Intent(SearchActivity.this,DetailsActivity.class);
+                        Intent intent = new Intent(SearchActivity.this, DetailsActivity.class);
                         MyApplication.flag = Beonlist.get(position).getFollowMovie();
-                        intent.putExtra("aid",Beonlist.get(position).getId());
+                        intent.putExtra("aid", Beonlist.get(position).getId());
                         startActivity(intent);
                     }
                 });
@@ -133,11 +137,11 @@ public class SearchActivity extends AppCompatActivity implements ContractInterFa
     @Override
     public void attention(AttentionBean attentionBean) {
         Toast.makeText(this, attentionBean.getMessage(), Toast.LENGTH_SHORT).show();
-        if (MyApplication.Zanflag==1){
+        if (MyApplication.Zanflag == 1) {
             iPresenter.popularMovie();
-        }else if(MyApplication.Zanflag==2){
+        } else if (MyApplication.Zanflag == 2) {
             iPresenter.showing();
-        }else if(MyApplication.Zanflag==3){
+        } else if (MyApplication.Zanflag == 3) {
             iPresenter.beon();
         }
     }
@@ -145,11 +149,11 @@ public class SearchActivity extends AppCompatActivity implements ContractInterFa
     @Override
     public void noattention(AttentionBean attentionBean) {
         Toast.makeText(this, attentionBean.getMessage(), Toast.LENGTH_SHORT).show();
-        if (MyApplication.Zanflag==1){
+        if (MyApplication.Zanflag == 1) {
             iPresenter.popularMovie();
-        }else if(MyApplication.Zanflag==2){
+        } else if (MyApplication.Zanflag == 2) {
             iPresenter.showing();
-        }else if(MyApplication.Zanflag==3){
+        } else if (MyApplication.Zanflag == 3) {
             iPresenter.beon();
         }
     }

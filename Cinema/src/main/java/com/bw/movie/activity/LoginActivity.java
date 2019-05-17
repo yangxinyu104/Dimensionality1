@@ -29,6 +29,8 @@ import com.bw.movie.contract.ContractInterFace;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.util.EncryptUtil;
 import com.bw.movie.util.WeiXinUtil;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 public class LoginActivity extends AppCompatActivity implements ContractInterFace.ILogin {
 
@@ -50,12 +52,21 @@ public class LoginActivity extends AppCompatActivity implements ContractInterFac
     LinearLayout loginInternet;
     private ContractInterFace.IPresenter iPresenter;
     private SharedPreferences sp;
+    // APP_ID 替换为你的应用从官方网站申请到的合法appID
+    private static final String APP_ID = "wxb3852e6a6b7d9516";
+
+    // IWXAPI 是第三方app和微信通信的openApi接口
+    private IWXAPI api;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        regToWx();
 
         if (MyApplication.isNetworkConnected(this)) {
             loginNointernet.setVisibility(View.GONE);
@@ -77,10 +88,14 @@ public class LoginActivity extends AppCompatActivity implements ContractInterFac
             jzpwdId.setChecked(false);
         }
 
-        if (Build.VERSION.SDK_INT >= 23) {
-            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
-            ActivityCompat.requestPermissions(this, mPermissionList, 123);
-        }
+
+
+    }
+    private void regToWx() {
+        // 通过WXAPIFactory工厂，获取IWXAPI的实例
+        api = WXAPIFactory.createWXAPI(this, APP_ID, true);
+        // 将应用的appId注册到微信
+        api.registerApp(APP_ID);
     }
 
     @Override
@@ -89,6 +104,13 @@ public class LoginActivity extends AppCompatActivity implements ContractInterFac
             Toast.makeText(this, loginBean.getMessage(), Toast.LENGTH_LONG).show();
             MyApplication.UserId = loginBean.getResult().getUserId();
             MyApplication.SessionId = loginBean.getResult().getSessionId();
+            MyApplication.HeadPic = loginBean.getResult().getUserInfo().getHeadPic();
+            MyApplication.UserName = loginBean.getResult().getUserInfo().getNickName();
+            MyApplication.phones = loginBean.getResult().getUserInfo().getPhone();
+            MyApplication.birthday = loginBean.getResult().getUserInfo().getBirthday();
+            MyApplication.Sex =  loginBean.getResult().getUserInfo().getSex();
+            MyApplication.lastLoginTime =  loginBean.getResult().getUserInfo().getLastLoginTime();
+
             Log.e("tag", " SessionId :  " + MyApplication.SessionId);
             Log.e("tag", " UserId :  " + MyApplication.UserId);
             if (jzpwdId.isChecked()) {
@@ -133,41 +155,13 @@ public class LoginActivity extends AppCompatActivity implements ContractInterFac
 
     @OnClick(R.id.wxLogin)
     public void onViewClicked() {
-        // 微信登录
-        if (!WeiXinUtil.success(this)) {
-            Toast.makeText(this, "请先安装应用", Toast.LENGTH_SHORT).show();
-        } else {
-            //  验证
-            SendAuth.Req req = new SendAuth.Req();
-            req.scope = "snsapi_userinfo";
-            req.state = "wechat_sdk_demo_test";
-            WeiXinUtil.reg(LoginActivity.this).sendReq(req);
-        }
-       /* UMShareAPI.get(LoginActivity.this).getPlatformInfo(LoginActivity.this, SHARE_MEDIA.WEIXIN, new UMAuthListener() {
-            @Override
-            public void onStart(SHARE_MEDIA share_media) {
-                Toast.makeText(LoginActivity.this, "onStart", Toast.LENGTH_SHORT).show();
-            }
+        Log.e("tag","111111");
+        SendAuth.Req req = new SendAuth.Req();
+        req.scope = "snsapi_userinfo";
+        req.state = "wechat_sdk_demo_test";
+        api.sendReq(req);
+        finish();
 
-            @Override
-            public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
-                Toast.makeText(LoginActivity.this, "onComplete", Toast.LENGTH_SHORT).show();
 
-                for (String key : map.keySet()) {
-                    Log.e("tag", map.get(key));
-                }
-
-            }
-
-            @Override
-            public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
-
-            }
-
-            @Override
-            public void onCancel(SHARE_MEDIA share_media, int i) {
-
-            }
-        });*/
     }
 }

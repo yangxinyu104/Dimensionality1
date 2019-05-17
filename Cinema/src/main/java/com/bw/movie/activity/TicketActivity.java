@@ -60,7 +60,7 @@ public class TicketActivity extends AppCompatActivity implements ContractInterFa
         address = intent.getStringExtra("address");
         ticketName.setText(name);
         ticketAddress.setText(address);
-        ticketSimpleDraweeView.setImageURI(MyApplication.resultBean.getImageUrl());
+       ticketSimpleDraweeView.setImageURI(MyApplication.resultBean.getImageUrl());
         ticketFilmName.setText(MyApplication.resultBean.getName());
         ticketLx.setText(MyApplication.resultBean.getMovieTypes());
         ticketDy.setText(MyApplication.resultBean.getDirector());
@@ -83,7 +83,8 @@ public class TicketActivity extends AppCompatActivity implements ContractInterFa
                 intent1.putExtra("endTime",list.get(position).getEndTime());
                 intent1.putExtra("TicketName",list.get(position).getScreeningHall());
                 intent1.putExtra("seatsTotal",list.get(position).getSeatsTotal());
-                intent1.putExtra("seatsUseCount",list.get(position).getSeatsUseCount());
+                MyApplication.price = list.get(position).getPrice();
+                MyApplication.scheduleId = list.get(position).getStatus();
                 startActivity(intent1);
 
             }

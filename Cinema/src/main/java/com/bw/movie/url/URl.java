@@ -17,10 +17,13 @@ public class URl {
     //登录
     public  static String URL_LOGIN = "user/v1/login";
 
+    //微信登陆
+    public  static  String URL_WECHATLOGIN = "user/v1/weChatBindingLogin";
+
     //注册
     public  static String URL_REGISTER = "user/v1/registerUser";
 
-    //热门电影http://172.17.8.100/movieApi/
+    //热门电影
     public  static String URL_POPULARMOVIE = "movie/v1/findHotMovieList";
 
     //正在热映
@@ -40,9 +43,6 @@ public class URl {
 
     //电影详情
     public static String URL_PARTICULARS = "movie/v1/findMoviesDetail";
-
-    //推荐电影
-    public static String URL_CINEMATJ="http://172.17.8.100/movieApi/cinema/v1/findRecommendCinemas";
 
     //电影评论
     public static String URL_REVIEW= "movie/v1/findAllMovieComment";
@@ -65,4 +65,21 @@ public class URl {
     //根据电影ID和影院ID查询电影排期列表
     public static String URL_SCHEDULE="movie/v1/findMovieScheduleList";
 
+    //购票下单
+    public static String URL_BUY ="movie/v1/verify/buyMovieTicket";
+
+    //支付
+    public static String URL_WECHAT="movie/v1/verify/pay";
+
+    //修改密码
+    public static String URL_PWD = "user/v1/verify/modifyUserPwd";
+
+    //修改头像
+    public static String URL_HEAD = "user/v1/verify/uploadHeadPic";
+
+    //修改用户信息
+    public static String URL_USER = "user/v1/verify/modifyUserInfo";
+
+    //签到
+    public static String URL_SIGNIN = "user/v1/verify/userSignIn";
 }

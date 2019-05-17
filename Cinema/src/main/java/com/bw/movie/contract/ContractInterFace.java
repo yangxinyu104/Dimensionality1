@@ -1,20 +1,30 @@
 package com.bw.movie.contract;
 
+import com.bw.movie.bean.AlipayBean;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
+import com.bw.movie.bean.BuyBean;
 import com.bw.movie.bean.DetailsBean;
 
 import com.bw.movie.bean.CinematjBean;
 
 import com.bw.movie.bean.FilmCinemaBean;
 import com.bw.movie.bean.GreatBean;
+import com.bw.movie.bean.HeadBean;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.PopularMovieBean;
+import com.bw.movie.bean.PwdBean;
 import com.bw.movie.bean.ReviewBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.ShowingBean;
+import com.bw.movie.bean.SignBean;
+import com.bw.movie.bean.UserBean;
+import com.bw.movie.bean.WechatBean;
+import com.bw.movie.bean.WechatLoginBean;
 import com.bw.movie.model.MyModel;
+
+import java.io.File;
 
 /**
  * Project name：WeiDuMovie
@@ -41,6 +51,14 @@ public interface ContractInterFace {
         void followCinema(int cinemaId);
         void noFollowCinema(int cinemaId);
         void schedule(int cinemasId,int movieId);
+        void buy(int scheduleId,int amount,String sign);
+        void wechat(int payType,String orderId);
+        void alipay(int payType,String orderId);
+        void wechatlogin(String code);
+        void pwd(String oldPwd,String newPwd,String newPwd2);
+        void head(File image);
+        void user(String nickName,int sex,String email);
+        void signin();
     }
     //p层
     public interface  IModel{
@@ -60,6 +78,25 @@ public interface ContractInterFace {
         void noFollowCinema(int cinemaId,MyModel.SetNoFollowCinema setNoFollowCinema);
         void followCinema(int cinemaId,MyModel.SetFollowCinema setFollowCinema);
         void schedule(int cinemasId,int movieId,MyModel.SetSchedule setSchedule);
+        void buy(int scheduleId,int amount,String sign,MyModel.SetBuy setBuy);
+        void wechat(int payType,String orderId,MyModel.SetWechat setWechat);
+        void alipay(int payType,String orderId,MyModel.SetAlipay setAlipay);
+        void wechatlogin(String code,MyModel.SetWechatLogin setWechatLogin);
+        void pwd(String oldPwd,String newPwd,String newPwd2,MyModel.SetPwd setPwd);
+        void head(File image,MyModel.SetHead setHead);
+        void user(String nickName,int sex,String email,MyModel.SetUser setUser);
+        void signin(MyModel.SetSignin setSignin);
+    }
+    public interface IMineMessage{
+        void pwd(PwdBean wechatLoginBean);
+        void head(HeadBean wechatLoginBean);
+        void user(UserBean wechatLoginBean);
+    }
+    public interface IMy{
+        void signin(SignBean wechatLoginBean);
+    }
+    public interface  IWechatLogin{
+        void wechatlogin(LoginBean wechatLoginBean);
     }
     public  interface  ILogin{
         void login(LoginBean loginBean);
@@ -95,6 +132,11 @@ public interface ContractInterFace {
 
     public interface IRecommendCinema{
         void recommendCinema(CinematjBean cinematjBean);
+    }
+    public interface IBuy{
+        void buy(BuyBean buyBean);
+        void wechat(WechatBean wechatBean);
+        void alipay(AlipayBean alipayBean);
     }
 
 

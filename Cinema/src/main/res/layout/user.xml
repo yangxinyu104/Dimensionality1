@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <EditText
+        android:paddingLeft="@dimen/dp_10"
+        android:background="@null"
+        android:hint="请输入您的昵称"
+        android:id="@+id/pwd_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <EditText
+        android:paddingLeft="@dimen/dp_10"
+        android:background="@null"
+        android:paddingTop="10dp"
+        android:hint="请输入您的性别"
+        android:id="@+id/pwd_sex"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <EditText
+        android:paddingLeft="@dimen/dp_10"
+        android:background="@null"
+        android:paddingTop="10dp"
+        android:hint="请输入您的邮箱"
+        android:id="@+id/pwd_emil"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</LinearLayout>

@@ -23,7 +23,7 @@
             android:id="@+id/locations"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_48"
-            android:textColor="#ffffff"
+            android:textColor="#999999"
             android:gravity="center"
             android:text="定位中…"
             android:textSize="@dimen/sp_12"

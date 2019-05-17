@@ -2,20 +2,30 @@ package com.bw.movie.presenter;
 
 import android.util.Log;
 
+import com.bw.movie.bean.AlipayBean;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
+import com.bw.movie.bean.BuyBean;
 import com.bw.movie.bean.DetailsBean;
 import com.bw.movie.bean.FilmCinemaBean;
 import com.bw.movie.bean.GreatBean;
+import com.bw.movie.bean.HeadBean;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.PopularMovieBean;
+import com.bw.movie.bean.PwdBean;
 import com.bw.movie.bean.RegisterBean;
 import com.bw.movie.bean.ReviewBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.ShowingBean;
+import com.bw.movie.bean.SignBean;
+import com.bw.movie.bean.UserBean;
+import com.bw.movie.bean.WechatBean;
+import com.bw.movie.bean.WechatLoginBean;
 import com.bw.movie.contract.ContractInterFace;
 import com.bw.movie.model.MyModel;
+
+import java.io.File;
 
 /**
  * Project name：WeiDuMovie
@@ -206,6 +216,94 @@ public class MyPresenter<T> implements ContractInterFace.IPresenter {
             public void Succeed(ScheduleBean scheduleBean) {
                 ContractInterFace.ITicket iTicket = (ContractInterFace.ITicket) t;
                 iTicket.schedule(scheduleBean);
+            }
+        });
+    }
+
+    @Override
+    public void buy(int scheduleId, int amount, String sign) {
+        iModel.buy(scheduleId, amount, sign, new MyModel.SetBuy() {
+            @Override
+            public void Succeed(BuyBean buyBean) {
+               ContractInterFace.IBuy iBuy = (ContractInterFace.IBuy) t;
+               iBuy.buy(buyBean);
+            }
+        });
+    }
+
+    @Override
+    public void wechat(int payType, String orderId) {
+        iModel.wechat(payType, orderId, new MyModel.SetWechat() {
+            @Override
+            public void Succeed(WechatBean wechatBean) {
+                ContractInterFace.IBuy iBuy = (ContractInterFace.IBuy) t;
+                iBuy.wechat(wechatBean);
+            }
+        });
+    }
+
+    @Override
+    public void alipay(int payType, String orderId) {
+        iModel.alipay(payType, orderId, new MyModel.SetAlipay() {
+            @Override
+            public void Succeed(AlipayBean alipayBean) {
+                ContractInterFace.IBuy iBuy = (ContractInterFace.IBuy) t;
+                iBuy.alipay(alipayBean);
+            }
+        });
+    }
+
+    @Override
+    public void wechatlogin(String code) {
+        iModel.wechatlogin(code, new MyModel.SetWechatLogin() {
+            @Override
+            public void Succeed(LoginBean wechatLoginBean) {
+                ContractInterFace.IWechatLogin iWechatLogin = (ContractInterFace.IWechatLogin) t;
+                iWechatLogin.wechatlogin(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void pwd(String oldPwd, String newPwd, String newPwd2) {
+        iModel.pwd(oldPwd, newPwd, newPwd2, new MyModel.SetPwd() {
+            @Override
+            public void Succeed(PwdBean wechatLoginBean) {
+                ContractInterFace.IMineMessage iMineMessage = (ContractInterFace.IMineMessage) t;
+                iMineMessage.pwd(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void head(File image) {
+        iModel.head(image, new MyModel.SetHead() {
+            @Override
+            public void Succeed(HeadBean wechatLoginBean) {
+                ContractInterFace.IMineMessage iMineMessage = (ContractInterFace.IMineMessage) t;
+                iMineMessage.head(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void user(String nickName, int sex, String email) {
+        iModel.user(nickName, sex, email, new MyModel.SetUser() {
+            @Override
+            public void Succeed(UserBean wechatLoginBean) {
+                ContractInterFace.IMineMessage iMineMessage = (ContractInterFace.IMineMessage) t;
+                iMineMessage.user(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void signin() {
+        iModel.signin(new MyModel.SetSignin() {
+            @Override
+            public void Succeed(SignBean wechatLoginBean) {
+                ContractInterFace.IMy iMy = (ContractInterFace.IMy) t;
+                iMy.signin(wechatLoginBean);
             }
         });
     }

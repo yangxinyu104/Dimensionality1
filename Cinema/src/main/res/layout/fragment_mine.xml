@@ -39,7 +39,7 @@
                 android:textColor="#fff"
                 android:layout_height="wrap_content"
                 android:text="高杨"/>
-           <!-- <Button
+            <Button
                 android:id="@+id/qiandao"
                 android:layout_width="wrap_content"
                 android:textColor="#fff"
@@ -47,8 +47,8 @@
                 android:layout_marginBottom="@dimen/dp_15"
                 android:text="签到"
                 android:background="@drawable/ripple"
-                android:layout_height="wrap_content"
-                />-->
+                android:layout_height="wrap_content"></Button>
+
         </LinearLayout>
     </LinearLayout>
 
@@ -80,7 +80,7 @@
 
                 <TextView
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginLeft="@dimen/dp_25"
+                    android:layout_marginLeft="@dimen/dp_20"
                     android:layout_width="@dimen/dp_50"
                     android:textSize="12sp"
                     android:textColor="#333333"
@@ -119,7 +119,7 @@
                         android:src="@mipmap/attention_xin"/>
                     <TextView
                         android:layout_marginTop="@dimen/dp_10"
-                        android:layout_marginLeft="@dimen/dp_17"
+                        android:layout_marginLeft="@dimen/dp_19"
                         android:layout_width="@dimen/dp_50"
                         android:textSize="12sp"
                         android:textColor="#333333"
@@ -144,7 +144,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_17"
+                        android:layout_marginLeft="@dimen/dp_20"
                         android:layout_marginTop="@dimen/dp_10"
                         android:text="购票记录"
                         android:textColor="#333333"
@@ -193,19 +193,19 @@
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_marginLeft="@dimen/dp_40"
+                    android:layout_marginLeft="@dimen/dp_45"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent">
                     <ImageView
                         android:id="@+id/mine_update"
                         android:layout_marginTop="@dimen/dp_24"
-                        android:layout_marginLeft="@dimen/dp_30"
+                        android:layout_marginLeft="@dimen/dp_33"
                         android:layout_width="@dimen/dp_24"
                         android:layout_height="@dimen/dp_24"
                         android:src="@mipmap/version_zhuan"/>
                     <TextView
                         android:layout_marginTop="@dimen/dp_10"
-                        android:layout_marginLeft="@dimen/dp_17"
+                        android:layout_marginLeft="@dimen/dp_22"
                         android:layout_width="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#333333"
@@ -226,7 +226,7 @@
                         android:src="@mipmap/logout_fanhui"/>
                     <TextView
                         android:layout_marginTop="@dimen/dp_10"
-                        android:layout_marginLeft="@dimen/dp_17"
+                        android:layout_marginLeft="@dimen/dp_20"
                         android:layout_width="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#333333"

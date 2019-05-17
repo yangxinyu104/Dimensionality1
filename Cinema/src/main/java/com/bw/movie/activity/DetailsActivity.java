@@ -153,6 +153,9 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterF
                 popw_foreshow_video1.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
+
+                        MediaController mctrl = new MediaController(DetailsActivity.this);
+                        popw_foreshow_video1.setMediaController(mctrl);
                         popw_foreshow_video1.start();
                         popw_foreshow_video1.setBackgroundResource(0);
                         return false;

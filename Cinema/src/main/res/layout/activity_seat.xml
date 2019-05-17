@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bw.movie.activity.SeatActivity">
+    tools:context="com.bw.movie.net.sourceforge.simcpux.wxapi.SeatActivity">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
