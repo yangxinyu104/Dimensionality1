@@ -65,9 +65,10 @@ public class URl {
     //根据电影ID和影院ID查询电影排期列表
     public static String URL_SCHEDULE="movie/v1/findMovieScheduleList";
 
-    //查询电影信息明细
+    //查询影院信息明细
     public static String URL_MESSAGE="cinema/v1/findCinemaInfo";
 
-
+    //查询影院评论信息
+    public static String URL_CRITICISM="cinema/v1/findAllCinemaComment";
 
 }

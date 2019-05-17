@@ -2,6 +2,7 @@ package com.bw.movie.ghb;
 
 import com.bw.movie.bean.CinemaBannerBean;
 import com.bw.movie.bean.CinemafjBean;
+import com.bw.movie.bean.CinemaplBean;
 import com.bw.movie.bean.CinematjBean;
 import com.bw.movie.bean.CinemaxqBean;
 
@@ -71,6 +72,19 @@ public class CinemaPresenter extends BasePresenter<IMainView> {
                     @Override
                     public void accept(CinemaxqBean cinemaxqBean) throws Exception {
                        getView().onCinemaxq(cinemaxqBean);
+                    }
+                });
+    }
+
+    //影院评论
+    public void loadNexDatapl(int cinemaId,int page,int count) {
+        Observable<CinemaplBean> showpl = httpUtil.api.showpl(cinemaId, page, count);
+        showpl.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<CinemaplBean>() {
+                    @Override
+                    public void accept(CinemaplBean cinemaplBean) throws Exception {
+                        getView().onCinemapl(cinemaplBean);
                     }
                 });
     }

@@ -2,6 +2,7 @@ package com.bw.movie.contract;
 
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
+import com.bw.movie.bean.CinemaplBean;
 import com.bw.movie.bean.CinematjBean;
 import com.bw.movie.bean.CinemaxqBean;
 import com.bw.movie.bean.DetailsBean;
@@ -98,4 +99,5 @@ public interface ContractInterFace {
     public interface IMessage{
         void message(CinemaxqBean cinemaxqBean);
     }
+
 }

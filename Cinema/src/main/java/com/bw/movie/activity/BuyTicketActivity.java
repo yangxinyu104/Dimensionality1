@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -13,21 +11,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
+import com.bw.movie.adapter.CinemaPingAdapter;
 import com.bw.movie.adapter.CinemaRecyclerAdapter;
 import com.bw.movie.bean.CinemaBannerBean;
 import com.bw.movie.bean.CinemafjBean;
+import com.bw.movie.bean.CinemaplBean;
 import com.bw.movie.bean.CinematjBean;
 import com.bw.movie.bean.CinemaxqBean;
 
@@ -35,7 +32,7 @@ import com.bw.movie.ghb.CinemaPresenter;
 import com.bw.movie.ghb.IMainView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -75,13 +72,15 @@ public class BuyTicketActivity extends AppCompatActivity implements IMainView {
 
 
     private CinemaPresenter cinemaPresenter;
-    private String id;
     private CinemaRecyclerAdapter mAdapter;
     private TextView details_name;
     private TextView details_phone;
     private TextView details_metro;
     private RecyclerView evaluate_recycler;
     private PopupWindow popupWindow;
+    private int id;
+    private TextView ditie;
+    private CinemaxqBean cinemaxqBean1;
 
     @SuppressLint("CommitTransaction")
     @Override
@@ -90,7 +89,7 @@ public class BuyTicketActivity extends AppCompatActivity implements IMainView {
         setContentView(R.layout.cinema__banner_ticket);
         ButterKnife.bind(this);
 
-        id = getIntent().getStringExtra("id");
+        id = getIntent().getExtras().getInt("id");
 
         cinemaCinemalogo.setImageURI(getIntent().getStringExtra("logo"));
         cinemaCinemaname.setText(getIntent().getStringExtra("name"));
@@ -98,12 +97,16 @@ public class BuyTicketActivity extends AppCompatActivity implements IMainView {
 
         cinemaPresenter = new CinemaPresenter();
         cinemaPresenter.setView(this);
-        cinemaPresenter.loadBanner(id);
-
+        cinemaPresenter.loadBanner(id+"");
+        cinemaPresenter.loadNexDataxq(id);
         cinemaAddres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPopwindow();
+                details_name.setText(cinemaxqBean1.getResult().getName());
+                details_phone.setText(cinemaxqBean1.getResult().getPhone());
+                details_metro.setText(cinemaxqBean1.getResult().getVehicleRoute());
+
             }
         });
     }
@@ -136,7 +139,7 @@ public class BuyTicketActivity extends AppCompatActivity implements IMainView {
     @Override
     public void onBanner(CinemaBannerBean cinemaBanner) {
 
-        if (cinemaBanner.getResult().get(0).getImageUrl() == null) {
+        if (cinemaBanner== null) {
 
             Toast.makeText(this, "该影院没有电影", Toast.LENGTH_LONG).show();
         } else {
@@ -145,7 +148,6 @@ public class BuyTicketActivity extends AppCompatActivity implements IMainView {
             //让轮播图显示中间的图片
             cinemaMovieCoverflow.smoothScrollToPosition(2);
         }
-
     }
 
     @Override
@@ -155,6 +157,8 @@ public class BuyTicketActivity extends AppCompatActivity implements IMainView {
 
     @Override
     public void onCinemaxq(CinemaxqBean cinemaxqBean) {
+        cinemaxqBean1 = cinemaxqBean;
+
 
     }
 
@@ -163,36 +167,49 @@ public class BuyTicketActivity extends AppCompatActivity implements IMainView {
 
     }
 
+    @Override
+    public void onCinemapl(CinemaplBean cinemaplBean) {
+
+        List<CinemaplBean.ResultBean> result = cinemaplBean.getResult();
+        CinemaPingAdapter cinemaPing = new CinemaPingAdapter(result, BuyTicketActivity.this);
+        evaluate_recycler.setLayoutManager(new LinearLayoutManager(this));
+        evaluate_recycler.setAdapter(cinemaPing);
+    }
+
+    @Override
+    public void onErrorpl(String errMessage) {
+
+    }
+
     private void showPopwindow() {
         View v = View.inflate(this, R.layout.cinema_details_popupwindow, null);
         details_name = v.findViewById(R.id.details_name);
         details_phone = v.findViewById(R.id.details_phone);
-        TextView ditie = v.findViewById(R.id.ditie);
+        ditie = v.findViewById(R.id.ditie);
         details_metro = v.findViewById(R.id.details_metro);
         ditie.setText("公交路线:");
         TextView evaluate = v.findViewById(R.id.evaluatess);//评价按钮
         TextView details = v.findViewById(R.id.detailsss);//详情按钮
+        final View details_view = v.findViewById(R.id.details_view);//详情view线
+        final View evaluate_view = v.findViewById(R.id.evaluate_view);//评价view线
       final RelativeLayout details_details = v.findViewById(R.id.details_details);//布局
         //布局
         evaluate_recycler = v.findViewById(R.id.evaluate_recycler);
 
-      /*  final HashMap<String, String> mapp = new HashMap<>();
-        mapp.put("cinemaId",ids1);
-
-        //p层
-        cinemaDetailsPresenter.getPresenterCinemaPin(mapp);*/
 
         //评价点击事件
         evaluate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                details_view.setVisibility(View.GONE);
+                evaluate_view.setVisibility(View.VISIBLE);
                 details_details.setVisibility(View.GONE);
                 evaluate_recycler.setVisibility(View.VISIBLE);
                 //p层
-             /*   cinemaPresenter.loadNexDataxq(Integer.parseInt(id));
+                cinemaPresenter.loadNexDatapl(id,1,10);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(BuyTicketActivity.this);
                 linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
-                evaluate_recycler.setLayoutManager(linearLayoutManager);*/
+                evaluate_recycler.setLayoutManager(linearLayoutManager);
 
             }
         });
@@ -200,8 +217,11 @@ public class BuyTicketActivity extends AppCompatActivity implements IMainView {
         details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                details_view.setVisibility(View.VISIBLE);
+                evaluate_view.setVisibility(View.GONE);
                 details_details.setVisibility(View.VISIBLE);
                 evaluate_recycler.setVisibility(View.GONE);
+
 
             }
         });
@@ -211,8 +231,9 @@ public class BuyTicketActivity extends AppCompatActivity implements IMainView {
                 popupWindow.dismiss();
             }
         });
-        popupWindow = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
-               800, true);
+
+
+        popupWindow = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT, 777, true);
 
         popupWindow.setFocusable(true);
         popupWindow.setTouchable(true);

@@ -1,6 +1,7 @@
 package com.bw.movie.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bw.movie.R;
+import com.bw.movie.activity.BuyTicketActivity;
+import com.bw.movie.activity.DetailsActivity;
 import com.bw.movie.bean.CinematjBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -60,13 +63,23 @@ public class CinemaAdaptertj extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holder.textView.setText(arr.get(position).getName());
         holder.textAddress.setText(arr.get(position).getAddress());
         holder.textDistance.setText(arr.get(position).getDistance()+"km");
-
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnItemClickListener.onItemClick(arr.get(position).getId()+"",arr.get(position).getLogo(),arr.get(position).getName(),arr.get(position).getAddress());
+                Intent intent = new Intent(context,BuyTicketActivity.class);
+                intent.putExtra("id",arr.get(position).getId());
+                intent.putExtra("name",arr.get(position).getName());
+                intent.putExtra("logo",arr.get(position).getLogo());
+                intent.putExtra("address",arr.get(position).getAddress());
+                context.startActivity(intent);
             }
         });
+       /* holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClickListener.onItemClick(arr.get(position).getId()+"",,,);
+            }
+        });*/
     }
 
     @Override

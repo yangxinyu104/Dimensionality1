@@ -2,6 +2,7 @@ package com.bw.movie.ghb;
 
 import com.bw.movie.bean.CinemaBannerBean;
 import com.bw.movie.bean.CinemafjBean;
+import com.bw.movie.bean.CinemaplBean;
 import com.bw.movie.bean.CinematjBean;
 import com.bw.movie.bean.CinemaxqBean;
 
@@ -28,5 +29,8 @@ public interface IMainView {
     public void onCinemaxq(CinemaxqBean cinemaxqBean);
     public void onErrorxq(String errMessage);
 
+    //影院评论
+    public void onCinemapl(CinemaplBean cinemaplBean);
+    public void onErrorpl(String errMessage);
 
 }

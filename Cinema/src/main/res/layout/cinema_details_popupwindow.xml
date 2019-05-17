@@ -21,6 +21,13 @@
             android:textColor="#333333"
             android:textSize="@dimen/sp_16" />
 
+        <View
+            android:id="@+id/details_view"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_3"
+            android:layout_below="@id/detailsss"
+            android:layout_marginTop="@dimen/dp_6"
+            android:background="@drawable/cinema_details_xqpj_view" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -37,6 +44,16 @@
                 android:textColor="#333333"
                 android:textSize="@dimen/sp_16" />
 
+            <View
+                android:id="@+id/evaluate_view"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_3"
+                android:layout_below="@id/evaluatess"
+                android:layout_marginLeft="@dimen/dp_115"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_toRightOf="@id/details_view"
+                android:background="@drawable/cinema_details_xqpj_view"
+                android:visibility="gone" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -48,6 +65,7 @@
         android:layout_marginTop="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_24"
         android:background="@mipmap/down" />
+
     <!--详情的内容-->
     <RelativeLayout
         android:id="@+id/details_details"
@@ -56,9 +74,7 @@
         android:layout_below="@+id/relat"
         android:layout_marginLeft="@dimen/dp_24"
         android:layout_marginTop="@dimen/dp_10"
-        android:layout_marginRight="@dimen/dp_24"
-
-        >
+        android:layout_marginRight="@dimen/dp_24">
 
         <ImageView
             android:id="@+id/ima"
@@ -154,7 +170,6 @@
             android:layout_marginTop="@dimen/dp_10" />
 
     </RelativeLayout>
-
 
     <!--评价的内容-->
 

@@ -404,8 +404,6 @@ public class MyModel implements ContractInterFace.IModel {
 
     }
 
-
-
     public interface SetLogin{
         void Succeed(LoginBean loginBean);
     }
@@ -457,5 +455,4 @@ public class MyModel implements ContractInterFace.IModel {
     public interface SetMessage{
         void Succeed(CinemaxqBean cinemaxqBean);
     }
-
 }

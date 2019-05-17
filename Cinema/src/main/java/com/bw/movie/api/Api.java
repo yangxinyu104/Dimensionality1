@@ -2,6 +2,7 @@ package com.bw.movie.api;
 
 import com.bw.movie.bean.CinemaBannerBean;
 import com.bw.movie.bean.CinemafjBean;
+import com.bw.movie.bean.CinemaplBean;
 import com.bw.movie.bean.CinematjBean;
 import com.bw.movie.bean.CinemaxqBean;
 
@@ -10,6 +11,7 @@ import java.util.HashMap;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -69,6 +71,12 @@ public interface Api {
     @GET("movieApi/cinema/v1/findCinemaInfo")
     Observable<CinemaxqBean> showxq(@Query("cinemaId") int cinemaId);
 
+    //影院评论
+    @GET("movieApi/cinema/v1/findAllCinemaComment")
+    Observable<CinemaplBean> showpl(@Query("cinemaId") int cinemaId, @Query("page") int page, @Query("count") int count);
 
+    //影院点赞
+    @POST("movieApi/cinema/v1/verify/cinemaCommentGreat")
+    Observable<CinemaplBean> dianzan(@Field("cinemaId") int cinemaId);
 
 }

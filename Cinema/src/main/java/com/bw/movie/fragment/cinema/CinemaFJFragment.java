@@ -15,6 +15,7 @@ import com.bw.movie.R;
 import com.bw.movie.adapter.CinemaAdapterfj;
 import com.bw.movie.bean.CinemaBannerBean;
 import com.bw.movie.bean.CinemafjBean;
+import com.bw.movie.bean.CinemaplBean;
 import com.bw.movie.bean.CinematjBean;
 import com.bw.movie.bean.CinemaxqBean;
 import com.bw.movie.ghb.CinemaPresenter;
@@ -123,6 +124,16 @@ public class CinemaFJFragment extends Fragment implements IMainView {
 
     @Override
     public void onErrorxq(String errMessage) {
+
+    }
+
+    @Override
+    public void onCinemapl(CinemaplBean cinemaplBean) {
+
+    }
+
+    @Override
+    public void onErrorpl(String errMessage) {
 
     }
 

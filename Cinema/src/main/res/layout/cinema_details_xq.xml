@@ -1,135 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_400"
-    android:layout_alignParentBottom="true"
-    android:background="@drawable/details_popup_bg">
-
-    <RelativeLayout
-        android:id="@+id/relat_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dp_20">
-
-    </RelativeLayout>
-
-    <!--详情的内容-->
-    <RelativeLayout
-        android:id="@+id/details_details"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/relat_id"
-        android:layout_marginLeft="@dimen/dp_24"
-        android:layout_marginTop="@dimen/dp_10"
-        android:layout_marginRight="@dimen/dp_24">
-
-        <ImageView
-            android:id="@+id/image_id"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
-            android:background="@mipmap/cinema_detail" />
-
-        <TextView
-            android:id="@+id/details_name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="@dimen/dp_2"
-            android:layout_toRightOf="@id/image_id"
-            android:text="海淀区"
-            android:textColor="#333333"
-            android:textSize="@dimen/sp_14" />
-
-        <ImageView
-            android:id="@+id/pho_id"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
-            android:layout_below="@id/image_id"
-            android:layout_marginTop="@dimen/dp_20"
-            android:background="@mipmap/dianhua" />
-
-        <TextView
-            android:id="@+id/details_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/image_id"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginTop="@dimen/dp_22"
-            android:layout_toRightOf="@id/pho_id"
-            android:text="0521-1314520" />
-
-        <ImageView
-            android:id="@+id/add_id"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
-            android:layout_below="@id/pho_id"
-            android:layout_marginTop="@dimen/dp_20"
-            android:background="@mipmap/route_luxian" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/pho_id"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginTop="@dimen/dp_22"
-            android:layout_toRightOf="@id/add_id"
-            android:text="乘车路线" />
-
-        <TextView
-            android:id="@+id/ditie_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/add_id"
-            android:layout_marginTop="@dimen/dp_20" />
-
-        <TextView
-            android:id="@+id/details_metro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ditie_id"
-            android:layout_marginTop="@dimen/dp_10" />
-
-        <TextView
-            android:id="@+id/gongjiao_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/details_metro"
-            android:layout_marginTop="@dimen/dp_10" />
-
-        <TextView
-            android:id="@+id/details_trans"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/gongjiao_id"
-            android:layout_marginTop="@dimen/dp_10" />
-
-        <TextView
-            android:id="@+id/zijia_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/details_trans"
-            android:layout_marginTop="@dimen/dp_10" />
-
-        <TextView
-            android:id="@+id/details_self"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/zijia_id"
-            android:layout_marginTop="@dimen/dp_10" />
-    </RelativeLayout>
+    android:layout_height="match_parent">
 
 
-    <!--评价的内容-->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/evaluate_recycler"
+        android:id="@+id/cinema_xq"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/relat_id"
-        android:layout_marginLeft="@dimen/dp_24"
-        android:layout_marginTop="@dimen/dp_10"
-        android:layout_marginRight="@dimen/dp_24"
-        android:visibility="gone">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
+
     </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/image_finish_xq"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginBottom="@dimen/dp_24"
+        android:src="@mipmap/returns" />
 
 </RelativeLayout>
