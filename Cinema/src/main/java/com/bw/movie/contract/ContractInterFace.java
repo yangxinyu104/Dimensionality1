@@ -4,14 +4,17 @@ import com.bw.movie.bean.AlipayBean;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
 import com.bw.movie.bean.BuyBean;
-import com.bw.movie.bean.DetailsBean;
-
+import com.bw.movie.bean.CinemaBannerBean;
+import com.bw.movie.bean.CinemafjBean;
+import com.bw.movie.bean.CinemaplBean;
 import com.bw.movie.bean.CinematjBean;
-
+import com.bw.movie.bean.CinemaxqBean;
+import com.bw.movie.bean.DetailsBean;
 import com.bw.movie.bean.FilmCinemaBean;
 import com.bw.movie.bean.GreatBean;
 import com.bw.movie.bean.HeadBean;
 import com.bw.movie.bean.LoginBean;
+import com.bw.movie.bean.OpinionBean;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.PopularMovieBean;
 import com.bw.movie.bean.PwdBean;
@@ -20,8 +23,8 @@ import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.ShowingBean;
 import com.bw.movie.bean.SignBean;
 import com.bw.movie.bean.UserBean;
+import com.bw.movie.bean.VersionBean;
 import com.bw.movie.bean.WechatBean;
-import com.bw.movie.bean.WechatLoginBean;
 import com.bw.movie.model.MyModel;
 
 import java.io.File;
@@ -46,7 +49,7 @@ public interface ContractInterFace {
         void particulars(int movieId);
         void review(int movieId, int count);
         void great(int commentId);
-        void filmReview(int movieId,String commentContent);
+        void filmReview(int movieId, String commentContent);
         void filmcinema(int movieId);
         void followCinema(int cinemaId);
         void noFollowCinema(int cinemaId);
@@ -59,14 +62,23 @@ public interface ContractInterFace {
         void head(File image);
         void user(String nickName,int sex,String email);
         void signin();
+        void message(int cinemaId);
+        void recommend(int page,int count);
+        void nearby(int page,int count);
+        void banners(int cinemaId);
+        void infos(int cinemaId);
+        void ping(int cinemaId,int page,int count);
+        void version(String ak);
+        void opinion(String content);
     }
     //p层
     public interface  IModel{
-        void login(String phone, String pwd,  MyModel.SetLogin setLogin);
+        void login(String phone, String pwd, MyModel.SetLogin setLogin);
         void register(String nickName, int sex, String birthday, String phone, String emil, String pwd, String pwd2, final MyModel.SetRegister setRegister);
         void popularMovie(MyModel.SetPopularMovie setPopularMovie);
         void showing(MyModel.SetShowing setShowing);
         void beon(MyModel.SetBeon setBeon);
+        void message(int cinemaId, MyModel.SetMessage setMessage);
         void attention(int movieId,MyModel.SetAttention setAttention);
         void noattention(int movieId,MyModel.SetNoAttention setNoAttention);
         void details(int movieId,  MyModel.SetDetails setDetails);
@@ -86,14 +98,36 @@ public interface ContractInterFace {
         void head(File image,MyModel.SetHead setHead);
         void user(String nickName,int sex,String email,MyModel.SetUser setUser);
         void signin(MyModel.SetSignin setSignin);
+        void recommend(int page,int count,MyModel.SetRecommend setRecommend);
+        void nearby(int page,int count,MyModel.SetNearby setNearby);
+        void banners(int cinemaId, final MyModel.SetBanner setBanner);
+        void infos(int cinemaId, final MyModel.SetInfos setInfos);
+        void ping(int cinemaId,int page,int count,MyModel.SetPing setPing);
+        void version(String version,  MyModel.SetVersion setVersion);
+        void opinion(String content,MyModel.SetOpinion setOpinion);
     }
+    public interface IFilm{
+        void recommend(CinemafjBean wechatLoginBean);
+        void nearby(CinemafjBean wechatLoginBean);
+    }
+    public interface IBuyTicket{
+        void banners(CinemaBannerBean wechatLoginBean);
+        void infos(CinemaxqBean wechatLoginBean);
+        void ping(CinemaplBean wechatLoginBean);
+    }
+
+
     public interface IMineMessage{
         void pwd(PwdBean wechatLoginBean);
         void head(HeadBean wechatLoginBean);
         void user(UserBean wechatLoginBean);
     }
+    public interface IOpinion{
+        void opinion(OpinionBean wechatLoginBean);
+    }
     public interface IMy{
         void signin(SignBean wechatLoginBean);
+        void version(VersionBean wechatLoginBean);
     }
     public interface  IWechatLogin{
         void wechatlogin(LoginBean wechatLoginBean);
@@ -128,15 +162,18 @@ public interface ContractInterFace {
     public interface  ITicket{
         void schedule(ScheduleBean scheduleBean);
     }
-
-
     public interface IRecommendCinema{
         void recommendCinema(CinematjBean cinematjBean);
     }
+
     public interface IBuy{
         void buy(BuyBean buyBean);
         void wechat(WechatBean wechatBean);
         void alipay(AlipayBean alipayBean);
+    }
+
+    public interface IMessage{
+        void message(CinemaxqBean cinemaxqBean);
     }
 
 

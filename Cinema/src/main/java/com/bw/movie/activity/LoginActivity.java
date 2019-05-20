@@ -1,13 +1,11 @@
 package com.bw.movie.activity;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,21 +16,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
-import com.tencent.mm.opensdk.modelmsg.SendAuth;
-
 import com.bw.movie.app.MyApplication;
+import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.LoginBean;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import com.bw.movie.contract.ContractInterFace;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.util.EncryptUtil;
-import com.bw.movie.util.WeiXinUtil;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-public class LoginActivity extends AppCompatActivity implements ContractInterFace.ILogin {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class LoginActivity extends BaseActivity implements ContractInterFace.ILogin {
 
     @BindView(R.id.phone_id)
     EditText phoneId;
@@ -57,10 +55,6 @@ public class LoginActivity extends AppCompatActivity implements ContractInterFac
 
     // IWXAPI 是第三方app和微信通信的openApi接口
     private IWXAPI api;
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,13 +120,31 @@ public class LoginActivity extends AppCompatActivity implements ContractInterFac
                 edit.putBoolean("flag", false);
                 edit.commit();
             }
-            Intent intent = new Intent(LoginActivity.this, MovieActivity.class);
-            startActivity(intent);
+            if(Utils.isFastClick()){
+                Intent intent = new Intent(LoginActivity.this, MovieActivity.class);
+                startActivity(intent);
+            }
+
             finish();
         } else {
             Toast.makeText(this, loginBean.getMessage(), Toast.LENGTH_LONG).show();
         }
 
+    }
+    public static class Utils {
+        // 两次点击按钮之间的点击间隔不能少于1000毫秒
+        private static final int MIN_CLICK_DELAY_TIME = 1000;
+        private static long lastClickTime;
+
+        public static boolean isFastClick() {
+            boolean flag = false;
+            long curClickTime = System.currentTimeMillis();
+            if ((curClickTime - lastClickTime) >= MIN_CLICK_DELAY_TIME) {
+                flag = true;
+            }
+            lastClickTime = curClickTime;
+            return flag;
+        }
     }
 
 
@@ -161,7 +173,7 @@ public class LoginActivity extends AppCompatActivity implements ContractInterFac
         req.state = "wechat_sdk_demo_test";
         api.sendReq(req);
         finish();
-
-
     }
+
+
 }

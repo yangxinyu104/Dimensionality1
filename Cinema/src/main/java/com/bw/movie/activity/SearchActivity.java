@@ -18,6 +18,7 @@ import com.bw.movie.adapter.SearchHotAdapter;
 import com.bw.movie.adapter.SearchShowingAdapter;
 import com.bw.movie.app.MyApplication;
 import com.bw.movie.app.MyViews;
+import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
 import com.bw.movie.bean.PopularMovieBean;
@@ -32,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SearchActivity extends AppCompatActivity implements ContractInterFace.ISearchFilm, ContractInterFace.IFilmHome {
+public class SearchActivity extends BaseActivity implements ContractInterFace.ISearchFilm, ContractInterFace.IFilmHome {
     @BindView(R.id.search_hot)
     RadioButton searchHot;
     @BindView(R.id.search_showing)

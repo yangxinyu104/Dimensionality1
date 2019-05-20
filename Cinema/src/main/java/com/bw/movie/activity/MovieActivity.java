@@ -7,19 +7,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.bw.movie.R;
 import com.bw.movie.adapter.ViewPagerAdapter;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import com.bw.movie.base.BaseActivity;
 import com.bw.movie.fragment.CinemaFragment;
 import com.bw.movie.fragment.FilmFragment;
 import com.bw.movie.fragment.MyFragment;
 
-public class MovieActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class MovieActivity extends BaseActivity {
 
     @BindView(R.id.movie_ViewPager)
     ViewPager movieViewPager;

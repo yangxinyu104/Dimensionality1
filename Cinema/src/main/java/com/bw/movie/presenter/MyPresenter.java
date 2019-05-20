@@ -6,11 +6,17 @@ import com.bw.movie.bean.AlipayBean;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.BeonBean;
 import com.bw.movie.bean.BuyBean;
+import com.bw.movie.bean.CinemaBannerBean;
+import com.bw.movie.bean.CinemafjBean;
+import com.bw.movie.bean.CinemaplBean;
+import com.bw.movie.bean.CinematjBean;
+import com.bw.movie.bean.CinemaxqBean;
 import com.bw.movie.bean.DetailsBean;
 import com.bw.movie.bean.FilmCinemaBean;
 import com.bw.movie.bean.GreatBean;
 import com.bw.movie.bean.HeadBean;
 import com.bw.movie.bean.LoginBean;
+import com.bw.movie.bean.OpinionBean;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.PopularMovieBean;
 import com.bw.movie.bean.PwdBean;
@@ -20,12 +26,15 @@ import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.ShowingBean;
 import com.bw.movie.bean.SignBean;
 import com.bw.movie.bean.UserBean;
+import com.bw.movie.bean.VersionBean;
 import com.bw.movie.bean.WechatBean;
 import com.bw.movie.bean.WechatLoginBean;
 import com.bw.movie.contract.ContractInterFace;
 import com.bw.movie.model.MyModel;
 
 import java.io.File;
+
+import static com.bw.movie.app.MyApplication.orderId;
 
 /**
  * Project name：WeiDuMovie
@@ -43,13 +52,13 @@ public class MyPresenter<T> implements ContractInterFace.IPresenter {
     }
 
     @Override
-    public void login(String phone,String pwd) {
+    public void login(String phone, String pwd) {
 
         iModel.login(phone, pwd, new MyModel.SetLogin() {
             @Override
             public void Succeed(LoginBean loginBean) {
                 ContractInterFace.ILogin iLogin = (ContractInterFace.ILogin) t;
-                Log.e("tag","MyPresenter");
+                Log.e("tag", "MyPresenter");
                 iLogin.login(loginBean);
             }
         });
@@ -225,8 +234,99 @@ public class MyPresenter<T> implements ContractInterFace.IPresenter {
         iModel.buy(scheduleId, amount, sign, new MyModel.SetBuy() {
             @Override
             public void Succeed(BuyBean buyBean) {
-               ContractInterFace.IBuy iBuy = (ContractInterFace.IBuy) t;
-               iBuy.buy(buyBean);
+                ContractInterFace.IBuy iBuy = (ContractInterFace.IBuy) t;
+                iBuy.buy(buyBean);
+            }
+        });
+
+    }
+
+    @Override
+    public void message(int cinemaId) {
+        iModel.message(cinemaId, new MyModel.SetMessage() {
+            @Override
+            public void Succeed(CinemaxqBean cinemaxqBean) {
+                ContractInterFace.IMessage iMessage = (ContractInterFace.IMessage) t;
+                iMessage.message(cinemaxqBean);
+            }
+        });
+    }
+
+    @Override
+    public void recommend(int page, int count) {
+        iModel.recommend(page, count, new MyModel.SetRecommend() {
+            @Override
+            public void Succeed(CinemafjBean wechatLoginBean) {
+                ContractInterFace.IFilm iFilm = (ContractInterFace.IFilm) t;
+                iFilm.recommend(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void nearby(int page, int count) {
+        iModel.nearby(page, count, new MyModel.SetNearby() {
+            @Override
+            public void Succeed(CinemafjBean wechatLoginBean) {
+                ContractInterFace.IFilm iFilm = (ContractInterFace.IFilm) t;
+                iFilm.nearby(wechatLoginBean);
+            }
+        });
+
+    }
+
+    @Override
+    public void banners(int cinemaId) {
+        iModel.banners(cinemaId, new MyModel.SetBanner() {
+            @Override
+            public void Succeed(CinemaBannerBean wechatLoginBean) {
+                ContractInterFace.IBuyTicket iBuyTicket = (ContractInterFace.IBuyTicket) t;
+                iBuyTicket.banners(wechatLoginBean);
+
+            }
+        });
+    }
+
+    @Override
+    public void infos(int cinemaId) {
+        iModel.infos(cinemaId, new MyModel.SetInfos() {
+            @Override
+            public void Succeed(CinemaxqBean wechatLoginBean) {
+                ContractInterFace.IBuyTicket  iBuyTicket = (ContractInterFace.IBuyTicket) t;
+                iBuyTicket.infos(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void ping(int cinemaId, int page, int count) {
+        iModel.ping(cinemaId, page, count, new MyModel.SetPing() {
+            @Override
+            public void Succeed(CinemaplBean wechatLoginBean) {
+                ContractInterFace.IBuyTicket iBuyTicket = (ContractInterFace.IBuyTicket) t;
+                iBuyTicket.ping(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void version(String ak) {
+        iModel.version(ak, new MyModel.SetVersion() {
+            @Override
+            public void Succeed(VersionBean wechatLoginBean) {
+                ContractInterFace.IMy iMy = (ContractInterFace.IMy) t;
+                iMy.version(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void opinion(String content) {
+        iModel.opinion(content, new MyModel.SetOpinion() {
+            @Override
+            public void Succeed(OpinionBean wechatLoginBean) {
+                ContractInterFace.IOpinion iMy = (ContractInterFace.IOpinion) t;
+                iMy.opinion(wechatLoginBean);
             }
         });
     }
@@ -308,3 +408,6 @@ public class MyPresenter<T> implements ContractInterFace.IPresenter {
         });
     }
 }
+
+
+

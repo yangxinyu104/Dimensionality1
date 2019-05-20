@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.OpinionActivity">
+
+    <LinearLayout
+        android:layout_marginRight="@dimen/dp_24"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_30"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="意见反馈"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#333333"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_marginTop="@dimen/dp_30"
+            android:id="@+id/opinion_EditText"
+            android:textColor="#666666"
+            android:textSize="@dimen/sp_14"
+            android:hint="写下您对产品的感受吧!工作人员将会在第一时间评估处理。"
+            android:layout_width="@dimen/dp_312"
+            android:layout_height="@dimen/dp_64"
+            android:background="@drawable/edit"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+            android:layout_marginRight="@dimen/dp_15"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/sp_12"
+            android:id="@+id/opinion_Button"
+            android:layout_width="@dimen/dp_48"
+            android:textColor="#fff"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="提交"
+            android:background="@drawable/ripple"
+            android:layout_height="@dimen/dp_25"></Button>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/opinion_finish"
+        android:src="@mipmap/returns"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_alignParentBottom="true"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60" />
+
+</RelativeLayout>

@@ -320,7 +320,6 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
     @OnClick({R.id.film_hot_RelativeLayout, R.id.film_showing_RelativeLayout, R.id.film_beon_RelativeLayout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-
             case R.id.film_hot_RelativeLayout:
                 StartActivity();
                 break;

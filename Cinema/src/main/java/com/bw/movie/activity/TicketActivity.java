@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bw.movie.R;
 import com.bw.movie.adapter.TicketAdapter;
 import com.bw.movie.app.MyApplication;
+import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.contract.ContractInterFace;
 import com.bw.movie.presenter.MyPresenter;
@@ -23,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class TicketActivity extends AppCompatActivity implements ContractInterFace.ITicket {
+public class TicketActivity extends BaseActivity implements ContractInterFace.ITicket {
 
     @BindView(R.id.ticket_name)
     TextView ticketName;

@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bw.movie.R;
+import com.bw.movie.base.BaseActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -14,7 +15,7 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends BaseActivity {
     @BindView(R.id.start_RelativeLayout)
     RelativeLayout startRelativeLayout;
     @BindView(R.id.start_TextView)

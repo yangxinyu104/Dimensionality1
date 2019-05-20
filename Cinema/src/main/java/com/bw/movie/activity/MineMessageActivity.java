@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.app.MyApplication;
+import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.HeadBean;
 import com.bw.movie.bean.PwdBean;
 import com.bw.movie.bean.UserBean;
@@ -43,7 +44,7 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MineMessageActivity extends AppCompatActivity implements ContractInterFace.IMineMessage {
+public class MineMessageActivity extends BaseActivity implements ContractInterFace.IMineMessage {
 
     @BindView(R.id.info_head)
     SimpleDraweeView infoHead;

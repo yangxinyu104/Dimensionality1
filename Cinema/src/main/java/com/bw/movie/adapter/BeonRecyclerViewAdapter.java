@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.bean.BeonBean;
-import com.bw.movie.bean.ShowingBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;

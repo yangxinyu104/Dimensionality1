@@ -1,9 +1,7 @@
 package com.bw.movie.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +27,7 @@ import com.bw.movie.R;
 import com.bw.movie.adapter.ReviewAdapter;
 import com.bw.movie.adapter.WaterFallAdapter;
 import com.bw.movie.app.MyApplication;
+import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.DetailsBean;
 import com.bw.movie.bean.GreatBean;
 import com.bw.movie.bean.ParticularsBean;
@@ -46,7 +45,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DetailsActivity extends AppCompatActivity implements ContractInterFace.IDetailsFilm {
+public class DetailsActivity extends BaseActivity implements ContractInterFace.IDetailsFilm {
 
 
     @BindView(R.id.details_CheckBox)

@@ -1,6 +1,11 @@
 package com.bw.movie.api;
 
 import com.bw.movie.bean.WechatLoginBean;
+import com.bw.movie.bean.CinemaBannerBean;
+import com.bw.movie.bean.CinemafjBean;
+import com.bw.movie.bean.CinemaplBean;
+import com.bw.movie.bean.CinematjBean;
+import com.bw.movie.bean.CinemaxqBean;
 
 import java.util.HashMap;
 
@@ -17,6 +22,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
@@ -41,7 +47,8 @@ public interface Api {
 
     @GET
     public Observable<ResponseBody> gets(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId);
-
+    @GET
+    public Observable<ResponseBody> versionGet(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId,@Header("ak") String ak);
     @GET
     public Observable<ResponseBody> get(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId,@QueryMap HashMap<String,Object> hashMap);
 
@@ -62,4 +69,10 @@ public interface Api {
     @Multipart
     @POST
     public Observable<ResponseBody> PostUpdateHead(@Url String url, @Header("userId") int userId, @Header("sessionId") String sessionId, @Part MultipartBody.Part file);
+
+    //影院点赞
+    @FormUrlEncoded
+    @POST("cinema/v1/verify/cinemaCommentGreat")
+    Observable<CinemaplBean> dianzan(@Field("cinemaId") int cinemaId,@Header("userId") int userId, @Header("sessionId") String sessionId);
+
 }

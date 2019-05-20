@@ -72,12 +72,14 @@ public class FilmCinemaAdapter extends RecyclerView.Adapter<FilmCinemaAdapter.ho
                     holder.filmCinemaXin.setImageResource(R.mipmap.collection_selected);
                     filmCinemaActivity.iPresenter.followCinema(list.get(position).getId());
                     list.get(position).setFollowCinema(1);
+                    MyApplication.filmFlag =1;
                     notifyDataSetChanged();
                 } else if (list.get(position).getFollowCinema() == 1) {
                     holder.filmCinemaXin.setImageResource(R.mipmap.collection);
                     filmCinemaActivity.iPresenter.noFollowCinema(list.get(position).getId());
                     list.get(position).setFollowCinema(0);
                     notifyDataSetChanged();
+                    MyApplication.filmFlag =2;
                 }
             }
         });

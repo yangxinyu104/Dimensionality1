@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AccomplishActivity">
+    <LinearLayout
+        android:layout_marginRight="@dimen/dp_24"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_30"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="意见反馈"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#333333"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:src="@mipmap/accomplish"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_140"
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/dp_70" />
+
+        <TextView
+            android:textColor="#333333"
+            android:textSize="@dimen/sp_16"
+            android:layout_marginTop="@dimen/dp_30"
+            android:gravity="center_horizontal"
+            android:text="反馈成功"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="@dimen/dp_30"
+            android:textColor="#666666"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/sp_12"
+            android:text="感谢您对维度影院的关注与支持,我们会认真处理您的反"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="@dimen/dp_5"
+            android:textColor="#666666"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/sp_12"
+            android:text="馈,尽快修复和完善相对功能。"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/accomplish_finish"
+        android:src="@mipmap/returns"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_alignParentBottom="true"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60" />
+</RelativeLayout>

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bw.movie">
 
+    <!-- 网络状态 -->
     <!-- 微信支付权限 -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,12 +12,12 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <!-- 这个权限用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <!-- 这个权限用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".app.MyApplication"
@@ -28,7 +29,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -43,14 +43,18 @@
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
             android:name=".activity.LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" />
         <activity
             android:name=".activity.RegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity android:name=".activity.CinemaxqActivity" />
+        <activity android:name=".activity.BuyTicketActivity" />
         <activity
             android:name=".activity.MovieActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:hardwareAccelerated="false" />
+            android:hardwareAccelerated="false"
+            android:launchMode="singleTop" />
         <activity
             android:name=".activity.SearchActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -88,12 +92,31 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind" />
-        <activity android:name=".activity.MineMessageActivity"></activity>
+        <activity android:name=".activity.MineMessageActivity" />
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="uXIXjo0wQrfq5TfWZkwWp3NGKgprF8bX" >
-        </meta-data>
-        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"> </service>
+            android:value="uXIXjo0wQrfq5TfWZkwWp3NGKgprF8bX" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+        <!-- 监听网络状态 -->
+        <receiver android:name=".receiver.NetWorkChangReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".activity.InternetActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".activity.OpinionActivity" />
+        <activity android:name=".activity.AccomplishActivity" />
+        <activity android:name=".activity.AttentionActivity"></activity>
     </application>
 
 </manifest>

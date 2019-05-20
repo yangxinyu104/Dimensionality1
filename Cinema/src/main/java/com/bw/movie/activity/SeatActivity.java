@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.bw.movie.app.MyApplication;
+import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.AlipayBean;
 import com.bw.movie.bean.BuyBean;
 import com.bw.movie.bean.WechatBean;
@@ -40,12 +41,14 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.Map;
+import com.bw.movie.R;
+import com.bw.movie.customview.MoveSeatView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class SeatActivity extends AppCompatActivity implements ContractInterFace.IBuy {
+public class SeatActivity extends BaseActivity implements ContractInterFace.IBuy {
 
     @BindView(R.id.seat_cinemaName)
     TextView seatCinemaName;
@@ -76,7 +79,7 @@ public class SeatActivity extends AppCompatActivity implements ContractInterFace
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
 
-    @SuppressLint("HandlerLeak")
+   /* @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @SuppressWarnings("unused")
         public void handleMessage(Message msg) {
@@ -84,9 +87,9 @@ public class SeatActivity extends AppCompatActivity implements ContractInterFace
                 case SDK_PAY_FLAG: {
                     @SuppressWarnings("unchecked")
                     PayResult payResult = new PayResult((Map<String, String>) msg.obj);
-                    /**
+                    *//**
                      对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
-                     */
+                     *//*
                     String resultInfo = payResult.getResult();// 同步返回需要验证的信息
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为9000则代表支付成功
@@ -124,7 +127,7 @@ public class SeatActivity extends AppCompatActivity implements ContractInterFace
                     break;
             }
         };
-    };
+    };*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -375,13 +378,12 @@ public class SeatActivity extends AppCompatActivity implements ContractInterFace
                 Message msg = new Message();
                 msg.what = SDK_PAY_FLAG;
                 msg.obj = result;
-                mHandler.sendMessage(msg);
+               // mHandler.sendMessage(msg);
             }
         };
 
         Thread payThread = new Thread(payRunnable);
         payThread.start();
-
     }
 }
 

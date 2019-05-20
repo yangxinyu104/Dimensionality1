@@ -46,12 +46,14 @@
 
     </RadioGroup>
 
-    <FrameLayout
-        android:id="@+id/movie_vp"
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:id="@+id/RecyclerViews"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/movie_rg"
         android:layout_marginTop="@dimen/dp_10" >
-    </FrameLayout>
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

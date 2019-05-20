@@ -82,4 +82,31 @@ public class URl {
 
     //签到
     public static String URL_SIGNIN = "user/v1/verify/userSignIn";
+
+    //查询影院信息明细
+    public static String URL_MESSAGE="cinema/v1/findCinemaInfo";
+
+    //查询影院评论信息
+    public static String URL_CRITICISM="cinema/v1/findAllCinemaComment";
+
+    //查询推荐影院信息
+    public static String URL_RECOMMEND= "cinema/v1/findRecommendCinemas";
+
+    //查询附近影院
+    public static String URL_NEARBY= "cinema/v1/findNearbyCinemas";
+
+    //影院轮播
+    public static String URL_BANNER=  "movie/v1/findMovieListByCinemaId";
+
+    //影院电影信息明细
+    public static String URL_INFO=  "cinema/v1/findCinemaInfo";
+
+    //影院评论
+    public static String URL_PING = "cinema/v1/findAllCinemaComment";
+
+    //查询新版本
+    public static  String URL_VERSION = "tool/v1/findNewVersion";
+
+    //意见反馈
+    public static  String URL_OPINION = "tool/v1/verify/recordFeedBack";
 }

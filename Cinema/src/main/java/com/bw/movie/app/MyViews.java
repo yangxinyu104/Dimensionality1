@@ -145,8 +145,4 @@ public class MyViews extends LinearLayout implements View.OnClickListener{
         final float scale = getResources().getDisplayMetrics().density;
         return (int) (dpVale * scale + 0.5f);
     }
-
-
-
-
 }

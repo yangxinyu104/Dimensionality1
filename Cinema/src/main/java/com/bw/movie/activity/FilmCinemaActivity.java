@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 import com.bw.movie.R;
 import com.bw.movie.adapter.FilmCinemaAdapter;
 import com.bw.movie.app.MyApplication;
+import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.FilmCinemaBean;
 import com.bw.movie.bean.GreatBean;
 import com.bw.movie.contract.ContractInterFace;
@@ -25,7 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class FilmCinemaActivity extends AppCompatActivity implements ContractInterFace.IFilmCinema {
+public class FilmCinemaActivity extends BaseActivity implements ContractInterFace.IFilmCinema {
 
     @BindView(R.id.film_cinema_name)
     TextView filmCinemaName;
@@ -58,7 +58,6 @@ public class FilmCinemaActivity extends AppCompatActivity implements ContractInt
                 startActivity(intent);
             }
         });
-
 
     }
 

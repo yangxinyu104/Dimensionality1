@@ -1,13 +1,24 @@
 package com.bw.movie.app;
 
+import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Environment;
 import android.text.SpannableString;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.baidu.location.LocationClient;
+import com.bw.movie.R;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.ReviewBean;
 import com.facebook.cache.disk.DiskCacheConfig;
@@ -27,6 +38,12 @@ import java.util.List;
  * @Description：YangXinYu
  */
 public class MyApplication extends Application {
+    public static String FilmNames;
+    public static  int filmFlag;
+    //经度
+    public static String longitude = null;
+    //纬度
+    public static String latitude = null;
     //性别
     public static int  Sex;
     //用户名字
@@ -69,6 +86,9 @@ public class MyApplication extends Application {
     public static List<ReviewBean.ResultBean> reviewBean;
     //定位
     public static String City;
+    private static Context context;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -80,7 +100,49 @@ public class MyApplication extends Application {
                 .setMaxCacheSizeOnLowDiskSpace(60)
                 .setMaxCacheSizeOnVeryLowDiskSpace(40)
                 .build()).build());
+     //  Fresco.initialize(this);
+        context = getApplicationContext();
 
+
+    }
+
+    //获取当前版本号
+    public static long getAppVersionCode(Context context) {
+        long appVersionCode = 0;
+        try {
+            PackageInfo packageInfo = context.getApplicationContext()
+                    .getPackageManager()
+                    .getPackageInfo(context.getPackageName(), 0);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                appVersionCode = packageInfo.getLongVersionCode();
+            } else {
+                appVersionCode = packageInfo.versionCode;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("tag", e.getMessage());
+        }
+        return appVersionCode;
+    }
+
+    /**
+     * 获取当前app version name
+     */
+    public static String getAppVersionName(Context context) {
+        String appVersionName = "";
+        try {
+            PackageInfo packageInfo = context.getApplicationContext()
+                    .getPackageManager()
+                    .getPackageInfo(context.getPackageName(), 0);
+            appVersionName = packageInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("", e.getMessage());
+        }
+        return appVersionName;
+    }
+
+    //全局上下文
+    public static Context GetContext(){
+        return context;
     }
 
     //判断网络

@@ -1,10 +1,14 @@
 package com.bw.movie.fragment;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
+import com.bw.movie.activity.AttentionActivity;
+import com.bw.movie.activity.LoginActivity;
 import com.bw.movie.activity.MineMessageActivity;
+import com.bw.movie.activity.OpinionActivity;
 import com.bw.movie.app.MyApplication;
 import com.bw.movie.bean.SignBean;
+import com.bw.movie.bean.VersionBean;
 import com.bw.movie.contract.ContractInterFace;
 import com.bw.movie.presenter.MyPresenter;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -93,14 +101,26 @@ public class MyFragment extends Fragment implements ContractInterFace.IMy {
                 startActivity(intent);
                 break;
             case R.id.mine_like:
+                Intent intent3 = new Intent(getActivity(),AttentionActivity.class);
+                startActivity(intent3);
                 break;
             case R.id.mine_bypiao:
                 break;
             case R.id.mine_yijian:
+                Intent intent1 = new Intent(getActivity(),OpinionActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.mine_update:
+                long appVersionCode = MyApplication.getAppVersionCode(getContext());
+                Log.e("tag","versionCode  :"  + appVersionCode);
+                iPresenter.version(appVersionCode+"");
                 break;
             case R.id.back_login:
+                getActivity().finish();
+                MyApplication.UserId = 0;
+                MyApplication.SessionId = null;
+                Intent intent2 = new Intent(getActivity(),LoginActivity.class);
+                startActivity(intent2);
                 break;
         }
     }
@@ -114,5 +134,31 @@ public class MyFragment extends Fragment implements ContractInterFace.IMy {
     @Override
     public void signin(SignBean wechatLoginBean) {
         Toast.makeText(getActivity(), wechatLoginBean.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void version(VersionBean wechatLoginBean) {
+        Toast.makeText(getContext(), wechatLoginBean.getFlag()+"", Toast.LENGTH_SHORT).show();
+        if (wechatLoginBean.getFlag()==2){
+            Toast.makeText(getContext(), "当前版本为  ：  "+MyApplication.getAppVersionName(getContext())+"   已是最新版本", Toast.LENGTH_SHORT).show();
+        }else if (wechatLoginBean.getFlag()==1){
+            AlertDialog.Builder builder =  new AlertDialog.Builder(getContext());
+            builder.setTitle("提示:");
+            builder.setMessage("当前不是最新版本,是否更新当前的版本");
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            builder.show();
+
+        }
     }
 }

@@ -32,6 +32,8 @@ public class MyLocationListener extends BDAbstractLocationListener {
         int errorCode = location.getLocType();
         Address address = location.getAddress();
         MyApplication.City = address.country+" "+address.city+" "+address.street+" "+address.streetNumber;
+        MyApplication.longitude = longitude+"";
+        MyApplication.latitude = latitude+"";
 
         Log.e("tag",address.country+" "+address.city+" "+address.city+" "+address.street+" "+address.streetNumber);
     }

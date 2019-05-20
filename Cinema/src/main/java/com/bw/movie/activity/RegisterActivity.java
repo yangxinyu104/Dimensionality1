@@ -9,16 +9,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 import com.bw.movie.R;
+import com.bw.movie.base.BaseActivity;
 import com.bw.movie.contract.ContractInterFace;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.util.EncryptUtil;
 
-public class RegisterActivity extends AppCompatActivity implements ContractInterFace.IRegister {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class RegisterActivity extends BaseActivity implements ContractInterFace.IRegister {
 
     @BindView(R.id.register_name)
     EditText registerName;
