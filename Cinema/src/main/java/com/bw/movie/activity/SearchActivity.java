@@ -183,6 +183,11 @@ public class SearchActivity extends BaseActivity implements ContractInterFace.IS
         Beonlist.addAll(result);
         beonadapters.notifyDataSetChanged();
     }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        iPresenter.Desetory();
+        iPresenter =null;
+    }
 
 }

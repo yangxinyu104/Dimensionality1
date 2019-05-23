@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity {
     public int image[] = {R.mipmap.one, R.mipmap.two, R.mipmap.three, R.mipmap.four};
     @BindView(R.id.main_ViewPager)
     ViewPager mainViewPager;
@@ -89,6 +89,5 @@ public class MainActivity extends BaseActivity {
         }
 
     }
-
 
 }

@@ -94,8 +94,6 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
     private PopupWindow popupWindow;
     private PopupWindow popupWindow1;
     private VideoView popw_foreshow_video1;
-    private VideoView popw_foreshow_video2;
-    private VideoView popw_foreshow_video3;
     private PopupWindow popupWindow2;
     private PopupWindow popupWindow3;
     public ReviewAdapter adapter;
@@ -114,7 +112,6 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
         } else if (MyApplication.flag==2) {
             detailsCheckBox.setImageResource(R.mipmap.collection);
         }
-
         Intent intent = getIntent();
         id = intent.getIntExtra("aid", 0);
         MyApplication.movieId = id;
@@ -142,8 +139,6 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
                 View  view_yg = View.inflate(this, R.layout.popw_foreshow, null);
                 popupWindow1 = new PopupWindow(view_yg,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
                 popw_foreshow_video1 = view_yg.findViewById(R.id.popw_foreshow_video1);
-                popw_foreshow_video2 = view_yg.findViewById(R.id.popw_foreshow_video2);
-                popw_foreshow_video3 = view_yg.findViewById(R.id.popw_foreshow_video3);
                 popw_foreshow_video1.setVideoURI(Uri.parse(MyApplication.resultBean.getShortFilmList().get(0).getVideoUrl()));
                 popw_foreshow_video1.requestFocus();
                 if (popw_foreshow_video1.isPlaying()){
@@ -152,7 +147,6 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
                 popw_foreshow_video1.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-
                         MediaController mctrl = new MediaController(DetailsActivity.this);
                         popw_foreshow_video1.setMediaController(mctrl);
                         popw_foreshow_video1.start();
@@ -161,33 +155,7 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
                     }
                 });
 
-                popw_foreshow_video2.setVideoURI(Uri.parse(MyApplication.resultBean.getShortFilmList().get(1).getVideoUrl()));
-                popw_foreshow_video2.requestFocus();
-                if (popw_foreshow_video2.isPlaying()){
-                    popw_foreshow_video2.pause();
-                }
-                popw_foreshow_video2.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        popw_foreshow_video2.start();
-                        popw_foreshow_video2.setBackgroundResource(0);
-                        return false;
-                    }
-                });
 
-                popw_foreshow_video3.setVideoURI(Uri.parse(MyApplication.resultBean.getShortFilmList().get(2).getVideoUrl()));
-                popw_foreshow_video3.requestFocus();
-                if (popw_foreshow_video3.isPlaying()){
-                    popw_foreshow_video3.pause();
-                }
-                popw_foreshow_video3.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        popw_foreshow_video3.start();
-                        popw_foreshow_video3.setBackgroundResource(0);
-                        return false;
-                    }
-                });
 
 
                 ImageView popw_foreshow_finish = view_yg.findViewById(R.id.popw_foreshow_finish);
@@ -196,8 +164,8 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
                     public void onClick(View v) {
                         popupWindow1.dismiss();
                         detailsPopwName.setText("电影详情");
-                        popw_foreshow_video3.pause();
-                        popw_foreshow_video3.stopPlayback();
+                        popw_foreshow_video1.pause();
+                        popw_foreshow_video1.stopPlayback();
                     }
                 });
                 popupWindow1.setBackgroundDrawable(new BitmapDrawable());
@@ -372,10 +340,18 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
     @Override
     public void great(GreatBean greatBean) {
         Toast.makeText(this, greatBean.getMessage(), Toast.LENGTH_SHORT).show();
+        iPresenter.review(id,10);
+       // adapter.notifyDataSetChanged();
     }
 
     @Override
     public void filmReview(GreatBean greatBean) {
         Toast.makeText(this, greatBean.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        iPresenter.Desetory();
+        iPresenter =null;
     }
 }

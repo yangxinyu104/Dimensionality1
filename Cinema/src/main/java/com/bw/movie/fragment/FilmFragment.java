@@ -15,21 +15,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.bw.movie.R;
 import com.bw.movie.activity.SearchActivity;
+import com.bw.movie.adapter.BeonDaoAdapter;
 import com.bw.movie.adapter.BeonRecyclerViewAdapter;
+import com.bw.movie.adapter.FilmDaoAdapter;
 import com.bw.movie.adapter.FilmRecyclerAdapter;
+import com.bw.movie.adapter.HotDaoAdapter;
 import com.bw.movie.adapter.HotRecyclerViewAdapter;
+import com.bw.movie.adapter.ShowingDaoAdapter;
 import com.bw.movie.adapter.ShowingRecyclerViewAdapter;
 import com.bw.movie.app.MyApplication;
 import com.bw.movie.app.MyViews;
 import com.bw.movie.bean.BeonBean;
+import com.bw.movie.bean.BeonDao;
 import com.bw.movie.bean.PopularMovieBean;
+import com.bw.movie.bean.PopularMovieDao;
 import com.bw.movie.bean.ShowingBean;
+import com.bw.movie.bean.ShowingDao;
 import com.bw.movie.contract.ContractInterFace;
+import com.bw.movie.customview.MyVideoView;
+import com.bw.movie.greendao.gen.BeonDaoDao;
+import com.bw.movie.greendao.gen.PopularMovieDaoDao;
+import com.bw.movie.greendao.gen.ShowingDaoDao;
 import com.bw.movie.listener.MyLocationListener;
 import com.bw.movie.presenter.MyPresenter;
 
@@ -73,6 +85,10 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
     RelativeLayout filmBeonRelativeLayout;
     @BindView(R.id.film_beon_RecyclerView)
     RecyclerView filmBeonRecyclerView;
+    private ContractInterFace.IPresenter iPresenter;
+    private BeonDaoDao beonDaoDao;
+    private PopularMovieDaoDao popularMovieDaoDao;
+    private ShowingDaoDao showingDaoDao;
 
     @Nullable
     @Override
@@ -86,14 +102,70 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         requestRunPermissions();
-        ContractInterFace.IPresenter iPresenter = new MyPresenter<>(this);
-        iPresenter.popularMovie();
-        iPresenter.showing();
-        iPresenter.beon();
+        iPresenter = new MyPresenter<>(this);
+        beonDaoDao = MyApplication.GetDaoSession(getContext()).getBeonDaoDao();
+        popularMovieDaoDao = MyApplication.GetDaoSession(getContext()).getPopularMovieDaoDao();
+        showingDaoDao = MyApplication.GetDaoSession(getContext()).getShowingDaoDao();
+        boolean networkConnected = MyApplication.isNetworkConnected(getContext());
+        if (networkConnected){
+            beonDaoDao.deleteAll();
+            popularMovieDaoDao.deleteAll();
+            showingDaoDao.deleteAll();
+            iPresenter.popularMovie();
+            iPresenter.showing();
+            iPresenter.beon();
+            Toast.makeText(getContext(), "网络连接", Toast.LENGTH_SHORT).show();
+            viewCrnema.locations.setText(MyApplication.City);
+
+        }else{
+            viewCrnema.locations.setText("无网络连接");
+            Toast.makeText(getContext(), "无网络连接", Toast.LENGTH_SHORT).show();
+            List<PopularMovieDao> popularMovieDaos = popularMovieDaoDao.loadAll();
+            HotDaoAdapter adapter = new HotDaoAdapter(popularMovieDaos,getContext());
+            RecyclerView.LayoutManager HotLayoutManagers = new LinearLayoutManager(getContext());
+            ((LinearLayoutManager) HotLayoutManagers).setOrientation(OrientationHelper.HORIZONTAL);
+            filmHotRecyclerView.setLayoutManager(HotLayoutManagers);
+            filmHotRecyclerView.setAdapter(adapter);
+            List<ShowingDao> showingDaos = showingDaoDao.loadAll();
+            ShowingDaoAdapter showingDaoAdapter = new ShowingDaoAdapter(showingDaos,getContext());
+            RecyclerView.LayoutManager showingDaoss = new LinearLayoutManager(getContext());
+            ((LinearLayoutManager) showingDaoss).setOrientation(OrientationHelper.HORIZONTAL);
+            filmShowingRecyclerView.setAdapter(showingDaoAdapter);
+            filmShowingRecyclerView.setLayoutManager(showingDaoss);
+
+            List<BeonDao> beonDaos = beonDaoDao.loadAll();
+            BeonDaoAdapter beonDaoAdapter  = new BeonDaoAdapter(beonDaos,getContext());
+            RecyclerView.LayoutManager beonDaoss = new LinearLayoutManager(getContext());
+            ((LinearLayoutManager) beonDaoss).setOrientation(OrientationHelper.HORIZONTAL);
+            filmBeonRecyclerView.setLayoutManager(beonDaoss);
+
+            filmBeonRecyclerView.setAdapter(beonDaoAdapter);
+
+
+
+
+            FilmDaoAdapter adaptersss = new FilmDaoAdapter(this, beonDaos);
+            filmRecyclerCoverFlow.setAdapter(adaptersss);
+            //让轮播图显示中间的图片
+            filmRecyclerCoverFlow.smoothScrollToPosition(2);
+            //自定义接口回调，点击图片使它展示到中间
+            adaptersss.setOnItemClick(new FilmDaoAdapter.OnItemClick() {
+                @Override
+                public void onItemClick(int position) {
+                    filmRecyclerCoverFlow.smoothScrollToPosition(position);
+                    StartActivity();
+                }
+            });
+
+
+
+        }
+
+
         viewCrnema.bringToFront();
         initLocationOption();
         initLocationOptions();
-        viewCrnema.locations.setText(MyApplication.City);
+
 
     }
 
@@ -139,7 +211,6 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
         locationClient.setLocOption(locationOption);
 //开始定位
         locationClient.start();
-        Log.e("tag","lainxi");
     }
 
     private void initLocationOption() {
@@ -184,7 +255,6 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
         locationClient.setLocOption(locationOption);
 //开始定位
         locationClient.start();
-        Log.e("tag","ding");
     }
 
     private void requestRunPermissions() {
@@ -298,6 +368,17 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
         List<PopularMovieBean.ResultBean> result = popularMovieBean.getResult();
         Hotlist.addAll(result);
         HotFilm(popularMovieBean.getResult());
+        PopularMovieDao popularMovieDao =  new PopularMovieDao();
+        //popularMovieDao = null;
+        for (int i = 0; i <popularMovieBean.getResult().size() ; i++) {
+            popularMovieDao.setId(popularMovieBean.getResult().get(i).getId());
+            popularMovieDao.setFollowMovie(popularMovieBean.getResult().get(i).getFollowMovie());
+            popularMovieDao.setImageUrl(popularMovieBean.getResult().get(i).getImageUrl());
+            popularMovieDao.setName(popularMovieBean.getResult().get(i).getName());
+            popularMovieDao.setRank(popularMovieBean.getResult().get(i).getRank());
+            popularMovieDao.setSummary(popularMovieBean.getResult().get(i).getSummary());
+            popularMovieDaoDao.insert(popularMovieDao);
+        }
     }
 
     @Override
@@ -306,6 +387,16 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
         List<ShowingBean.ResultBean> result = showingBean.getResult();
         Showinglist.addAll(result);
         ShowingFilm(showingBean.getResult());
+        ShowingDao showingDao = new ShowingDao();
+        for (int i = 0; i <showingBean.getResult().size() ; i++) {
+            showingDao.setId(showingBean.getResult().get(i).getId());
+            showingDao.setFollowMovie(showingBean.getResult().get(i).getFollowMovie());
+            showingDao.setImageUrl(showingBean.getResult().get(i).getImageUrl());
+            showingDao.setName(showingBean.getResult().get(i).getName());
+            showingDao.setRank(showingBean.getResult().get(i).getRank());
+            showingDao.setSummary(showingBean.getResult().get(i).getSummary());
+            showingDaoDao.insert(showingDao);
+        }
     }
 
     @Override
@@ -315,6 +406,16 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
         Beonlist.addAll(result);
         Image(beonBean.getResult());
         BeonFilm(beonBean.getResult());
+        BeonDao beonDao = new BeonDao();
+        for (int i = 0; i <beonBean.getResult().size() ; i++) {
+            beonDao.setId(beonBean.getResult().get(i).getId());
+            beonDao.setFollowMovie(beonBean.getResult().get(i).getFollowMovie());
+            beonDao.setImageUrl(beonBean.getResult().get(i).getImageUrl());
+            beonDao.setName(beonBean.getResult().get(i).getName());
+            beonDao.setRank(beonBean.getResult().get(i).getRank());
+            beonDao.setSummary(beonBean.getResult().get(i).getSummary());
+            beonDaoDao.insert(beonDao);
+        }
     }
 
     @OnClick({R.id.film_hot_RelativeLayout, R.id.film_showing_RelativeLayout, R.id.film_beon_RelativeLayout})
@@ -330,5 +431,11 @@ public class FilmFragment extends Fragment implements ContractInterFace.IFilmHom
                 StartActivity();
                 break;
         }
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        iPresenter.Desetory();
+        iPresenter =null;
     }
     }

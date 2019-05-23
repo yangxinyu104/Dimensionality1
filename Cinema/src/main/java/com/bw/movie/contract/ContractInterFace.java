@@ -2,8 +2,11 @@ package com.bw.movie.contract;
 
 import com.bw.movie.bean.AlipayBean;
 import com.bw.movie.bean.AttentionBean;
+import com.bw.movie.bean.AttentionCinemaBean;
+import com.bw.movie.bean.AttentionFilmBean;
 import com.bw.movie.bean.BeonBean;
 import com.bw.movie.bean.BuyBean;
+import com.bw.movie.bean.ChangerBean;
 import com.bw.movie.bean.CinemaBannerBean;
 import com.bw.movie.bean.CinemafjBean;
 import com.bw.movie.bean.CinemaplBean;
@@ -18,10 +21,14 @@ import com.bw.movie.bean.OpinionBean;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.PopularMovieBean;
 import com.bw.movie.bean.PwdBean;
+import com.bw.movie.bean.RecordBean;
 import com.bw.movie.bean.ReviewBean;
 import com.bw.movie.bean.ScheduleBean;
+import com.bw.movie.bean.ShapeBean;
 import com.bw.movie.bean.ShowingBean;
 import com.bw.movie.bean.SignBean;
+import com.bw.movie.bean.SoundBean;
+import com.bw.movie.bean.SumBean;
 import com.bw.movie.bean.UserBean;
 import com.bw.movie.bean.VersionBean;
 import com.bw.movie.bean.WechatBean;
@@ -70,6 +77,14 @@ public interface ContractInterFace {
         void ping(int cinemaId,int page,int count);
         void version(String ak);
         void opinion(String content);
+        void attentionFilm(int page,int count);
+        void attentionCinema(int page,int count);
+        void record(int page,int count,int status);
+        void sound(int page,int count);
+        void changer(int id);
+        void sum();
+        void Desetory();
+        void shape(String time,String sign);
     }
     //p层
     public interface  IModel{
@@ -105,6 +120,28 @@ public interface ContractInterFace {
         void ping(int cinemaId,int page,int count,MyModel.SetPing setPing);
         void version(String version,  MyModel.SetVersion setVersion);
         void opinion(String content,MyModel.SetOpinion setOpinion);
+        void attentionFilm(int page,int count,MyModel.SetAttentionFilm setAttentionFilm);
+        void attentionCinema(int page,int count,MyModel.SetAttentionCinema setAttentionCinema);
+        void record(int page,int count,int status,MyModel.SetRecord setRecord);
+        void sound(int page,int count,MyModel.SetSound setSound);
+        void changer(int id,MyModel.SetChanger setChanger);
+        void sum(MyModel.SetSum setSum);
+        void shape(String time,String sign,MyModel.SetShape setShape);
+    }
+
+    public interface ISound{
+        void sound(SoundBean wechatLoginBean);
+        void changer(ChangerBean iSound);
+        void sum(SumBean wechatLoginBean);
+    }
+
+    public interface IRecord{
+        void record(RecordBean wechatLoginBean);
+    }
+
+    public interface  IAttentionAll{
+        void attentionFilm(AttentionFilmBean wechatLoginBean);
+        void attentionCinema(AttentionCinemaBean wechatLoginBean);
     }
     public interface IFilm{
         void recommend(CinemafjBean wechatLoginBean);
@@ -114,6 +151,7 @@ public interface ContractInterFace {
         void banners(CinemaBannerBean wechatLoginBean);
         void infos(CinemaxqBean wechatLoginBean);
         void ping(CinemaplBean wechatLoginBean);
+        void shape(ShapeBean wechatLoginBean);
     }
 
 

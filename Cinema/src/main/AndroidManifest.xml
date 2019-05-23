@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bw.movie">
-
     <!-- 网络状态 -->
     <!-- 微信支付权限 -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
@@ -15,6 +14,7 @@
     <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -23,7 +23,7 @@
         android:name=".app.MyApplication"
         android:allowBackup="true"
         android:fitsSystemWindows="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/four"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -31,68 +31,68 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.StartActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
             android:launchMode="singleTop" />
         <activity
             android:name=".activity.RegisterActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity android:name=".activity.CinemaxqActivity" />
-        <activity android:name=".activity.BuyTicketActivity" />
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.CinemaxqActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BuyTicketActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.MovieActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
             android:hardwareAccelerated="false"
             android:launchMode="singleTop" />
         <activity
             android:name=".activity.SearchActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
             android:hardwareAccelerated="false" />
         <activity
             android:name=".activity.DetailsActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.FilmCinemaActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.TicketActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SeatActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
+            android:screenOrientation="portrait" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:taskAffinity="net.sourceforge.simcpux" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".wxapi.WXPayEntryActivity"
             package="net.sourceforge.simcpux"
             android:exported="true"
             android:launchMode="singleTop" />
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind" />
+            android:screenOrientation="portrait" />
         <activity
+            android:screenOrientation="portrait"
             android:name="com.alipay.sdk.auth.AuthActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind" />
-        <activity android:name=".activity.MineMessageActivity" />
+            />
+        <activity android:name=".activity.MineMessageActivity" android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
@@ -110,13 +110,23 @@
                 <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
         </receiver>
-
+        <provider
+            android:authorities="com.bw.movie.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
         <activity
+            android:screenOrientation="portrait"
             android:name=".activity.InternetActivity"
-            android:launchMode="singleTop" />
-        <activity android:name=".activity.OpinionActivity" />
-        <activity android:name=".activity.AccomplishActivity" />
-        <activity android:name=".activity.AttentionActivity"></activity>
+            android:launchMode="singleInstance" />
+        <activity android:name=".activity.OpinionActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AccomplishActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AttentionActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.RecordActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.SoundActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

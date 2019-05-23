@@ -83,4 +83,10 @@ public class RegisterActivity extends BaseActivity implements ContractInterFace.
             finish();
         }
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        iPresenter.Desetory();
+        iPresenter =null;
+    }
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SoundActivity">
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="@dimen/sp_14"
+                android:textColor="#333333"
+                android:text="系统信息"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/sound_NoRead"
+                android:paddingLeft="@dimen/dp_10"
+                android:textSize="@dimen/sp_14"
+                android:textColor="#333333"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/sound_RecyclerView"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/sound_finish"
+        android:src="@mipmap/returns"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_alignParentBottom="true"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60" />
+
+</RelativeLayout>

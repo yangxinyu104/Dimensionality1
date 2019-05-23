@@ -319,4 +319,10 @@ public class MineMessageActivity extends BaseActivity implements ContractInterFa
         MyApplication.UserName = wechatLoginBean.getResult().getNickName();
 
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        iPresenter.Desetory();
+        iPresenter =null;
+    }
 }

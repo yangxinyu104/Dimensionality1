@@ -385,6 +385,12 @@ public class SeatActivity extends BaseActivity implements ContractInterFace.IBuy
         Thread payThread = new Thread(payRunnable);
         payThread.start();
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        iPresenter.Desetory();
+        iPresenter =null;
+    }
 }
 
 

@@ -15,7 +15,7 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StartActivity extends BaseActivity {
+public class StartActivity extends AppCompatActivity {
     @BindView(R.id.start_RelativeLayout)
     RelativeLayout startRelativeLayout;
     @BindView(R.id.start_TextView)
@@ -54,4 +54,5 @@ public class StartActivity extends BaseActivity {
         //2s后开始执行，间隔为4s
         mTimer.schedule(mTimerTask, 0, 1000);
     }
+
 }

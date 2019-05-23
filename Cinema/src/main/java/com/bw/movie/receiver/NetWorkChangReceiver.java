@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -57,19 +58,28 @@ public class NetWorkChangReceiver extends BroadcastReceiver {
                 //如果当前的网络连接成功并且网络连接可用
                 if (NetworkInfo.State.CONNECTED == info.getState() && info.isAvailable()) {
                     if (info.getType() == ConnectivityManager.TYPE_WIFI || info.getType() == ConnectivityManager.TYPE_MOBILE) {
-                        //Toast.makeText(context, "网络连上", Toast.LENGTH_SHORT).show();
-
+                        if (InternetActivity.internetActivity!=null){
+                            InternetActivity.internetActivity.finish();
+                        }
                     }
                 } else {
-                    Toast.makeText(context, "糟糕,网络不给力呀", Toast.LENGTH_SHORT).show();
-
                     Intent intent1 = new Intent(context,InternetActivity.class);
                     context.startActivity(intent1);
-
                 }
             }
         }
     }
+
+
+   /* public interface  SetFinish{
+        void back();
+    }
+    public  SetFinish  setFinish;
+    public void Setaa(SetFinish  setFinish){
+        this.setFinish = setFinish;
+
+    }*/
+
 
     private void StaerPopupWindow() {
         View view = View.inflate(MyApplication.GetContext(), R.layout.network, null);
@@ -77,5 +87,4 @@ public class NetWorkChangReceiver extends BroadcastReceiver {
         popupWindow.setAnimationStyle(R.style.popwin_anim_style);
         popupWindow.showAtLocation(view,Gravity.CENTER_HORIZONTAL,0,100);
     }
-
 }

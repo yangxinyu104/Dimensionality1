@@ -133,4 +133,11 @@ public class CinemaFragment extends Fragment  implements ContractInterFace.IFilm
         fjlist.addAll(result);
         adapterfj.notifyDataSetChanged();
     }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        cinemaPresenter.Desetory();
+        cinemaPresenter =null;
+    }
 }

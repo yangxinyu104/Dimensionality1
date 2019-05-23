@@ -17,10 +17,12 @@ import com.bw.movie.presenter.MyPresenter;
 
 public class CinemaxqActivity extends BaseActivity implements ContractInterFace.IMessage {
 
+    private ContractInterFace.IPresenter iPresenter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ContractInterFace.IPresenter iPresenter = new MyPresenter<>(this);
+        iPresenter = new MyPresenter<>(this);
         iPresenter.message(11);
 
     }
@@ -28,5 +30,11 @@ public class CinemaxqActivity extends BaseActivity implements ContractInterFace.
     @Override
     public void message(CinemaxqBean cinemaxqBean) {
 
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        iPresenter.Desetory();
+        iPresenter =null;
     }
 }

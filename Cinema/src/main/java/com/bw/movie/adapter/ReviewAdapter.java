@@ -2,6 +2,7 @@ package com.bw.movie.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.activity.DetailsActivity;
+import com.bw.movie.activity.LoginActivity;
 import com.bw.movie.bean.ReviewBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -58,6 +60,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.holder> {
         holder.reviewTextViewData.setText(dateString);
         holder.reviewTextViewZannum.setText(list.get(position).getGreatNum()+"");
         holder.reviewTextViewLiaonum.setText(list.get(position).getReplyNum()+"");
+        Log.e("tag","getIsGreat   "  + list.get(position).getIsGreat());
         if (list.get(position).getIsGreat()==0){
             holder.reviewTextViewZan.setBackgroundResource(R.mipmap.praise);
         }else{

@@ -4,8 +4,11 @@ import android.util.Log;
 
 import com.bw.movie.bean.AlipayBean;
 import com.bw.movie.bean.AttentionBean;
+import com.bw.movie.bean.AttentionCinemaBean;
+import com.bw.movie.bean.AttentionFilmBean;
 import com.bw.movie.bean.BeonBean;
 import com.bw.movie.bean.BuyBean;
+import com.bw.movie.bean.ChangerBean;
 import com.bw.movie.bean.CinemaBannerBean;
 import com.bw.movie.bean.CinemafjBean;
 import com.bw.movie.bean.CinemaplBean;
@@ -20,11 +23,15 @@ import com.bw.movie.bean.OpinionBean;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.PopularMovieBean;
 import com.bw.movie.bean.PwdBean;
+import com.bw.movie.bean.RecordBean;
 import com.bw.movie.bean.RegisterBean;
 import com.bw.movie.bean.ReviewBean;
 import com.bw.movie.bean.ScheduleBean;
+import com.bw.movie.bean.ShapeBean;
 import com.bw.movie.bean.ShowingBean;
 import com.bw.movie.bean.SignBean;
+import com.bw.movie.bean.SoundBean;
+import com.bw.movie.bean.SumBean;
 import com.bw.movie.bean.UserBean;
 import com.bw.movie.bean.VersionBean;
 import com.bw.movie.bean.WechatBean;
@@ -327,6 +334,91 @@ public class MyPresenter<T> implements ContractInterFace.IPresenter {
             public void Succeed(OpinionBean wechatLoginBean) {
                 ContractInterFace.IOpinion iMy = (ContractInterFace.IOpinion) t;
                 iMy.opinion(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void attentionFilm(int page, int count) {
+        iModel.attentionFilm(page, count, new MyModel.SetAttentionFilm() {
+            @Override
+            public void Succeed(AttentionFilmBean wechatLoginBean) {
+                ContractInterFace.IAttentionAll iAttentionAll = (ContractInterFace.IAttentionAll) t;
+                iAttentionAll.attentionFilm(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void attentionCinema(int page, int count) {
+        iModel.attentionCinema(page, count, new MyModel.SetAttentionCinema() {
+            @Override
+            public void Succeed(AttentionCinemaBean wechatLoginBean) {
+                ContractInterFace.IAttentionAll iAttentionAll = (ContractInterFace.IAttentionAll) t;
+                iAttentionAll.attentionCinema(wechatLoginBean);
+            }
+        });
+
+    }
+
+    @Override
+    public void record(int page, int count, int status) {
+        iModel.record(page, count, status, new MyModel.SetRecord() {
+            @Override
+            public void Succeed(RecordBean wechatLoginBean) {
+                ContractInterFace.IRecord iRecord = (ContractInterFace.IRecord) t;
+                iRecord.record(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void sound(int page, int count) {
+        iModel.sound(page, count, new MyModel.SetSound() {
+            @Override
+            public void Succeed(SoundBean wechatLoginBean) {
+                ContractInterFace.ISound iSound = (ContractInterFace.ISound) t;
+                iSound.sound(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void changer(int id) {
+        iModel.changer(id, new MyModel.SetChanger() {
+            @Override
+            public void Succeed(ChangerBean wechatLoginBean) {
+                ContractInterFace.ISound iSound = (ContractInterFace.ISound) t;
+                iSound.changer(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void sum() {
+        iModel.sum(new MyModel.SetSum() {
+            @Override
+            public void Succeed(SumBean wechatLoginBean) {
+                ContractInterFace.ISound iSound = (ContractInterFace.ISound) t;
+                iSound.sum(wechatLoginBean);
+            }
+        });
+    }
+
+    @Override
+    public void Desetory() {
+        if (t!=null){
+            t=null;
+        }
+    }
+
+    @Override
+    public void shape(String time, String sign) {
+        iModel.shape(time, sign, new MyModel.SetShape() {
+            @Override
+            public void Succeed(ShapeBean wechatLoginBean) {
+                ContractInterFace.IBuyTicket iBuyTicket = (ContractInterFace.IBuyTicket) t;
+                iBuyTicket.shape(wechatLoginBean);
             }
         });
     }

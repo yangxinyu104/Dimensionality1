@@ -86,4 +86,10 @@ public class FilmCinemaActivity extends BaseActivity implements ContractInterFac
         Toast.makeText(this, greatBean.getMessage(), Toast.LENGTH_SHORT).show();
        // iPresenter.filmcinema(MyApplication.movieId);
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        iPresenter.Desetory();
+        iPresenter =null;
+    }
 }

@@ -50,6 +50,7 @@ public class TicketActivity extends BaseActivity implements ContractInterFace.IT
     private TicketAdapter adapter;
     private String name;
     private String address;
+    private ContractInterFace.IPresenter iPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class TicketActivity extends BaseActivity implements ContractInterFace.IT
         ticketDy.setText(MyApplication.resultBean.getDirector());
         ticketSc.setText(MyApplication.resultBean.getDuration());
         ticketCd.setText(MyApplication.resultBean.getPlaceOrigin());
-        ContractInterFace.IPresenter iPresenter = new MyPresenter<>(this);
+        iPresenter = new MyPresenter<>(this);
         iPresenter.schedule(MyApplication.cinemaId,MyApplication.movieId);
 
         ticketRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -102,5 +103,12 @@ public class TicketActivity extends BaseActivity implements ContractInterFace.IT
         List<ScheduleBean.ResultBean> result = scheduleBean.getResult();
         list.addAll(result);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        iPresenter.Desetory();
+        iPresenter =null;
     }
 }

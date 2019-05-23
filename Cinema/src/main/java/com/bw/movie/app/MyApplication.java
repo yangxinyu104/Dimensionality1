@@ -1,5 +1,6 @@
 package com.bw.movie.app;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.text.SpannableString;
 import android.util.Log;
 import android.view.Gravity;
@@ -19,11 +21,17 @@ import android.widget.PopupWindow;
 
 import com.baidu.location.LocationClient;
 import com.bw.movie.R;
+import com.bw.movie.activity.InternetActivity;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.ReviewBean;
+import com.bw.movie.greendao.gen.DaoMaster;
+import com.bw.movie.greendao.gen.DaoSession;
+import com.bw.movie.throwable.ThrowDispose;
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+
+import org.greenrobot.greendao.database.Database;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -41,9 +49,9 @@ public class MyApplication extends Application {
     public static String FilmNames;
     public static  int filmFlag;
     //经度
-    public static String longitude = null;
+    public static double longitude = 0;
     //纬度
-    public static String latitude = null;
+    public static double latitude = 0;
     //性别
     public static int  Sex;
     //用户名字
@@ -87,24 +95,43 @@ public class MyApplication extends Application {
     //定位
     public static String City;
     private static Context context;
-
+    //更新的地址
+    public static  String UpdateAddress;
+    public static String DATA_BASE_NAME = "bw_movie";
+    private static  DaoSession daoSession;
+    //public static InternetActivity internetActivity;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
-        Fresco.initialize(this,ImagePipelineConfig.newBuilder(this).setMainDiskCacheConfig(DiskCacheConfig.newBuilder(this)
-                .setBaseDirectoryName("fresco")
-                .setBaseDirectoryPath(new File(Environment.getExternalStorageDirectory()+"f"))
-                .setMaxCacheSize(100)
-                .setMaxCacheSizeOnLowDiskSpace(60)
-                .setMaxCacheSizeOnVeryLowDiskSpace(40)
-                .build()).build());
-     //  Fresco.initialize(this);
+        //设置磁盘缓存
+        DiskCacheConfig diskCacheConfig =  DiskCacheConfig.newBuilder(this)
+                .setBaseDirectoryName("images_zjj")
+                .setBaseDirectoryPath(Environment.getExternalStorageDirectory())
+                .build();
+        //设置磁盘缓存的配置,生成配置文件
+        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
+                .setMainDiskCacheConfig(diskCacheConfig)
+                .build();
+        Fresco.initialize(this,config);
         context = getApplicationContext();
+        ThrowDispose.GetInstance().Init(getApplicationContext());
+    }
 
+    //初始化数据库
+    public static void SetUpDataBase(Context context){
+        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(context,DATA_BASE_NAME);
+        Database database = devOpenHelper.getWritableDb();
+        DaoMaster daoMaster = new DaoMaster(database);
+        daoSession = daoMaster.newSession();
 
     }
+    public static DaoSession GetDaoSession(Context context){
+        SetUpDataBase(context);
+        return daoSession;
+    }
+
+
 
     //获取当前版本号
     public static long getAppVersionCode(Context context) {

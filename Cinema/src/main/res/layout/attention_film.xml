@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="@dimen/dp_20"
+    tools:context=".activity.StartActivity">
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/attention_film_shape"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImageScaleType="centerCrop"
+            fresco:roundedCornerRadius="@dimen/dp_4"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:id="@+id/attention_film_image"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_128" />
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/attention_film_name"
+                android:textColor="#333333"
+                android:textSize="@dimen/sp_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/attention_film_message"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="#333333"
+                android:textSize="@dimen/sp_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/attention_film_time"
+                android:layout_marginTop="@dimen/dp_12"
+                android:textColor="#999999"
+                android:textSize="@dimen/sp_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

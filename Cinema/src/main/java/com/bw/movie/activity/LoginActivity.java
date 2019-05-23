@@ -30,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity implements ContractInterFace.ILogin {
+public class LoginActivity extends AppCompatActivity implements ContractInterFace.ILogin {
 
     @BindView(R.id.phone_id)
     EditText phoneId;
@@ -61,14 +61,13 @@ public class LoginActivity extends BaseActivity implements ContractInterFace.ILo
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         regToWx();
-
-        if (MyApplication.isNetworkConnected(this)) {
+       /* if (MyApplication.isNetworkConnected(this)) {
             loginNointernet.setVisibility(View.GONE);
             loginInternet.setVisibility(View.VISIBLE);
         }else{
             loginNointernet.setVisibility(View.VISIBLE);
             loginInternet.setVisibility(View.GONE);
-        }
+        }*/
 
         iPresenter = new MyPresenter<>(this);
         sp = getPreferences(MODE_PRIVATE);
@@ -167,13 +166,22 @@ public class LoginActivity extends BaseActivity implements ContractInterFace.ILo
 
     @OnClick(R.id.wxLogin)
     public void onViewClicked() {
+        if (!api.isWXAppInstalled()) {
+            Toast.makeText(this, "您还未安装微信客户端", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Log.e("tag","111111");
         SendAuth.Req req = new SendAuth.Req();
         req.scope = "snsapi_userinfo";
         req.state = "wechat_sdk_demo_test";
         api.sendReq(req);
-        finish();
-    }
 
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        iPresenter.Desetory();
+        iPresenter =null;
+    }
 
 }

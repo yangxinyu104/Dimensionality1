@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RecordActivity">
+
+    <TextView
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_30"
+        android:textColor="#333333"
+        android:textSize="@dimen/sp_14"
+        android:text="购票记录"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_50"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <RadioGroup
+            android:gravity="center"
+            android:layout_width="@dimen/dp_330"
+            android:layout_height="@dimen/dp_25"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:textColor="#ffffff"
+                android:id="@+id/record_film"
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="@dimen/dp_23"
+                android:background="@drawable/shape_xuan"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="待付款"
+                android:textSize="@dimen/sp_14" />
+
+            <RadioButton
+                android:id="@+id/record_cinema"
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="@dimen/dp_23"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/dp_32"
+                android:background="@drawable/shape_xuan"
+                android:button="@null"
+                android:gravity="center"
+                android:text="已支付"
+                android:textSize="@dimen/sp_14" />
+
+        </RadioGroup>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_30"
+            android:id="@+id/record_RecyclerView"
+            android:layout_width="@dimen/dp_350"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/record_finish"
+        android:src="@mipmap/returns"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_alignParentBottom="true"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60" />
+
+</RelativeLayout>

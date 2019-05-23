@@ -1,9 +1,13 @@
 package com.bw.movie.activity;
 
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -21,7 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MovieActivity extends BaseActivity {
+public class MovieActivity extends AppCompatActivity {
 
     @BindView(R.id.movie_ViewPager)
     ViewPager movieViewPager;
@@ -31,7 +35,6 @@ public class MovieActivity extends BaseActivity {
     ImageView movieCinema;
     @BindView(R.id.movie_my)
     ImageView movieMy;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,7 @@ public class MovieActivity extends BaseActivity {
         List<Fragment> list = initList();
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), list);
         movieViewPager.setAdapter(adapter);
+
     }
 
     private List<Fragment> initList() {

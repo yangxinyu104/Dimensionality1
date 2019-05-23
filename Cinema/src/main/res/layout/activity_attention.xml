@@ -5,5 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.AttentionActivity">
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_50"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
+    <RadioGroup
+        android:gravity="center"
+        android:id="@+id/search_RadioGroup"
+        android:layout_width="@dimen/dp_330"
+        android:layout_height="@dimen/dp_25"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:textColor="#ffffff"
+            android:id="@+id/attention_film"
+            android:layout_width="@dimen/dp_83"
+            android:layout_height="@dimen/dp_23"
+            android:background="@drawable/shape_xuan"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="电影"
+            android:textSize="@dimen/sp_14" />
+
+        <RadioButton
+            android:id="@+id/attention_cinema"
+            android:layout_width="@dimen/dp_83"
+            android:layout_height="@dimen/dp_23"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/dp_32"
+            android:background="@drawable/shape_xuan"
+            android:button="@null"
+            android:gravity="center"
+            android:text="影院"
+            android:textSize="@dimen/sp_14" />
+
+    </RadioGroup>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_gravity="center"
+            android:id="@+id/attention_RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/attention_finish"
+        android:src="@mipmap/returns"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_alignParentBottom="true"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60" />
 </RelativeLayout>

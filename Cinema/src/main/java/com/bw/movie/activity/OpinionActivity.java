@@ -59,4 +59,10 @@ public class OpinionActivity extends BaseActivity implements ContractInterFace.I
             startActivity(intent);
         }
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        iPresenter.Desetory();
+        iPresenter =null;
+    }
 }

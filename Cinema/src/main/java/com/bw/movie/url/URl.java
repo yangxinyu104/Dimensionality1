@@ -109,4 +109,27 @@ public class URl {
 
     //意见反馈
     public static  String URL_OPINION = "tool/v1/verify/recordFeedBack";
+
+    //查询用户关注的影片列表
+    public static  String URL_ATTENTIONFILM ="movie/v1/verify/findMoviePageList";
+
+    //查询用户关注的影院信息
+    public static  String URL_ATTENTIONCINEMA ="cinema/v1/verify/findCinemaPageList";
+
+    //用户购票记录查询列表
+    public static  String URL_RECORD="user/v1/verify/findUserBuyTicketRecordList";
+
+    // 查询系统消息列表
+    public static  String URL_SOUND="tool/v1/verify/findAllSysMsgList";
+
+    //查询用户当前未读消息数量
+    public static  String URL_NOREADNUM="tool/v1/verify/findUnreadMessageCount";
+
+    //系统消息读取状态修改
+    public static  String URL_CHANGER="tool/v1/verify/changeSysMsgStatus";
+
+    //微信分享前置接口，获取分享所需参数
+    public static  String URL_SHAPE = "tool/v1/wxShare";
+
+
 }

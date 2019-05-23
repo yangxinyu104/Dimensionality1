@@ -5,8 +5,11 @@ import android.util.Log;
 import com.bw.movie.app.MyApplication;
 import com.bw.movie.bean.AlipayBean;
 import com.bw.movie.bean.AttentionBean;
+import com.bw.movie.bean.AttentionCinemaBean;
+import com.bw.movie.bean.AttentionFilmBean;
 import com.bw.movie.bean.BeonBean;
 import com.bw.movie.bean.BuyBean;
+import com.bw.movie.bean.ChangerBean;
 import com.bw.movie.bean.CinemaBannerBean;
 import com.bw.movie.bean.CinemafjBean;
 import com.bw.movie.bean.CinemaplBean;
@@ -21,11 +24,15 @@ import com.bw.movie.bean.OpinionBean;
 import com.bw.movie.bean.ParticularsBean;
 import com.bw.movie.bean.PopularMovieBean;
 import com.bw.movie.bean.PwdBean;
+import com.bw.movie.bean.RecordBean;
 import com.bw.movie.bean.RegisterBean;
 import com.bw.movie.bean.ReviewBean;
 import com.bw.movie.bean.ScheduleBean;
+import com.bw.movie.bean.ShapeBean;
 import com.bw.movie.bean.ShowingBean;
 import com.bw.movie.bean.SignBean;
+import com.bw.movie.bean.SoundBean;
+import com.bw.movie.bean.SumBean;
 import com.bw.movie.bean.UserBean;
 import com.bw.movie.bean.VersionBean;
 import com.bw.movie.bean.WechatBean;
@@ -757,6 +764,180 @@ public class MyModel implements ContractInterFace.IModel {
 
 
     }
+    SetAttentionFilm setAttentionFilm;
+    @Override
+    public void attentionFilm(int page, int count, final SetAttentionFilm setAttentionFilm) {
+        this.setAttentionFilm =  setAttentionFilm;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("page",page);
+        hashMap.put("count",count);
+        RetrofitUtil.GetInstance().doGet(URl.URL_ATTENTIONFILM, MyApplication.UserId,hashMap, MyApplication.SessionId , new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                AttentionFilmBean attentionFilmBean = new Gson().fromJson(s, AttentionFilmBean.class);
+                setAttentionFilm.Succeed(attentionFilmBean);
+
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","  attentionFilm   " + s );
+            }
+        });
+
+
+    }
+    SetAttentionCinema setAttentionCinema;
+    @Override
+    public void attentionCinema(int page, int count, final SetAttentionCinema setAttentionCinema) {
+        this.setAttentionCinema =  setAttentionCinema;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("page",page);
+        hashMap.put("count",count);
+        RetrofitUtil.GetInstance().doGet(URl.URL_ATTENTIONCINEMA, MyApplication.UserId,hashMap, MyApplication.SessionId , new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                AttentionCinemaBean attentionCinemaBean = new Gson().fromJson(s, AttentionCinemaBean.class);
+                setAttentionCinema.Succeed(attentionCinemaBean);
+
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","  attentionCinema   " + s );
+            }
+        });
+    }
+    SetRecord setRecord;
+    @Override
+    public void record(int page, int count, int status, final SetRecord setRecord) {
+        this.setRecord = setRecord;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("page",page);
+        hashMap.put("count",count);
+        hashMap.put("status",status);
+        RetrofitUtil.GetInstance().doGet(URl.URL_RECORD, MyApplication.UserId,hashMap, MyApplication.SessionId , new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                RecordBean  recordBean = new Gson().fromJson(s, RecordBean.class);
+                setRecord.Succeed(recordBean);
+
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","  record   " + s );
+            }
+        });
+
+    }
+    SetSound setSound;
+    @Override
+    public void sound(int page, int count, final SetSound setSound) {
+        this.setSound = setSound;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("page",page);
+        hashMap.put("count",count);
+        RetrofitUtil.GetInstance().doGet(URl.URL_SOUND, MyApplication.UserId,hashMap, MyApplication.SessionId , new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                SoundBean soundBean = new Gson().fromJson(s, SoundBean.class);
+                setSound.Succeed(soundBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","  sound   " + s );
+            }
+        });
+
+    }
+    SetChanger setChanger;
+    @Override
+    public void changer(int id, final SetChanger setChanger) {
+        this.setChanger = setChanger;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("id",id);
+        RetrofitUtil.GetInstance().doGet(URl.URL_CHANGER, MyApplication.UserId,hashMap, MyApplication.SessionId , new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                ChangerBean changerBean = new Gson().fromJson(s, ChangerBean.class);
+                setChanger.Succeed(changerBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","  changer   " + s );
+            }
+        });
+
+    }
+    SetSum setSum;
+    @Override
+    public void sum(final SetSum setSum) {
+        this.setSum = setSum;
+        RetrofitUtil.GetInstance().QianGet(URl.URL_NOREADNUM, MyApplication.UserId, MyApplication.SessionId , new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                SumBean sumBean = new Gson().fromJson(s, SumBean.class);
+                setSum.Succeed(sumBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","  changer   " + s );
+            }
+        });
+
+    }
+    SetShape setShape;
+    @Override
+    public void shape(String time, String sign, final SetShape setShape) {
+        this.setShape = setShape;
+        HashMap<String,Object> hashMap= new HashMap<>();
+        hashMap.put("time",time);
+        hashMap.put("sign",sign);
+        RetrofitUtil.GetInstance().doGet(URl.URL_SHAPE, MyApplication.UserId, hashMap, MyApplication.SessionId, new RetrofitUtil.HttpListener() {
+            @Override
+            public void Succeed(String s) {
+                ShapeBean shapeBean = new Gson().fromJson(s, ShapeBean.class);
+                setShape.Succeed(shapeBean);
+            }
+
+            @Override
+            public void Error(String s) {
+                Log.e("tag","  shape   " + s );
+            }
+        });
+
+    }
+    public interface SetShape{
+        void Succeed(ShapeBean wechatLoginBean);
+    }
+
+    public interface SetSum{
+        void Succeed(SumBean wechatLoginBean);
+    }
+
+    public interface SetChanger{
+        void Succeed(ChangerBean wechatLoginBean);
+    }
+    public interface SetSound{
+        void Succeed(SoundBean wechatLoginBean);
+    }
+
+    public interface SetRecord{
+        void Succeed(RecordBean wechatLoginBean);
+    }
+
+    public interface SetAttentionCinema{
+        void Succeed(AttentionCinemaBean wechatLoginBean);
+    }
+
+    public interface SetAttentionFilm{
+        void Succeed(AttentionFilmBean wechatLoginBean);
+    }
+
     public interface SetOpinion{
         void Succeed(OpinionBean wechatLoginBean);
     }

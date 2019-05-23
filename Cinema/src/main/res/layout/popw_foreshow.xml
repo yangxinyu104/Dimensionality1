@@ -40,38 +40,19 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <VideoView
+            <com.bw.movie.customview.MyVideoView
                 android:layout_marginTop="@dimen/dp_20"
-                android:background="@mipmap/zhufubao"
+                android:background="@drawable/ic_loading_rotate"
                 android:id="@+id/popw_foreshow_video1"
                 android:layout_marginRight="@dimen/dp_24"
                 android:layout_marginLeft="@dimen/dp_24"
                 android:layout_width="@dimen/dp_321"
                 android:layout_height="@dimen/dp_153" />
-            <VideoView
-                android:layout_below="@+id/popw_foreshow_video1"
-                android:background="@mipmap/zhufubao"
-                android:layout_marginTop="@dimen/dp_20"
-                android:id="@+id/popw_foreshow_video2"
-                android:layout_marginRight="@dimen/dp_24"
-                android:layout_marginLeft="@dimen/dp_24"
-                android:layout_width="@dimen/dp_321"
-                android:layout_height="@dimen/dp_153" />
-            <VideoView
-                android:layout_below="@+id/popw_foreshow_video2"
-                android:background="@mipmap/zhufubao"
-                android:layout_marginTop="@dimen/dp_20"
-                android:id="@+id/popw_foreshow_video3"
-                android:layout_marginRight="@dimen/dp_24"
-                android:layout_marginLeft="@dimen/dp_24"
-                android:layout_width="@dimen/dp_321"
-                android:layout_height="@dimen/dp_153" />
+
             </RelativeLayout>
 
         </ScrollView>
