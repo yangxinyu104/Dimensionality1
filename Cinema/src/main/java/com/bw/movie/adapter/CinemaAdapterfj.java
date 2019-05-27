@@ -64,7 +64,7 @@ public class CinemaAdapterfj extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holder.imageViewfj.setImageURI(fjlist.get(position).getLogo());
         holder.textViewfj.setText(fjlist.get(position).getName());
         holder.textAddressfj.setText(fjlist.get(position).getAddress());
-        holder.textDistancefj.setText(fjlist.get(position).getDistance() + "km");
+        holder.textDistancefj.setText((fjlist.get(position).getDistance()/1000) + "km");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

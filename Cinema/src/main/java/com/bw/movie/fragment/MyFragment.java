@@ -46,6 +46,7 @@ import com.bw.movie.util.DownUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.File;
+import java.util.concurrent.Executors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
