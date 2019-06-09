@@ -9,10 +9,5 @@
 
     </style>
 
-    <style name="AppTheme.Main." parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:windowTranslucentStatus" tools:ignore="NewApi">true</item>
-    </style>
-
-
 
 </resources>

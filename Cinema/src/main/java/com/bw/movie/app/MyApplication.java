@@ -91,7 +91,7 @@ public class MyApplication extends Application {
     //点击的电影详情
     public static ParticularsBean.ResultBean resultBean;
     //电影评论
-    public static List<ReviewBean.ResultBean> reviewBean;
+    public static List<ReviewBean.ResultBean> reviewBean =null;
     //定位
     public static String City;
     private static Context context;

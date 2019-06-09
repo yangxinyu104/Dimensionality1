@@ -1,7 +1,10 @@
 package com.bw.movie.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -96,8 +99,8 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
     private VideoView popw_foreshow_video1;
     private PopupWindow popupWindow2;
     private PopupWindow popupWindow3;
-    public ReviewAdapter adapter;
     private PopupWindow popupWindow4;
+    private XRecyclerView popw_review_recyclerView;
 
 
     @Override
@@ -118,7 +121,7 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
         iPresenter = new MyPresenter<>(this);
         iPresenter.details(id);
         iPresenter.particulars(id);
-        iPresenter.review(id,10);
+
     }
 
     @OnClick({R.id.detailss_xq, R.id.detailss_yg, R.id.detailss_jz, R.id.detailss_yp, R.id.detailss_finish, R.id.detailss_gm})
@@ -141,6 +144,10 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
                 popw_foreshow_video1 = view_yg.findViewById(R.id.popw_foreshow_video1);
                 popw_foreshow_video1.setVideoURI(Uri.parse(MyApplication.resultBean.getShortFilmList().get(0).getVideoUrl()));
                 popw_foreshow_video1.requestFocus();
+                MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+                Bitmap frameAtTime = mmr.getFrameAtTime();
+                Drawable drawable = bitmap2Drawable(frameAtTime);
+                popw_foreshow_video1.setBackgroundDrawable(drawable);
                 if (popw_foreshow_video1.isPlaying()){
                     popw_foreshow_video1.pause();
                 }
@@ -154,9 +161,6 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
                         return false;
                     }
                 });
-
-
-
 
                 ImageView popw_foreshow_finish = view_yg.findViewById(R.id.popw_foreshow_finish);
                 popw_foreshow_finish.setOnClickListener(new View.OnClickListener() {
@@ -197,11 +201,12 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
                 popupWindow2.showAtLocation(view_jz,Gravity.CENTER_HORIZONTAL,0,100);
                 break;
             case R.id.detailss_yp:
+                iPresenter.review(id,10);
                 detailsPopwName.setText(MyApplication.resultBean.getName());
                 View  view_yp = View.inflate(this, R.layout.popw_review, null);
                 popupWindow3 = new PopupWindow(view_yp,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
                 ImageView popw_review_finish =  view_yp.findViewById(R.id.popw_review_finish);
-                XRecyclerView popw_review_RecyclerView  = view_yp.findViewById(R.id.popw_review_RecyclerView);
+                popw_review_recyclerView = view_yp.findViewById(R.id.popw_review_RecyclerView);
                 ImageView popw_review_finishs =  view_yp.findViewById(R.id.popw_review_finishs);
                 ImageView  popw_review_pl = view_yp.findViewById(R.id.popw_review_pl);
                 popw_review_pl.setOnClickListener(new View.OnClickListener() {
@@ -236,9 +241,7 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
                         detailsPopwName.setText("电影详情");
                     }
                 });
-                popw_review_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
-                adapter = new ReviewAdapter(MyApplication.reviewBean,this);
-                popw_review_RecyclerView.setAdapter(adapter);
+
 
                 popw_review_finish.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -262,7 +265,9 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
                 break;
         }
     }
-
+    Drawable bitmap2Drawable(Bitmap bitmap) {
+        return new BitmapDrawable(bitmap);
+    }
     private List<PersonCard> buildData(ParticularsBean.ResultBean resultBean) {
         List<PersonCard> list = new ArrayList<>();
         for(int i=0;i<6;i++) {
@@ -335,17 +340,24 @@ public class DetailsActivity extends BaseActivity implements ContractInterFace.I
     public void review(ReviewBean reviewBean) {
         List<ReviewBean.ResultBean> result = reviewBean.getResult();
         MyApplication.reviewBean = result;
+        popw_review_recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ReviewAdapter adapter = new ReviewAdapter(MyApplication.reviewBean,this);
+        popw_review_recyclerView.setAdapter(adapter);
+        //adapter.notifyDataSetChanged();
+        Log.e("tag","review");
     }
 
     @Override
     public void great(GreatBean greatBean) {
         Toast.makeText(this, greatBean.getMessage(), Toast.LENGTH_SHORT).show();
         iPresenter.review(id,10);
+
        // adapter.notifyDataSetChanged();
     }
 
     @Override
     public void filmReview(GreatBean greatBean) {
+        iPresenter.review(id,10);
         Toast.makeText(this, greatBean.getMessage(), Toast.LENGTH_SHORT).show();
     }
     @Override

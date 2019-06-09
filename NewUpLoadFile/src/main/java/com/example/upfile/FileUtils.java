@@ -4,10 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+import okhttp3.OkHttpClient;
+
 public class FileUtils {
 
 
     public static byte[] getBlock(long offset, File file, int blockSize) {
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
         byte[] result = new byte[blockSize];
         RandomAccessFile accessFile = null;
         try {

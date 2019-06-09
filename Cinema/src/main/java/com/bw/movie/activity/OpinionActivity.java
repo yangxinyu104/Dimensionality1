@@ -42,7 +42,11 @@ public class OpinionActivity extends BaseActivity implements ContractInterFace.I
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.opinion_Button:
-                iPresenter.opinion(opinionEditText.getText().toString());
+                if (opinionEditText.getText().toString().equals("")){
+                    Toast.makeText(this, "文本框为空", Toast.LENGTH_SHORT).show();
+                }else{
+                    iPresenter.opinion(opinionEditText.getText().toString());
+                }
                 break;
             case R.id.opinion_finish:
                 finish();

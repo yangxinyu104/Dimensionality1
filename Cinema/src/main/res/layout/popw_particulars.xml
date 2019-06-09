@@ -7,6 +7,12 @@
     android:fitsSystemWindows="true"
     >
 
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/popw_particulars_SimpleDraweeView"
         android:layout_marginTop="@dimen/dp_140"
@@ -186,6 +192,10 @@
 
             </LinearLayout>
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_marginTop="@dimen/dp_12"
                 android:orientation="vertical"
@@ -281,10 +291,16 @@
 
                 </LinearLayout>
 
-            </LinearLayout>
 
+            </LinearLayout>
+            </ScrollView>
         </LinearLayout>
 
     </LinearLayout>
+    </RelativeLayout>
+
+
+
+
 
 </RelativeLayout>

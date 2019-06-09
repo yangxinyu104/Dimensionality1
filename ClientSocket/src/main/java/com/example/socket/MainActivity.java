@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         tv_msg = (TextView) findViewById(R.id.txt_1);
         ed_msg = (EditText) findViewById(R.id.et_talk);
         btn_send = (Button) findViewById(R.id.btn_send);

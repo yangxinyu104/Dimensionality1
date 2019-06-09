@@ -18,7 +18,7 @@
         android:layout_marginLeft="@dimen/dp_5"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_80">
+        android:layout_height="@dimen/dp_100">
 
         <TextView
             android:id="@+id/ticket_item_names"

@@ -46,7 +46,6 @@
 
             <com.bw.movie.customview.MyVideoView
                 android:layout_marginTop="@dimen/dp_20"
-                android:background="@drawable/ic_loading_rotate"
                 android:id="@+id/popw_foreshow_video1"
                 android:layout_marginRight="@dimen/dp_24"
                 android:layout_marginLeft="@dimen/dp_24"

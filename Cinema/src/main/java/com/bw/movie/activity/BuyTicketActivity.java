@@ -182,7 +182,7 @@ public class BuyTicketActivity extends BaseActivity implements ContractInterFace
         details_metro = view_xsq.findViewById(R.id.details_metro);
         details_relativeLayout = view_xsq.findViewById(R.id.details_RelativeLayout);
         //布局
-        details_details = view_xsq.findViewById(R.id.details_details);
+       // details_details = view_xsq.findViewById(R.id.details_details);
         evaluate_recycler1 = view_xsq.findViewById(R.id.evaluate_recycler);
         TextView evaluatess = view_xsq.findViewById(R.id.evaluatess);
         TextView detailsss = view_xsq.findViewById(R.id.detailsss);

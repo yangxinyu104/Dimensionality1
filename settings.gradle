@@ -1,1 +1,1 @@
-include ':ScienceAndTechnology', ':Cinema', ':ClientSocket', ':UpLoadFile', ':library', ':NewUpLoadFile'
+include ':ScienceAndTechnology', ':Cinema', ':ClientSocket', ':UpLoadFile', ':library', ':NewUpLoadFile', ':CustomView', ':Pattern', ':MVPPackaging'

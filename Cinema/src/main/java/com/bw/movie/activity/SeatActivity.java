@@ -340,6 +340,10 @@ public class SeatActivity extends BaseActivity implements ContractInterFace.IBuy
 
     @Override
     public void wechat(WechatBean wechatBean) {
+        if (!api.isWXAppInstalled()) {
+            Toast.makeText(this, "您还未安装微信客户端", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Log.e("tag",wechatBean.getAppId()+"      "+wechatBean.getMessage());
         String appId = wechatBean.getAppId();
         String partnerId = wechatBean.getPartnerId();

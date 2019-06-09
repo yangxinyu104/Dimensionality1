@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_400"
+    android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:background="#fff">
 
@@ -44,7 +44,6 @@
                 android:layout_below="@id/evaluatess"
                 android:layout_marginLeft="@dimen/dp_115"
                 android:layout_marginTop="@dimen/dp_6"
-                android:layout_toRightOf="@id/details_view"
                 android:background="@drawable/cinema_details_xqpj_view"
                 android:visibility="gone" />
         </LinearLayout>
@@ -78,7 +77,7 @@
         <TextView
             android:id="@+id/details_name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_2"
             android:layout_toRightOf="@id/ima"

@@ -11,6 +11,8 @@ import org.json.JSONObject;
 
 import java.io.File;
 
+import okhttp3.OkHttpClient;
+
 public class MainActivity extends AppCompatActivity implements UploadTaskListener{
 
     UploadManager uploadManager;
@@ -23,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements UploadTaskListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Button upfile = findViewById(R.id.upfile);
         upfile.setOnClickListener(new View.OnClickListener() {
             @Override

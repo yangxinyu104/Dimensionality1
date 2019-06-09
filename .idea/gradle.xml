@@ -10,7 +10,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Cinema" />
             <option value="$PROJECT_DIR$/ClientSocket" />
+            <option value="$PROJECT_DIR$/CustomView" />
+            <option value="$PROJECT_DIR$/MVPPackaging" />
             <option value="$PROJECT_DIR$/NewUpLoadFile" />
+            <option value="$PROJECT_DIR$/Pattern" />
             <option value="$PROJECT_DIR$/ScienceAndTechnology" />
             <option value="$PROJECT_DIR$/UpLoadFile" />
             <option value="$PROJECT_DIR$/library" />
